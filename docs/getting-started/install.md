@@ -1,141 +1,197 @@
 # Install Guide
 
-This guide is for operators who download the released jars and want to get PulseOrchestrator running.
+PulseOrchestrator is a server network manager for Minecraft. It runs on your machine and handles starting, stopping, and monitoring your game servers automatically — you do not need to manage each server by hand.
+
+This guide walks you through installing and starting it for the first time.
+
+---
 
 ## What you need
 
-- Java 21 on the machine that runs the orchestrator
-- the released orchestrator jar
-- the released Paper plugin jar if you want Paper integration
-- the released Velocity plugin jar if you want standalone Velocity integration
+Before you start, make sure you have:
 
-## Download the release files
+- **Java 21** — the program that runs PulseOrchestrator and your game servers. You can check your version by opening a terminal and typing `java -version`. If you see `21` or higher you are good.
+- **The orchestrator jar** — the main PulseOrchestrator file, downloaded from the releases page.
+- **The Paper plugin jar** *(optional)* — only needed if you want in-game commands on Paper servers.
+- **The Velocity plugin jar** *(optional)* — only needed if you use an external Velocity proxy instead of the built-in one.
 
-From the release page, download the jars you need:
+!!! tip "Where to find the jars"
+    All release files are available on the [GitHub releases page](https://github.com/PulseOrchestrator/Core/releases). Download the files that match the version you want to run.
 
-- the orchestrator jar
-- the Paper plugin jar
-- the Velocity plugin jar if you use it
+---
 
-Create a persistent folder for the orchestrator runtime, for example:
+## Create a home folder
 
-```text
-D:\PulseOrchestrator\
-```
+PulseOrchestrator needs a dedicated folder to store everything: your configuration, your server files, logs, and backups. Create an empty folder somewhere permanent.
 
-That folder becomes the base path where PulseOrchestrator stores its configuration, database, templates, services, proxy files, and logs.
+=== "Windows"
+    ```text
+    C:\PulseOrchestrator\
+    ```
+
+=== "Linux"
+    ```text
+    /home/yourname/pulseorchestrator/
+    ```
+
+Copy the orchestrator jar into that folder.
+
+!!! warning "Keep this folder in a safe place"
+    Do not put it in a temporary or download folder. All your server data will live here.
+
+---
 
 ## Start the orchestrator
 
-Run the orchestrator jar.
+Open a terminal, navigate into your folder, and run the jar.
 
-### Windows
+=== "Windows"
+    ```powershell
+    java -jar pulseorchestrator-orchestrator-<version>-all.jar
+    ```
 
-```powershell
-java -jar pulseorchestrator-orchestrator-<version>-all.jar
-```
+=== "Linux (foreground)"
+    ```bash
+    java -jar pulseorchestrator-orchestrator-<version>-all.jar
+    ```
 
-### Linux with screen
+=== "Linux (background with screen)"
+    `screen` keeps the program running after you close your SSH connection.
 
-```bash
-screen -S pulse-orchestrator java -jar pulseorchestrator-orchestrator-<version>-all.jar
-```
+    If you do not have screen installed: `sudo apt install screen`
 
-## What happens on first start
+    ```bash
+    screen -S pulse
+    java -jar pulseorchestrator-orchestrator-<version>-all.jar
+    ```
 
-On the first launch, PulseOrchestrator opens the setup wizard instead of starting directly.
+    To leave the screen running in the background: press ++ctrl+a++ then ++d++.
 
-The wizard walks through these steps:
+    To come back to it later: `screen -r pulse`
 
-### 1. API configuration
+!!! note
+    Replace `<version>` with the actual version number, for example `pulseorchestrator-orchestrator-1.0.0-all.jar`.
 
-You choose:
+---
 
-- the API port
-- the bind address
+## First-time setup wizard
 
-An API secret is generated automatically.
+On the very first start, PulseOrchestrator detects that it has no configuration yet and runs an interactive setup wizard. It will ask you a series of questions. You can press ++enter++ on most of them to accept the suggested default.
 
-### 2. Java configuration
+### Step 1 — API settings
 
-You provide:
+The API is how PulseOrchestrator communicates with the Minecraft plugins you install. It runs a small web server in the background.
 
-- the Java executable path
-- the default maximum memory in MB
-- the default minimum memory in MB
+- **API port** — the port number the API listens on. Default is `8080`. Only change this if something else on your machine is already using that port.
+- **Bind address** — the network address the API binds to. `127.0.0.1` means it only accepts connections from the same machine. Leave this as the default unless you know what you are doing.
 
-These values are used as the baseline for provisioned services.
+A long random **API secret** is generated for you automatically and saved to `config.json`. You will need to copy this into the plugin configs later.
 
-### 3. Service port range
+### Step 2 — Java path
 
-You define the port range that PulseOrchestrator can use for managed services.
+PulseOrchestrator needs to know where Java is installed so it can launch game servers.
 
-### 4. Proxy setup
+- Typing just `java` works if Java is in your system PATH (this is the default on most setups).
+- If that does not work, provide the full path: for example `C:\Program Files\Java\jdk-21\bin\java.exe` on Windows or `/usr/bin/java` on Linux.
 
-You choose the bind port for the built-in Velocity proxy.
+You also set default memory limits here:
 
-In `1.0.0`, the built-in proxy is required by the setup flow. The forwarding secret is generated automatically.
+- **Default max memory** — the maximum RAM each game server is allowed to use, in MB. Default is `1024` (1 GB). You can override this per-task later.
+- **Default min memory** — the starting memory allocation. Default is `512` MB.
 
-### 5. Minecraft EULA confirmation
+### Step 3 — Port range
 
-You must accept the Minecraft EULA to continue.
+PulseOrchestrator assigns a port to each game server it creates, chosen from this range. Players never connect directly to these ports — they connect through the proxy.
 
-### 6. Runtime file creation
+- Default range is `25700` to `25800`, which gives room for up to 100 servers.
+- Make sure the ports in this range are not blocked by a firewall.
 
-The wizard creates the runtime structure and writes the first configuration files.
+### Step 4 — Proxy port
 
-After setup, the base path contains:
+The built-in proxy is what players actually connect to. It forwards them to the right game server automatically.
+
+- **Bind port** — the port players type when connecting to your network. Default is `25565` (the standard Minecraft port).
+
+### Step 5 — Minecraft EULA
+
+You must accept the [Minecraft End User License Agreement](https://www.minecraft.net/en-us/eula) to run Minecraft servers. The wizard asks for your confirmation before proceeding.
+
+### Step 6 — Done
+
+The wizard writes all your configuration files and creates the folder structure. The orchestrator then starts normally.
+
+---
+
+## Folder structure after setup
+
+Once setup finishes your folder will look like this:
 
 ```text
-<basePath>/
-  config.json
-  tasks.json
-  pulse.db
+<your folder>/
+  config.json          ← main settings (API, memory, ports, etc.)
+  tasks.json           ← your server blueprints
+  pulse.db             ← database of created services (do not delete)
   templates/
-    global/
-  services/
-  server-jars/
-  proxy/
-  logs/
+    global/            ← files copied into every new server
+  services/            ← the actual running server folders
+  server-jars/         ← downloaded server JARs (auto-managed)
+  proxy/               ← built-in Velocity proxy files
+  logs/                ← orchestrator logs
 ```
 
-The generated API secret is stored in `config.json`.
+!!! warning "Do not delete pulse.db"
+    The `pulse.db` file is the database that tracks all your services. Deleting it means PulseOrchestrator forgets about all existing servers.
 
-## Configure the plugins
+---
 
-After the orchestrator has completed setup, copy the API URL and API secret into the plugins that should connect to it.
+## Connect the plugins
 
-The default local API URL is:
+After the orchestrator is running, any Minecraft plugin that talks to it needs the API address and secret.
+
+You can find the API secret by opening `config.json` and looking for the `apiSecret` field.
+
+The default local API address is:
 
 ```text
 http://localhost:8080
 ```
 
+If you are connecting from a different machine (for example a Paper server on another VPS), replace `localhost` with the IP address of the machine running the orchestrator.
+
 ### Paper plugin
 
-Put the Paper jar into your Paper server `plugins` folder, start the server once, and then update its config:
+Put the Paper jar into your Paper server's `plugins/` folder and start the server once to generate the config. Then open `plugins/PulseOrchestrator/config.json` and fill in:
 
 ```json
 {
   "orchestratorUrl": "http://localhost:8080",
-  "apiSecret": "copy-from-config-json"
+  "apiSecret": "paste-your-secret-here"
 }
 ```
 
+Restart the server after saving.
+
 ### Velocity plugin
 
-If you use the standalone Velocity plugin, put its jar into the Velocity `plugins` folder, start Velocity once, and then update its config:
+Put the Velocity jar into your Velocity `plugins/` folder and start Velocity once. Then open `plugins/pulseorchestrator/config.json` and fill in:
 
 ```json
 {
   "orchestratorUrl": "http://localhost:8080",
-  "apiSecret": "copy-from-config-json",
+  "apiSecret": "paste-your-secret-here",
   "pollIntervalSeconds": 5,
   "connectionTimeoutMs": 5000,
   "readTimeoutMs": 10000
 }
 ```
 
-## Next step
+Restart Velocity after saving.
 
-Once installation is complete, the next job is to define your first task blueprints and create services from them. That workflow is covered in the [Feature Guide](../guides/feature-guide.md).
+---
+
+## Next steps
+
+With the orchestrator running, the next step is to define your first **task** (a server blueprint) and create a server from it.
+
+- [Feature Guide](../guides/feature-guide.md) — learn about tasks, services, the proxy, and templates
+- [Configuration Reference](../guides/configuration.md) — a full explanation of every setting in `config.json` and `tasks.json`

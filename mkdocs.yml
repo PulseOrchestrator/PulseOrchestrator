@@ -60,3 +60,4 @@ nav:
       - Install Guide: getting-started/install.md
   - Guides:
       - Feature Guide: guides/feature-guide.md
+      - Configuration Reference: guides/configuration.md
