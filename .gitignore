@@ -1,0 +1,23 @@
+# Ignore generated MkDocs site
+/site/
+
+# Python / mkdocs build artifacts
+*.pyc
+__pycache__/
+.site/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# JetBrains
+.idea/
+
+# Node
+node_modules/
+
+# Logs
+logs/
+
+# Editor dirs
+.vscode/
