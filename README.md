@@ -35,7 +35,7 @@ Quick links:
 
 ## 💬 Community & Support
 
-- **Discord**: [Join our Discord](YOUR_DISCORD_INVITE_LINK)
+- **Discord**: [Join our Discord](https://discord.gg/NRDTb6xxgE)
 - **Bug Reports**: [Open an issue](https://github.com/PulseOrchestrator/PulseOrchestrator/issues)
 - **Feature Requests**: Share your ideas in Discord or GitHub Discussions
 
