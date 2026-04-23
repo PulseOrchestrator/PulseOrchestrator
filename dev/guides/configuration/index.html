@@ -637,6 +637,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#bedrock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bedrock compatibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#health-monitor" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -834,6 +845,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#bedrock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bedrock compatibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#health-monitor" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -973,10 +995,6 @@
 </tbody>
 </table>
 <p>Both files are plain JSON. You can edit them in any text editor. <strong>Restart the orchestrator after making changes</strong> — it reads these files on startup.</p>
-<div class="admonition tip">
-<p class="admonition-title">Not sure what JSON is?</p>
-<p>JSON is a simple text format for storing settings. It uses <code>{</code> curly braces <code>}</code> for sections and <code>"key": value</code> pairs for individual settings. Values in quotes are text, values without quotes are numbers or true/false switches.</p>
-</div>
 <hr />
 <h2 id="configjson">config.json<a class="headerlink" href="#configjson" title="Permanent link">&para;</a></h2>
 <p>Below is a fully annotated example showing every available setting with its default value.</p>
@@ -1002,38 +1020,42 @@
 <a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="nt">&quot;minMemoryMB&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span>
 <a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="nt">&quot;maxMemoryMB&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">512</span><span class="p">,</span>
 <a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="nt">&quot;defaultEntryTask&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lobby&quot;</span><span class="p">,</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="nt">&quot;fallbackTasks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;fallback&quot;</span><span class="p">]</span>
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">  </span><span class="p">},</span>
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">  </span><span class="nt">&quot;health&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">    </span><span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="nt">&quot;checkIntervalSeconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">    </span><span class="nt">&quot;maxRestartAttempts&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">    </span><span class="nt">&quot;restartCooldownSeconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span>
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="nt">&quot;crashWindowSeconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span>
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">  </span><span class="p">},</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">  </span><span class="nt">&quot;logs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">    </span><span class="nt">&quot;rotationEnabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">    </span><span class="nt">&quot;maxLogFiles&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">    </span><span class="nt">&quot;maxLogSizeMB&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">    </span><span class="nt">&quot;cleanupIntervalHours&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span>
-<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">    </span><span class="nt">&quot;retentionDays&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span>
-<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">  </span><span class="p">},</span>
-<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
-<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">  </span><span class="nt">&quot;backups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">    </span><span class="nt">&quot;maxSlots&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
-<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">    </span><span class="nt">&quot;excludedDirs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;logs&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;cache&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;bundler&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;.paper-remapped&quot;</span><span class="p">]</span>
-<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">  </span><span class="p">},</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
-<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">  </span><span class="nt">&quot;updates&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">    </span><span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">    </span><span class="nt">&quot;checkOnStartup&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">    </span><span class="nt">&quot;includePrereleases&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">    </span><span class="nt">&quot;checkIntervalHours&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">    </span><span class="nt">&quot;runtimeWarningIntervalHours&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span>
-<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="p">}</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="nt">&quot;fallbackTasks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;fallback&quot;</span><span class="p">],</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="nt">&quot;bedrock&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">      </span><span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">      </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">19132</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">  </span><span class="nt">&quot;health&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">    </span><span class="nt">&quot;checkIntervalSeconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">    </span><span class="nt">&quot;maxRestartAttempts&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">    </span><span class="nt">&quot;restartCooldownSeconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">    </span><span class="nt">&quot;crashWindowSeconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">  </span><span class="nt">&quot;logs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">    </span><span class="nt">&quot;rotationEnabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">    </span><span class="nt">&quot;maxLogFiles&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">    </span><span class="nt">&quot;maxLogSizeMB&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">    </span><span class="nt">&quot;cleanupIntervalHours&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">    </span><span class="nt">&quot;retentionDays&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">  </span><span class="nt">&quot;backups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">    </span><span class="nt">&quot;maxSlots&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">    </span><span class="nt">&quot;excludedDirs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;logs&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;cache&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;bundler&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;.paper-remapped&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">  </span><span class="nt">&quot;updates&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">    </span><span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="w">    </span><span class="nt">&quot;checkOnStartup&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="w">    </span><span class="nt">&quot;includePrereleases&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="w">    </span><span class="nt">&quot;checkIntervalHours&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="w">    </span><span class="nt">&quot;runtimeWarningIntervalHours&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="p">}</span>
 </code></pre></div>
 <hr />
 <h3 id="api-settings">API settings<a class="headerlink" href="#api-settings" title="Permanent link">&para;</a></h3>
@@ -1050,17 +1072,17 @@
 <tr>
 <td><code>host</code></td>
 <td><code>"127.0.0.1"</code></td>
-<td>The network address the API listens on. <code>127.0.0.1</code> means only programs on the same machine can connect. Change to <code>0.0.0.0</code> if plugins on other machines need to reach the API — but make sure your firewall only allows trusted IPs.</td>
+<td>Network address the API listens on. <code>127.0.0.1</code> restricts access to the local machine. Set to <code>0.0.0.0</code> to accept connections from other hosts — ensure your firewall limits access to trusted IPs.</td>
 </tr>
 <tr>
 <td><code>apiPort</code></td>
 <td><code>8080</code></td>
-<td>The port number for the API. Change this if something else on your machine already uses port 8080.</td>
+<td>TCP port the API server binds to. Change if the port is already in use.</td>
 </tr>
 <tr>
 <td><code>apiSecret</code></td>
 <td><em>(generated)</em></td>
-<td>A long random password that plugins must send with every API request. <strong>Never share this publicly.</strong> It is generated for you and stored here — you just copy it into your plugin configs.</td>
+<td>Bearer token required on every API request. Generated automatically on first run. <strong>Never expose this value publicly</strong> — copy it into plugin configs as needed.</td>
 </tr>
 </tbody>
 </table>
@@ -1079,23 +1101,23 @@
 <tr>
 <td><code>java.path</code></td>
 <td><code>"java"</code></td>
-<td>The path to the Java executable. The default <code>"java"</code> works if Java is in your system PATH. If the orchestrator cannot find Java, provide the full path like <code>"C:\\Program Files\\Java\\jdk-21\\bin\\java.exe"</code> (Windows) or <code>"/usr/bin/java"</code> (Linux).</td>
+<td>Path to the Java executable. The default <code>"java"</code> works when Java is on the system <code>PATH</code>. If the orchestrator cannot locate Java, provide the absolute path: <code>"C:\\Program Files\\Java\\jdk-21\\bin\\java.exe"</code> (Windows) or <code>"/usr/bin/java"</code> (Linux).</td>
 </tr>
 <tr>
 <td><code>java.defaultMaxMemoryMB</code></td>
 <td><code>1024</code></td>
-<td>The maximum RAM a game server can use, in megabytes. 1024 = 1 GB. This is the default — you can override it per task.</td>
+<td>Default maximum heap size for game servers, in MB. Can be overridden per task.</td>
 </tr>
 <tr>
 <td><code>java.defaultMinMemoryMB</code></td>
 <td><code>512</code></td>
-<td>The starting memory allocation for game servers. Minecraft performs best when min and max are set to the same value on servers with enough RAM.</td>
+<td>Initial heap allocation for game servers, in MB. Setting min and max to the same value avoids GC pressure from heap resizing on servers with sufficient RAM.</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition tip">
-<p class="admonition-title">How much memory should I give?</p>
-<p>A small survival server needs about 1–2 GB. Minigame or lobby servers can often run on 512 MB. Large modpacks may need 4–8 GB. Start conservative and increase if the server is lagging.</p>
+<p class="admonition-title">Tip</p>
+<p>Typical requirements: lobby/minigame servers — 512 MB to 1 GB; survival servers — 1–2 GB; large modpacks — 4–8 GB. Start conservative and increase based on observed memory pressure.</p>
 </div>
 <hr />
 <h3 id="port-range">Port range<a class="headerlink" href="#port-range" title="Permanent link">&para;</a></h3>
@@ -1112,18 +1134,18 @@
 <tr>
 <td><code>portRange.min</code></td>
 <td><code>25700</code></td>
-<td>The lowest port number that can be assigned to a game server.</td>
+<td>Lower bound of the port range assigned to game servers.</td>
 </tr>
 <tr>
 <td><code>portRange.max</code></td>
 <td><code>25800</code></td>
-<td>The highest port number. The range <code>25700–25800</code> allows up to 100 simultaneous servers.</td>
+<td>Upper bound of the port range. The default range allows up to 100 concurrent servers.</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Players never connect to these ports directly — they connect to the proxy port instead. The individual server ports only need to be reachable from the proxy, which runs on the same machine.</p>
+<p>Game server ports are internal — players connect exclusively through the proxy. These ports only need to be reachable from the proxy process, which runs on the same host.</p>
 </div>
 <hr />
 <h3 id="proxy-settings">Proxy settings<a class="headerlink" href="#proxy-settings" title="Permanent link">&para;</a></h3>
@@ -1140,35 +1162,68 @@
 <tr>
 <td><code>proxy.type</code></td>
 <td><code>"VELOCITY"</code></td>
-<td>The proxy software. Currently always <code>VELOCITY</code>.</td>
+<td>Proxy software. Currently always <code>VELOCITY</code>.</td>
 </tr>
 <tr>
 <td><code>proxy.bindPort</code></td>
 <td><code>25565</code></td>
-<td>The port players type when connecting to your network. <code>25565</code> is the default Minecraft port, so players can connect without typing a port number.</td>
+<td>TCP port Java players connect to. <code>25565</code> is the Minecraft default, so no port suffix is needed in the server address.</td>
 </tr>
 <tr>
 <td><code>proxy.minMemoryMB</code></td>
 <td><code>256</code></td>
-<td>Minimum memory for the proxy process.</td>
+<td>Minimum heap allocation for the proxy process, in MB.</td>
 </tr>
 <tr>
 <td><code>proxy.maxMemoryMB</code></td>
 <td><code>512</code></td>
-<td>Maximum memory for the proxy process. 512 MB is plenty for most networks. Increase if you have hundreds of simultaneous players.</td>
+<td>Maximum heap allocation for the proxy process, in MB. 512 MB is sufficient for most networks; increase for very high player counts.</td>
 </tr>
 <tr>
 <td><code>proxy.defaultEntryTask</code></td>
 <td><em>(none)</em></td>
-<td>The task name that new players are sent to first. For example <code>"lobby"</code>. Set this via <code>proxy route set-default lobby</code> in the console.</td>
+<td>Task whose running services receive newly connected players. Configure via <code>proxy route set-default &lt;task&gt;</code> in the console.</td>
 </tr>
 <tr>
 <td><code>proxy.fallbackTasks</code></td>
 <td><code>[]</code></td>
-<td>An ordered list of task names to try if no server is running for the entry task. For example <code>["fallback"]</code>. Add entries with <code>proxy route add-fallback</code> in the console.</td>
+<td>Ordered list of tasks to attempt if no service is available for the entry task. Manage via <code>proxy route add-fallback</code> / <code>remove-fallback</code> in the console.</td>
 </tr>
 </tbody>
 </table>
+<hr />
+<h3 id="bedrock">Bedrock compatibility<a class="headerlink" href="#bedrock" title="Permanent link">&para;</a></h3>
+<p>When Bedrock support is enabled, PulseOrchestrator automatically downloads and deploys <a href="https://geysermc.org">Geyser-Velocity</a> and <a href="https://wiki.geysermc.org/floodgate/">Floodgate-Velocity</a> as proxy plugins. Bedrock players connect on the standard Bedrock port (19132) without needing to type a port number — the same as Java players on port 25565.</p>
+<div class="admonition note">
+<p class="admonition-title">How it works</p>
+<p>Geyser translates the Bedrock protocol to Java at the proxy level. Floodgate handles Bedrock player authentication and assigns stable UUIDs, making Bedrock players indistinguishable from Java players to your game servers.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>proxy.bedrock.enabled</code></td>
+<td><code>false</code></td>
+<td>Enables Bedrock support. When <code>true</code>, Geyser and Floodgate JARs are downloaded and deployed on the next proxy start.</td>
+</tr>
+<tr>
+<td><code>proxy.bedrock.port</code></td>
+<td><code>19132</code></td>
+<td>UDP port Bedrock clients connect to. <code>19132</code> is the Bedrock default, so no port suffix is required. Change only if the port is unavailable.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Firewall</p>
+<p>UDP port 19132 must be permitted inbound for Bedrock clients. Java clients use TCP 25565, which is typically already open.</p>
+</div>
+<p>After enabling Bedrock for the first time, an initial Geyser config is written to <code>proxy/plugins/Geyser-Velocity/config.yml</code>. You can edit it freely — PulseOrchestrator will not overwrite it on subsequent starts.</p>
 <hr />
 <h3 id="health-monitor">Health monitor<a class="headerlink" href="#health-monitor" title="Permanent link">&para;</a></h3>
 <p>The health monitor watches your game servers and can restart them automatically if they crash.</p>
@@ -1208,7 +1263,7 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Example:</strong> With the defaults, if a server crashes 3 times within 5 minutes, the monitor stops trying and marks it as failed. You would then investigate the logs and restart it manually.</p>
+<p><strong>Example:</strong> With default settings, a server that crashes 3 times within 5 minutes is marked <code>FAILED</code> and left stopped. Investigate the logs and restart it manually.</p>
 <hr />
 <h3 id="log-settings">Log settings<a class="headerlink" href="#log-settings" title="Permanent link">&para;</a></h3>
 <p>These control how the orchestrator manages its own log files in the <code>logs/</code> folder.</p>
@@ -1451,20 +1506,19 @@
 <hr />
 <h2 id="editing-config-safely">Editing config safely<a class="headerlink" href="#editing-config-safely" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Stop the orchestrator before editing (or be ready to restart it).</li>
-<li>Open the file in a text editor. Make sure to use proper JSON — every value except the last one in a block needs a comma after it.</li>
-<li>Save the file.</li>
-<li>Start the orchestrator again. If there is a mistake in the JSON, it will print an error telling you what is wrong.</li>
+<li>Stop the orchestrator, or be prepared to restart it after saving.</li>
+<li>Edit the file in any text editor. JSON requires a comma after every value except the last one in a block.</li>
+<li>Start the orchestrator. If the JSON is malformed, it will print a parse error with the location of the problem.</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Common JSON mistakes</p>
 <ul>
-<li>Trailing commas: <code>"value": 123,</code> ← the comma after the last item in a block causes an error</li>
-<li>Missing quotes: <code>path: java</code> should be <code>"path": "java"</code></li>
-<li>Wrong brackets: use <code>{}</code> for objects and <code>[]</code> for lists</li>
+<li>Trailing comma on the last item in a block: <code>"value": 123,</code> ← remove the trailing comma</li>
+<li>Unquoted string: <code>path: java</code> should be <code>"path": "java"</code></li>
+<li>Wrong bracket type: use <code>{}</code> for objects and <code>[]</code> for arrays</li>
 </ul>
 </div>
-<p>If you break the config file and cannot get the orchestrator to start, delete <code>config.json</code> and run the setup wizard again. <strong>Do not delete <code>pulse.db</code></strong> — that holds your service records.</p>
+<p>If the config is unrecoverable, delete <code>config.json</code> and run the setup wizard again. <strong>Do not delete <code>pulse.db</code></strong> — it holds all service records.</p>
 
 
 

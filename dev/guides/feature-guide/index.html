@@ -599,6 +599,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#bedrock-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bedrock compatibility
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -665,6 +676,17 @@
     <span class="md-ellipsis">
       
         3. Route players through the proxy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-enable-bedrock-compatibility-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Enable Bedrock compatibility (optional)
       
     </span>
   </a>
@@ -766,10 +788,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tips-for-new-operators" class="md-nav__link">
+  <a href="#operational-tips" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tips for new operators
+        Operational tips
       
     </span>
   </a>
@@ -891,6 +913,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#bedrock-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bedrock compatibility
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -957,6 +990,17 @@
     <span class="md-ellipsis">
       
         3. Route players through the proxy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-enable-bedrock-compatibility-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Enable Bedrock compatibility (optional)
       
     </span>
   </a>
@@ -1058,10 +1102,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tips-for-new-operators" class="md-nav__link">
+  <a href="#operational-tips" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Tips for new operators
+        Operational tips
       
     </span>
   </a>
@@ -1093,16 +1137,16 @@
 <hr />
 <h2 id="core-concepts">Core concepts<a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h2>
 <h3 id="task">Task<a class="headerlink" href="#task" title="Permanent link">&para;</a></h3>
-<p>A <strong>task</strong> is a blueprint. It describes the kind of server you want — the software, version, memory limits, and restart behaviour — but it is not a running server by itself.</p>
-<p>Think of it like a recipe: the recipe says what ingredients to use and how to cook them, but it is not the actual meal.</p>
+<p>A <strong>task</strong> is a blueprint that defines the properties of a server type — the software, version, memory allocation, and restart behaviour. Tasks are not running processes; they are templates from which services are created.</p>
 <p>Tasks are stored in <code>tasks.json</code> in your orchestrator folder.</p>
 <h3 id="service">Service<a class="headerlink" href="#service" title="Permanent link">&para;</a></h3>
-<p>A <strong>service</strong> is a real running server created from a task.</p>
-<p>Using the same analogy: a service is the meal you actually cooked from that recipe. You can make multiple services from the same task (for example two lobby servers from one <code>lobby</code> task).</p>
-<p>Services are tracked in the orchestrator's database and live in the <code>services/</code> folder.</p>
+<p>A <strong>service</strong> is a running server instance provisioned from a task. Multiple services can be created from the same task — for example, two lobby servers from a single <code>lobby</code> task.</p>
+<p>Services are tracked in the orchestrator's database and stored in the <code>services/</code> folder.</p>
 <h3 id="proxy-routing">Proxy routing<a class="headerlink" href="#proxy-routing" title="Permanent link">&para;</a></h3>
-<p>Players do not connect directly to game servers. They connect to the built-in proxy, which then sends them to the right server automatically.</p>
-<p>The proxy uses <strong>task-based routing</strong> — you tell it which task is the default entry point (for example <code>lobby</code>) and which tasks are fallbacks (for example <code>fallback</code>). When a player connects, the proxy finds a running service that matches the entry task and sends the player there.</p>
+<p>Players connect to the built-in Velocity proxy, which routes them to the appropriate game server based on task configuration. The proxy uses <strong>task-based routing</strong>: you configure a default entry task (e.g. <code>lobby</code>) and an ordered fallback list. On connection, the proxy selects a <code>RUNNING</code> service matching the entry task; if none is available, it works through the fallback list in order.</p>
+<h3 id="bedrock-compatibility">Bedrock compatibility<a class="headerlink" href="#bedrock-compatibility" title="Permanent link">&para;</a></h3>
+<p>When enabled, PulseOrchestrator deploys <a href="https://geysermc.org">Geyser</a> and <a href="https://wiki.geysermc.org/floodgate/">Floodgate</a> as Velocity plugins, allowing Bedrock Edition clients to connect alongside Java clients on the same proxy process. Geyser handles protocol translation; Floodgate manages Bedrock player authentication and UUID assignment. Game servers require no changes — Bedrock players are transparent at the server level.</p>
+<p>Both platforms use their default ports (Java: TCP 25565, Bedrock: UDP 19132), so neither player group needs to specify a port when connecting.</p>
 <hr />
 <h2 id="storage-modes">Storage modes<a class="headerlink" href="#storage-modes" title="Permanent link">&para;</a></h2>
 <p>When creating a task you choose a storage mode. This controls what happens to a service's world and data files.</p>
@@ -1191,10 +1235,10 @@
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>service recreate lobby-1          ← delete and create a fresh service
 </code></pre></div>
 <h3 id="3-route-players-through-the-proxy">3. Route players through the proxy<a class="headerlink" href="#3-route-players-through-the-proxy" title="Permanent link">&para;</a></h3>
-<p>Set up routing before starting the proxy:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>proxy route set-default lobby      ← players land here first
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>proxy route add-fallback fallback  ← redirect here if lobby has no running server
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>proxy route show                   ← confirm the current routing config
+<p>Configure routing before starting the proxy:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>proxy route set-default lobby      ← players are sent here on connect
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>proxy route add-fallback fallback  ← used if no running service exists for the entry task
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>proxy route show                   ← confirm the active routing configuration
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>proxy start
 </code></pre></div>
 <p>Other proxy commands:</p>
@@ -1205,8 +1249,15 @@
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Routing requires at least one running service</p>
-<p>The proxy can only send players to a task if there is at least one service from that task currently in the <code>RUNNING</code> state. If no services are running for the entry task, the proxy will use the first fallback task it can find.</p>
+<p>The proxy routes players to a task only if at least one service from that task is in the <code>RUNNING</code> state. If no entry task service is available, it falls through the fallback list in order.</p>
 </div>
+<h3 id="4-enable-bedrock-compatibility-optional">4. Enable Bedrock compatibility <em>(optional)</em><a class="headerlink" href="#4-enable-bedrock-compatibility-optional" title="Permanent link">&para;</a></h3>
+<p>To allow Bedrock Edition players to connect, enable Bedrock support and restart the proxy:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>proxy bedrock enable
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>proxy restart
+</code></pre></div>
+<p>Geyser and Floodgate are downloaded and deployed automatically on the next proxy start. Ensure <strong>UDP port 19132</strong> is open in your firewall — Java players use TCP 25565 which is typically already open.</p>
+<p>See the <a href="../configuration/#bedrock">Configuration Reference</a> for available Bedrock settings.</p>
 <hr />
 <h2 id="templates">Templates<a class="headerlink" href="#templates" title="Permanent link">&para;</a></h2>
 <p>Templates let you pre-fill new services with files — plugin jars, configs, worlds — so every service starts with the right setup.</p>
@@ -1218,27 +1269,27 @@
 <li>Create services — they automatically receive the template files.</li>
 <li>To apply updated template files to an existing service, rebuild it:</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>service rebuild lobby-1
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>service rebuild lobby-1
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Rebuild on persistent services</p>
-<p>Rebuilding a persistent service re-provisions its directory. Any changes made directly inside the service folder that are not part of a template will be lost. Back up important data first.</p>
+<p>Rebuilding a persistent service re-provisions its directory. Any files in the service folder that are not part of a template will be lost. Take a backup before rebuilding if the service holds data you need.</p>
 </div>
 <hr />
 <h2 id="jar-management">JAR management<a class="headerlink" href="#jar-management" title="Permanent link">&para;</a></h2>
 <p>PulseOrchestrator downloads server JARs automatically when you create a service. It caches them in <code>server-jars/</code> so they are not downloaded again.</p>
 <h3 id="useful-jar-commands">Useful jar commands<a class="headerlink" href="#useful-jar-commands" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>jar list                      ← list all cached JARs
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>jar check                     ← check all cached JARs for newer builds
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>jar check paper               ← check only Paper JARs
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>jar check paper 1.21.4        ← check a specific version
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>jar update paper 1.21.4       ← download the latest build for that version
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>jar update-all                ← update every cached JAR
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>jar list                      ← list all cached JARs
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>jar check                     ← check all cached JARs for newer builds
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>jar check paper               ← check only Paper JARs
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>jar check paper 1.21.4        ← check a specific version
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>jar update paper 1.21.4       ← download the latest build for that version
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>jar update-all                ← update every cached JAR
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Updating JARs does not affect running services</p>
 <p>Services copy their JAR at creation time. To apply a new build to an existing service, recreate it:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>service recreate lobby-1
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>service recreate lobby-1
 </code></pre></div>
 </div>
 <h3 id="rest-api-equivalents">REST API equivalents<a class="headerlink" href="#rest-api-equivalents" title="Permanent link">&para;</a></h3>
@@ -1292,17 +1343,17 @@
 <h3 id="velocity-plugin">Velocity plugin<a class="headerlink" href="#velocity-plugin" title="Permanent link">&para;</a></h3>
 <p>The standalone Velocity plugin is for setups where you run your own Velocity instance instead of using the built-in proxy. It polls the HTTP API to keep server registrations in sync with the orchestrator's state.</p>
 <hr />
-<h2 id="tips-for-new-operators">Tips for new operators<a class="headerlink" href="#tips-for-new-operators" title="Permanent link">&para;</a></h2>
+<h2 id="operational-tips">Operational tips<a class="headerlink" href="#operational-tips" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Start small.</strong> Create one task, one service, get it running, then expand.</li>
-<li><strong>Use <code>system status</code></strong> in the console to see a health overview at any time.</li>
-<li><strong>Logs are your friend.</strong> Use <code>service logs &lt;id&gt; 100</code> when something is not working.</li>
-<li><strong>The status bar</strong> at the bottom of the console always shows your running service count and any update notices.</li>
-<li>For a full explanation of every setting you can change, see the <a href="../configuration/">Configuration Reference</a>.</li>
-<li>Keep the runtime base path on persistent storage.</li>
-<li>Use tags and descriptions early so task lists stay readable once you have multiple environments.</li>
-<li>Keep one clear entry task for player joins and use fallbacks only for deliberate backup ordering.</li>
-<li>Document which tasks are persistent and which are intentionally disposable before you scale out.</li>
+<li>Start with a single task and service, verify the setup end-to-end, then scale out.</li>
+<li>Use <code>system status</code> for a live overview of service states and system health.</li>
+<li><code>service logs &lt;id&gt; 100</code> is the fastest way to diagnose a misbehaving server.</li>
+<li>The console status bar shows live service counts and any pending update notices.</li>
+<li>See the <a href="../configuration/">Configuration Reference</a> for a full breakdown of every available setting.</li>
+<li>Keep the runtime base path on persistent, reliable storage — <code>pulse.db</code> holds all service records.</li>
+<li>Add tags and descriptions to tasks early; they become essential for readability as your setup grows.</li>
+<li>Define one clear default entry task for player connections. Use the fallback list for deliberate overflow routing, not as a catch-all.</li>
+<li>Note which tasks are persistent and which are disposable before scaling — the distinction matters during maintenance and migrations.</li>
 </ul>
 
 
