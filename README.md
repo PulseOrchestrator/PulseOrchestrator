@@ -28,7 +28,7 @@ Full documentation is available at **[pulseorchestrator.github.io/PulseOrchestra
 
 Quick links:
 - [Installation Guide](https://pulseorchestrator.github.io/PulseOrchestrator/getting-started/installation/)
-- [Getting Started](https://pulseorchestrator.github.io/PulseOrchestrator/getting-started/)
+- [Getting Started](https://pulseorchestrator.github.io/PulseOrchestrator/latest/getting-started/install)
 - [API Documentation](https://pulseorchestrator.github.io/PulseOrchestrator/api/) (for plugin developers)
 
 ---
