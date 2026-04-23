@@ -1,0 +1,1422 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Installation, operations, and feature documentation for PulseOrchestrator.">
+      
+      
+      
+        <link rel="canonical" href="https://pulseorchestrator.github.io/PulseOrchestrator/1.0.0-beta.1/guides/feature-guide/">
+      
+      
+        <link rel="prev" href="../../getting-started/install/">
+      
+      
+        <link rel="next" href="../configuration/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Feature Guide - PulseOrchestrator Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"IBM Plex Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#feature-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="PulseOrchestrator Docs" class="md-header__button md-logo" aria-label="PulseOrchestrator Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PulseOrchestrator Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Feature Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/PulseOrchestrator/PulseOrchestrator" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    PulseOrchestrator/PulseOrchestrator
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/install/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PulseOrchestrator Docs" class="md-nav__button md-logo" aria-label="PulseOrchestrator Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    PulseOrchestrator Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/PulseOrchestrator/PulseOrchestrator" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    PulseOrchestrator/PulseOrchestrator
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feature Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feature Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core concepts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proxy-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proxy routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bedrock-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bedrock compatibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restart-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restart policies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#main-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main workflows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Main workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-create-a-task-blueprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Create a task blueprint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-create-and-start-a-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Create and start a service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-route-players-through-the-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Route players through the proxy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-enable-bedrock-compatibility-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Enable Bedrock compatibility (optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Templates
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jar-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JAR management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JAR management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#useful-jar-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Useful jar commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rest-api-equivalents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        REST API equivalents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugin-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugin behaviour
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugin behaviour">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paper-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paper plugin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#velocity-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Velocity plugin
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational tips
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core concepts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proxy-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proxy routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bedrock-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bedrock compatibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restart-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restart policies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#main-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main workflows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Main workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-create-a-task-blueprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Create a task blueprint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-create-and-start-a-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Create and start a service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-route-players-through-the-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Route players through the proxy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-enable-bedrock-compatibility-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Enable Bedrock compatibility (optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Templates
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jar-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JAR management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JAR management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#useful-jar-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Useful jar commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rest-api-equivalents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        REST API equivalents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugin-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugin behaviour
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugin behaviour">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paper-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paper plugin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#velocity-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Velocity plugin
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational tips
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="feature-guide">Feature Guide<a class="headerlink" href="#feature-guide" title="Permanent link">&para;</a></h1>
+<p>This guide explains the main concepts and workflows you will use every day with PulseOrchestrator.</p>
+<hr />
+<h2 id="core-concepts">Core concepts<a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h2>
+<h3 id="task">Task<a class="headerlink" href="#task" title="Permanent link">&para;</a></h3>
+<p>A <strong>task</strong> is a blueprint that defines the properties of a server type — the software, version, memory allocation, and restart behaviour. Tasks are not running processes; they are templates from which services are created.</p>
+<p>Tasks are stored in <code>tasks.json</code> in your orchestrator folder.</p>
+<h3 id="service">Service<a class="headerlink" href="#service" title="Permanent link">&para;</a></h3>
+<p>A <strong>service</strong> is a running server instance provisioned from a task. Multiple services can be created from the same task — for example, two lobby servers from a single <code>lobby</code> task.</p>
+<p>Services are tracked in the orchestrator's database and stored in the <code>services/</code> folder.</p>
+<h3 id="proxy-routing">Proxy routing<a class="headerlink" href="#proxy-routing" title="Permanent link">&para;</a></h3>
+<p>Players connect to the built-in Velocity proxy, which routes them to the appropriate game server based on task configuration. The proxy uses <strong>task-based routing</strong>: you configure a default entry task (e.g. <code>lobby</code>) and an ordered fallback list. On connection, the proxy selects a <code>RUNNING</code> service matching the entry task; if none is available, it works through the fallback list in order.</p>
+<h3 id="bedrock-compatibility">Bedrock compatibility<a class="headerlink" href="#bedrock-compatibility" title="Permanent link">&para;</a></h3>
+<p>When enabled, PulseOrchestrator deploys <a href="https://geysermc.org">Geyser</a> and <a href="https://wiki.geysermc.org/floodgate/">Floodgate</a> as Velocity plugins, allowing Bedrock Edition clients to connect alongside Java clients on the same proxy process. Geyser handles protocol translation; Floodgate manages Bedrock player authentication and UUID assignment. Game servers require no changes — Bedrock players are transparent at the server level.</p>
+<p>Both platforms use their default ports (Java: TCP 25565, Bedrock: UDP 19132), so neither player group needs to specify a port when connecting.</p>
+<hr />
+<h2 id="storage-modes">Storage modes<a class="headerlink" href="#storage-modes" title="Permanent link">&para;</a></h2>
+<p>When creating a task you choose a storage mode. This controls what happens to a service's world and data files.</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PERSISTENT</code></td>
+<td>The server's files are kept between restarts. World data, plugins, configs — everything is saved. Use this for servers that should hold state.</td>
+</tr>
+<tr>
+<td><code>RESET_ON_START</code></td>
+<td>The server's folder is wiped and re-provisioned from the task template every time it starts. Use this for minigame servers where each round should start fresh.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When in doubt, use <code>PERSISTENT</code>. It is the safe default and what most servers need.</p>
+</div>
+<hr />
+<h2 id="restart-policies">Restart policies<a class="headerlink" href="#restart-policies" title="Permanent link">&para;</a></h2>
+<p>A restart policy controls what PulseOrchestrator does when a service stops unexpectedly.</p>
+<table>
+<thead>
+<tr>
+<th>Policy</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NEVER</code></td>
+<td>Never restart automatically. You restart it yourself.</td>
+</tr>
+<tr>
+<td><code>ON_FAILURE</code></td>
+<td>Only restart if the server crashed (non-zero exit code). If you stopped it on purpose, it stays stopped.</td>
+</tr>
+<tr>
+<td><code>ALWAYS</code></td>
+<td>Always restart, no matter how it stopped.</td>
+</tr>
+</tbody>
+</table>
+<p>The health monitor enforces a cooldown between restart attempts and a maximum number of retries to prevent crash loops. See the <a href="../configuration/#health-monitor">Configuration Reference</a> for those settings.</p>
+<hr />
+<h2 id="main-workflows">Main workflows<a class="headerlink" href="#main-workflows" title="Permanent link">&para;</a></h2>
+<h3 id="1-create-a-task-blueprint">1. Create a task blueprint<a class="headerlink" href="#1-create-a-task-blueprint" title="Permanent link">&para;</a></h3>
+<p>Open the orchestrator console and run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>task create lobby
+</code></pre></div>
+<p>The interactive wizard asks for:</p>
+<ul>
+<li><strong>Server software</strong> — <code>PAPER</code>, <code>PURPUR</code>, or <code>FABRIC</code></li>
+<li><strong>Server version</strong> — for example <code>1.21.4</code></li>
+<li><strong>Preferred port</strong> — the port PulseOrchestrator tries to assign first; it picks the next free one if taken</li>
+<li><strong>Storage mode</strong> — <code>PERSISTENT</code> or <code>RESET_ON_START</code> (see above)</li>
+<li><strong>Restart policy</strong> — <code>NEVER</code>, <code>ON_FAILURE</code>, or <code>ALWAYS</code> (see above)</li>
+<li><strong>Description and tags</strong> <em>(optional)</em> — for your own organisation</li>
+<li><strong>Template scaffolding</strong> <em>(optional)</em> — files to copy into every service created from this task</li>
+<li><strong>Advanced settings</strong> <em>(optional)</em> — custom JVM arguments, server arguments, environment variables</li>
+</ul>
+<p>To see all your tasks:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>task list
+</code></pre></div>
+<h3 id="2-create-and-start-a-service">2. Create and start a service<a class="headerlink" href="#2-create-and-start-a-service" title="Permanent link">&para;</a></h3>
+<p>Once you have a task, create a server from it:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>service create lobby
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>service start lobby-1
+</code></pre></div>
+<p>PulseOrchestrator provisions the server directory, downloads the correct JAR if needed, and starts the process.</p>
+<p>Other useful service commands:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>service list                      ← see all services and their state
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>service logs lobby-1 100          ← view the last 100 log lines
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>service attach lobby-1            ← live-follow the console output
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>service command lobby-1 say hello ← send a command directly to the server
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>service restart lobby-1
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>service stop lobby-1
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>service rebuild lobby-1           ← wipe and re-provision from the task template
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>service recreate lobby-1          ← delete and create a fresh service
+</code></pre></div>
+<h3 id="3-route-players-through-the-proxy">3. Route players through the proxy<a class="headerlink" href="#3-route-players-through-the-proxy" title="Permanent link">&para;</a></h3>
+<p>Configure routing before starting the proxy:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>proxy route set-default lobby      ← players are sent here on connect
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>proxy route add-fallback fallback  ← used if no running service exists for the entry task
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>proxy route show                   ← confirm the active routing configuration
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>proxy start
+</code></pre></div>
+<p>Other proxy commands:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>proxy status
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>proxy logs 100
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>proxy restart
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>proxy stop
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Routing requires at least one running service</p>
+<p>The proxy routes players to a task only if at least one service from that task is in the <code>RUNNING</code> state. If no entry task service is available, it falls through the fallback list in order.</p>
+</div>
+<h3 id="4-enable-bedrock-compatibility-optional">4. Enable Bedrock compatibility <em>(optional)</em><a class="headerlink" href="#4-enable-bedrock-compatibility-optional" title="Permanent link">&para;</a></h3>
+<p>To allow Bedrock Edition players to connect, enable Bedrock support and restart the proxy:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>proxy bedrock enable
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>proxy restart
+</code></pre></div>
+<p>Geyser and Floodgate are downloaded and deployed automatically on the next proxy start. Ensure <strong>UDP port 19132</strong> is open in your firewall — Java players use TCP 25565 which is typically already open.</p>
+<p>See the <a href="../configuration/#bedrock">Configuration Reference</a> for available Bedrock settings.</p>
+<hr />
+<h2 id="templates">Templates<a class="headerlink" href="#templates" title="Permanent link">&para;</a></h2>
+<p>Templates let you pre-fill new services with files — plugin jars, configs, worlds — so every service starts with the right setup.</p>
+<p>Files placed in <code>templates/global/</code> are copied into <strong>every</strong> service regardless of task. Files in a task-specific template folder are only copied into services from that task.</p>
+<p>Typical workflow:</p>
+<ol>
+<li>Create a task.</li>
+<li>Add any files you want pre-loaded into the template folder.</li>
+<li>Create services — they automatically receive the template files.</li>
+<li>To apply updated template files to an existing service, rebuild it:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>service rebuild lobby-1
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Rebuild on persistent services</p>
+<p>Rebuilding a persistent service re-provisions its directory. Any files in the service folder that are not part of a template will be lost. Take a backup before rebuilding if the service holds data you need.</p>
+</div>
+<hr />
+<h2 id="jar-management">JAR management<a class="headerlink" href="#jar-management" title="Permanent link">&para;</a></h2>
+<p>PulseOrchestrator downloads server JARs automatically when you create a service. It caches them in <code>server-jars/</code> so they are not downloaded again.</p>
+<h3 id="useful-jar-commands">Useful jar commands<a class="headerlink" href="#useful-jar-commands" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>jar list                      ← list all cached JARs
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>jar check                     ← check all cached JARs for newer builds
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>jar check paper               ← check only Paper JARs
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>jar check paper 1.21.4        ← check a specific version
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>jar update paper 1.21.4       ← download the latest build for that version
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>jar update-all                ← update every cached JAR
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Updating JARs does not affect running services</p>
+<p>Services copy their JAR at creation time. To apply a new build to an existing service, recreate it:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>service recreate lobby-1
+</code></pre></div>
+</div>
+<h3 id="rest-api-equivalents">REST API equivalents<a class="headerlink" href="#rest-api-equivalents" title="Permanent link">&para;</a></h3>
+<p>All JAR operations are also available over the HTTP API.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/jars</code></td>
+<td>List all cached JARs</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/jars/{software}/{version}</code></td>
+<td>Get info for one cached JAR</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/jars/{software}/{version}/check</code></td>
+<td>Check for an update without downloading</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/jars/{software}/{version}/update</code></td>
+<td>Update one JAR to its latest build</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/jars/update-all</code></td>
+<td>Update every cached JAR</td>
+</tr>
+</tbody>
+</table>
+<p>All routes require the <code>Authorization: Bearer &lt;secret&gt;</code> header.</p>
+<hr />
+<h2 id="plugin-behaviour">Plugin behaviour<a class="headerlink" href="#plugin-behaviour" title="Permanent link">&para;</a></h2>
+<h3 id="paper-plugin">Paper plugin<a class="headerlink" href="#paper-plugin" title="Permanent link">&para;</a></h3>
+<p>The Paper plugin gives you in-game access to orchestrator features:</p>
+<ul>
+<li><code>/pulse</code> — orchestrator commands from inside the game</li>
+<li><code>/hub</code> — sends the player back through the network routing flow</li>
+<li>A Bukkit <code>ServicesManager</code> bridge for other plugins to talk to the orchestrator</li>
+</ul>
+<h3 id="velocity-plugin">Velocity plugin<a class="headerlink" href="#velocity-plugin" title="Permanent link">&para;</a></h3>
+<p>The standalone Velocity plugin is for setups where you run your own Velocity instance instead of using the built-in proxy. It polls the HTTP API to keep server registrations in sync with the orchestrator's state.</p>
+<hr />
+<h2 id="operational-tips">Operational tips<a class="headerlink" href="#operational-tips" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Start with a single task and service, verify the setup end-to-end, then scale out.</li>
+<li>Use <code>system status</code> for a live overview of service states and system health.</li>
+<li><code>service logs &lt;id&gt; 100</code> is the fastest way to diagnose a misbehaving server.</li>
+<li>The console status bar shows live service counts and any pending update notices.</li>
+<li>See the <a href="../configuration/">Configuration Reference</a> for a full breakdown of every available setting.</li>
+<li>Keep the runtime base path on persistent, reliable storage — <code>pulse.db</code> holds all service records.</li>
+<li>Add tags and descriptions to tasks early; they become essential for readability as your setup grows.</li>
+<li>Define one clear default entry task for player connections. Use the fallback list for deliberate overflow routing, not as a catch-all.</li>
+<li>Note which tasks are persistent and which are disposable before scaling — the distinction matters during maintenance and migrations.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
