@@ -1,38 +1,59 @@
-# PulseOrchestrator Public Repository
+# Pulse
 
-This repository is the public companion to the closed-source PulseOrchestrator codebase.
+**Lightweight Minecraft server orchestration for small networks.**
 
-It currently contains:
+Pulse helps you manage multiple Minecraft servers with templates, tasks, and in-game orchestration - designed for single-node setups where CloudNet would be overkill.
 
-- the public `update-policy.json` consumed by release/update clients
-- the versioned documentation site published to GitHub Pages
+---
 
-## Local docs workflow
+## ✨ Features
 
-Install the docs toolchain:
+- 🎯 **Template-based server management** - Create servers from reusable templates
+- 🔄 **Automatic updates** - Bridge plugins stay in sync with the orchestrator
+- 🎮 **In-game orchestration** - Manage your network from Minecraft via commands
+- ⚡ **Lightweight** - Built for small networks (2-10 servers), not enterprise scale
+- 🛠️ **Easy setup** - Interactive setup wizard gets you running in minutes
 
-```powershell
-py -m pip install -r requirements-docs.txt
-```
+---
 
-Preview the site locally:
+## 📥 Download
 
-```powershell
-py -m mkdocs serve
-```
+Get the latest release from the [Releases](https://github.com/PulseOrchestrator/PulseOrchestrator/releases) page.
 
-Build the site locally:
+---
 
-```powershell
-py -m mkdocs build --strict
-```
+## 📚 Documentation
 
-## Docs release flow
+Full documentation is available at **[pulseorchestrator.github.io/PulseOrchestrator](https://pulseorchestrator.github.io/PulseOrchestrator/)**
 
-- Pushes to `main` publish the current docs as the `dev` version.
-- GitHub Releases publish versioned docs using the release tag, for example `v1.0.0` becomes docs version `1.0.0`.
-- Release docs are also aliased to `latest`, which becomes the default version on GitHub Pages.
+Quick links:
+- [Installation Guide](https://pulseorchestrator.github.io/PulseOrchestrator/getting-started/installation/)
+- [Getting Started](https://pulseorchestrator.github.io/PulseOrchestrator/getting-started/)
+- [API Documentation](https://pulseorchestrator.github.io/PulseOrchestrator/api/) (for plugin developers)
 
-## GitHub Pages setup
+---
 
-Set the repository Pages source to the `gh-pages` branch once. After that, the workflows in `.github/workflows` keep the site updated.
+## 💬 Community & Support
+
+- **Discord**: [Join our Discord](YOUR_DISCORD_INVITE_LINK)
+- **Bug Reports**: [Open an issue](https://github.com/PulseOrchestrator/PulseOrchestrator/issues)
+- **Feature Requests**: Share your ideas in Discord or GitHub Discussions
+
+---
+
+## 🔒 Closed Source
+
+Pulse is closed-source software. This repository hosts:
+- Public release artifacts (JARs)
+- Versioned documentation (published via GitHub Pages)
+- Update manifests (`update-policy.json`)
+
+---
+
+## 🛠️ For Developers
+
+**Building the docs locally:**
+
+```bash
+pip install -r requirements-docs.txt
+mkdocs serve  # Preview at localhost:8000
