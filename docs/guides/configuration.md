@@ -9,9 +9,6 @@ PulseOrchestrator stores its settings in two files inside your orchestrator fold
 
 Both files are plain JSON. You can edit them in any text editor. **Restart the orchestrator after making changes** — it reads these files on startup.
 
-!!! tip "Not sure what JSON is?"
-    JSON is a simple text format for storing settings. It uses `{` curly braces `}` for sections and `"key": value` pairs for individual settings. Values in quotes are text, values without quotes are numbers or true/false switches.
-
 ---
 
 ## config.json
@@ -41,7 +38,11 @@ Below is a fully annotated example showing every available setting with its defa
     "minMemoryMB": 256,
     "maxMemoryMB": 512,
     "defaultEntryTask": "lobby",
-    "fallbackTasks": ["fallback"]
+    "fallbackTasks": ["fallback"],
+    "bedrock": {
+      "enabled": false,
+      "port": 19132
+    }
   },
 
   "health": {
@@ -83,9 +84,9 @@ These control the web server that plugins and external tools use to talk to the 
 
 | Setting | Default | Description |
 |---|---|---|
-| `host` | `"127.0.0.1"` | The network address the API listens on. `127.0.0.1` means only programs on the same machine can connect. Change to `0.0.0.0` if plugins on other machines need to reach the API — but make sure your firewall only allows trusted IPs. |
-| `apiPort` | `8080` | The port number for the API. Change this if something else on your machine already uses port 8080. |
-| `apiSecret` | *(generated)* | A long random password that plugins must send with every API request. **Never share this publicly.** It is generated for you and stored here — you just copy it into your plugin configs. |
+| `host` | `"127.0.0.1"` | Network address the API listens on. `127.0.0.1` restricts access to the local machine. Set to `0.0.0.0` to accept connections from other hosts — ensure your firewall limits access to trusted IPs. |
+| `apiPort` | `8080` | TCP port the API server binds to. Change if the port is already in use. |
+| `apiSecret` | *(generated)* | Bearer token required on every API request. Generated automatically on first run. **Never expose this value publicly** — copy it into plugin configs as needed. |
 
 ---
 
@@ -95,12 +96,12 @@ These tell the orchestrator where Java is and set the default memory for game se
 
 | Setting | Default | Description |
 |---|---|---|
-| `java.path` | `"java"` | The path to the Java executable. The default `"java"` works if Java is in your system PATH. If the orchestrator cannot find Java, provide the full path like `"C:\\Program Files\\Java\\jdk-21\\bin\\java.exe"` (Windows) or `"/usr/bin/java"` (Linux). |
-| `java.defaultMaxMemoryMB` | `1024` | The maximum RAM a game server can use, in megabytes. 1024 = 1 GB. This is the default — you can override it per task. |
-| `java.defaultMinMemoryMB` | `512` | The starting memory allocation for game servers. Minecraft performs best when min and max are set to the same value on servers with enough RAM. |
+| `java.path` | `"java"` | Path to the Java executable. The default `"java"` works when Java is on the system `PATH`. If the orchestrator cannot locate Java, provide the absolute path: `"C:\\Program Files\\Java\\jdk-21\\bin\\java.exe"` (Windows) or `"/usr/bin/java"` (Linux). |
+| `java.defaultMaxMemoryMB` | `1024` | Default maximum heap size for game servers, in MB. Can be overridden per task. |
+| `java.defaultMinMemoryMB` | `512` | Initial heap allocation for game servers, in MB. Setting min and max to the same value avoids GC pressure from heap resizing on servers with sufficient RAM. |
 
-!!! tip "How much memory should I give?"
-    A small survival server needs about 1–2 GB. Minigame or lobby servers can often run on 512 MB. Large modpacks may need 4–8 GB. Start conservative and increase if the server is lagging.
+!!! tip
+    Typical requirements: lobby/minigame servers — 512 MB to 1 GB; survival servers — 1–2 GB; large modpacks — 4–8 GB. Start conservative and increase based on observed memory pressure.
 
 ---
 
@@ -110,11 +111,11 @@ PulseOrchestrator assigns a unique port to each game server it creates, picked f
 
 | Setting | Default | Description |
 |---|---|---|
-| `portRange.min` | `25700` | The lowest port number that can be assigned to a game server. |
-| `portRange.max` | `25800` | The highest port number. The range `25700–25800` allows up to 100 simultaneous servers. |
+| `portRange.min` | `25700` | Lower bound of the port range assigned to game servers. |
+| `portRange.max` | `25800` | Upper bound of the port range. The default range allows up to 100 concurrent servers. |
 
 !!! note
-    Players never connect to these ports directly — they connect to the proxy port instead. The individual server ports only need to be reachable from the proxy, which runs on the same machine.
+    Game server ports are internal — players connect exclusively through the proxy. These ports only need to be reachable from the proxy process, which runs on the same host.
 
 ---
 
@@ -124,12 +125,31 @@ The built-in proxy is what players connect to. It routes them to the right game 
 
 | Setting | Default | Description |
 |---|---|---|
-| `proxy.type` | `"VELOCITY"` | The proxy software. Currently always `VELOCITY`. |
-| `proxy.bindPort` | `25565` | The port players type when connecting to your network. `25565` is the default Minecraft port, so players can connect without typing a port number. |
-| `proxy.minMemoryMB` | `256` | Minimum memory for the proxy process. |
-| `proxy.maxMemoryMB` | `512` | Maximum memory for the proxy process. 512 MB is plenty for most networks. Increase if you have hundreds of simultaneous players. |
-| `proxy.defaultEntryTask` | *(none)* | The task name that new players are sent to first. For example `"lobby"`. Set this via `proxy route set-default lobby` in the console. |
-| `proxy.fallbackTasks` | `[]` | An ordered list of task names to try if no server is running for the entry task. For example `["fallback"]`. Add entries with `proxy route add-fallback` in the console. |
+| `proxy.type` | `"VELOCITY"` | Proxy software. Currently always `VELOCITY`. |
+| `proxy.bindPort` | `25565` | TCP port Java players connect to. `25565` is the Minecraft default, so no port suffix is needed in the server address. |
+| `proxy.minMemoryMB` | `256` | Minimum heap allocation for the proxy process, in MB. |
+| `proxy.maxMemoryMB` | `512` | Maximum heap allocation for the proxy process, in MB. 512 MB is sufficient for most networks; increase for very high player counts. |
+| `proxy.defaultEntryTask` | *(none)* | Task whose running services receive newly connected players. Configure via `proxy route set-default <task>` in the console. |
+| `proxy.fallbackTasks` | `[]` | Ordered list of tasks to attempt if no service is available for the entry task. Manage via `proxy route add-fallback` / `remove-fallback` in the console. |
+
+---
+
+### Bedrock compatibility { #bedrock }
+
+When Bedrock support is enabled, PulseOrchestrator automatically downloads and deploys [Geyser-Velocity](https://geysermc.org) and [Floodgate-Velocity](https://wiki.geysermc.org/floodgate/) as proxy plugins. Bedrock players connect on the standard Bedrock port (19132) without needing to type a port number — the same as Java players on port 25565.
+
+!!! note "How it works"
+    Geyser translates the Bedrock protocol to Java at the proxy level. Floodgate handles Bedrock player authentication and assigns stable UUIDs, making Bedrock players indistinguishable from Java players to your game servers.
+
+| Setting | Default | Description |
+|---|---|---|
+| `proxy.bedrock.enabled` | `false` | Enables Bedrock support. When `true`, Geyser and Floodgate JARs are downloaded and deployed on the next proxy start. |
+| `proxy.bedrock.port` | `19132` | UDP port Bedrock clients connect to. `19132` is the Bedrock default, so no port suffix is required. Change only if the port is unavailable. |
+
+!!! tip "Firewall"
+    UDP port 19132 must be permitted inbound for Bedrock clients. Java clients use TCP 25565, which is typically already open.
+
+After enabling Bedrock for the first time, an initial Geyser config is written to `proxy/plugins/Geyser-Velocity/config.yml`. You can edit it freely — PulseOrchestrator will not overwrite it on subsequent starts.
 
 ---
 
@@ -145,7 +165,7 @@ The health monitor watches your game servers and can restart them automatically 
 | `health.restartCooldownSeconds` | `60` | How many seconds to wait between restart attempts. This prevents rapid restart loops. |
 | `health.crashWindowSeconds` | `300` | The time window (in seconds) used to count crashes. If a server crashes `maxRestartAttempts` times within this window, it is marked `FAILED`. Set it higher to be more tolerant of occasional crashes. |
 
-**Example:** With the defaults, if a server crashes 3 times within 5 minutes, the monitor stops trying and marks it as failed. You would then investigate the logs and restart it manually.
+**Example:** With default settings, a server that crashes 3 times within 5 minutes is marked `FAILED` and left stopped. Investigate the logs and restart it manually.
 
 ---
 
@@ -252,14 +272,13 @@ Tasks are the blueprints for your servers. Each entry in the `tasks` array defin
 
 ## Editing config safely
 
-1. Stop the orchestrator before editing (or be ready to restart it).
-2. Open the file in a text editor. Make sure to use proper JSON — every value except the last one in a block needs a comma after it.
-3. Save the file.
-4. Start the orchestrator again. If there is a mistake in the JSON, it will print an error telling you what is wrong.
+1. Stop the orchestrator, or be prepared to restart it after saving.
+2. Edit the file in any text editor. JSON requires a comma after every value except the last one in a block.
+3. Start the orchestrator. If the JSON is malformed, it will print a parse error with the location of the problem.
 
 !!! warning "Common JSON mistakes"
-    - Trailing commas: `"value": 123,` ← the comma after the last item in a block causes an error
-    - Missing quotes: `path: java` should be `"path": "java"`
-    - Wrong brackets: use `{}` for objects and `[]` for lists
+    - Trailing comma on the last item in a block: `"value": 123,` ← remove the trailing comma
+    - Unquoted string: `path: java` should be `"path": "java"`
+    - Wrong bracket type: use `{}` for objects and `[]` for arrays
 
-If you break the config file and cannot get the orchestrator to start, delete `config.json` and run the setup wizard again. **Do not delete `pulse.db`** — that holds your service records.
+If the config is unrecoverable, delete `config.json` and run the setup wizard again. **Do not delete `pulse.db`** — it holds all service records.

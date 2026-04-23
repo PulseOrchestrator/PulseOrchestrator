@@ -8,25 +8,25 @@ This guide explains the main concepts and workflows you will use every day with 
 
 ### Task
 
-A **task** is a blueprint. It describes the kind of server you want — the software, version, memory limits, and restart behaviour — but it is not a running server by itself.
-
-Think of it like a recipe: the recipe says what ingredients to use and how to cook them, but it is not the actual meal.
+A **task** is a blueprint that defines the properties of a server type — the software, version, memory allocation, and restart behaviour. Tasks are not running processes; they are templates from which services are created.
 
 Tasks are stored in `tasks.json` in your orchestrator folder.
 
 ### Service
 
-A **service** is a real running server created from a task.
+A **service** is a running server instance provisioned from a task. Multiple services can be created from the same task — for example, two lobby servers from a single `lobby` task.
 
-Using the same analogy: a service is the meal you actually cooked from that recipe. You can make multiple services from the same task (for example two lobby servers from one `lobby` task).
-
-Services are tracked in the orchestrator's database and live in the `services/` folder.
+Services are tracked in the orchestrator's database and stored in the `services/` folder.
 
 ### Proxy routing
 
-Players do not connect directly to game servers. They connect to the built-in proxy, which then sends them to the right server automatically.
+Players connect to the built-in Velocity proxy, which routes them to the appropriate game server based on task configuration. The proxy uses **task-based routing**: you configure a default entry task (e.g. `lobby`) and an ordered fallback list. On connection, the proxy selects a `RUNNING` service matching the entry task; if none is available, it works through the fallback list in order.
 
-The proxy uses **task-based routing** — you tell it which task is the default entry point (for example `lobby`) and which tasks are fallbacks (for example `fallback`). When a player connects, the proxy finds a running service that matches the entry task and sends the player there.
+### Bedrock compatibility
+
+When enabled, PulseOrchestrator deploys [Geyser](https://geysermc.org) and [Floodgate](https://wiki.geysermc.org/floodgate/) as Velocity plugins, allowing Bedrock Edition clients to connect alongside Java clients on the same proxy process. Geyser handles protocol translation; Floodgate manages Bedrock player authentication and UUID assignment. Game servers require no changes — Bedrock players are transparent at the server level.
+
+Both platforms use their default ports (Java: TCP 25565, Bedrock: UDP 19132), so neither player group needs to specify a port when connecting.
 
 ---
 
@@ -111,12 +111,12 @@ service recreate lobby-1          ← delete and create a fresh service
 
 ### 3. Route players through the proxy
 
-Set up routing before starting the proxy:
+Configure routing before starting the proxy:
 
 ```text
-proxy route set-default lobby      ← players land here first
-proxy route add-fallback fallback  ← redirect here if lobby has no running server
-proxy route show                   ← confirm the current routing config
+proxy route set-default lobby      ← players are sent here on connect
+proxy route add-fallback fallback  ← used if no running service exists for the entry task
+proxy route show                   ← confirm the active routing configuration
 proxy start
 ```
 
@@ -130,7 +130,20 @@ proxy stop
 ```
 
 !!! note "Routing requires at least one running service"
-    The proxy can only send players to a task if there is at least one service from that task currently in the `RUNNING` state. If no services are running for the entry task, the proxy will use the first fallback task it can find.
+    The proxy routes players to a task only if at least one service from that task is in the `RUNNING` state. If no entry task service is available, it falls through the fallback list in order.
+
+### 4. Enable Bedrock compatibility *(optional)*
+
+To allow Bedrock Edition players to connect, enable Bedrock support and restart the proxy:
+
+```text
+proxy bedrock enable
+proxy restart
+```
+
+Geyser and Floodgate are downloaded and deployed automatically on the next proxy start. Ensure **UDP port 19132** is open in your firewall — Java players use TCP 25565 which is typically already open.
+
+See the [Configuration Reference](configuration.md#bedrock) for available Bedrock settings.
 
 ---
 
@@ -152,7 +165,7 @@ service rebuild lobby-1
 ```
 
 !!! warning "Rebuild on persistent services"
-    Rebuilding a persistent service re-provisions its directory. Any changes made directly inside the service folder that are not part of a template will be lost. Back up important data first.
+    Rebuilding a persistent service re-provisions its directory. Any files in the service folder that are not part of a template will be lost. Take a backup before rebuilding if the service holds data you need.
 
 ---
 
@@ -210,14 +223,14 @@ The standalone Velocity plugin is for setups where you run your own Velocity ins
 
 ---
 
-## Tips for new operators
+## Operational tips
 
-- **Start small.** Create one task, one service, get it running, then expand.
-- **Use `system status`** in the console to see a health overview at any time.
-- **Logs are your friend.** Use `service logs <id> 100` when something is not working.
-- **The status bar** at the bottom of the console always shows your running service count and any update notices.
-- For a full explanation of every setting you can change, see the [Configuration Reference](configuration.md).
-- Keep the runtime base path on persistent storage.
-- Use tags and descriptions early so task lists stay readable once you have multiple environments.
-- Keep one clear entry task for player joins and use fallbacks only for deliberate backup ordering.
-- Document which tasks are persistent and which are intentionally disposable before you scale out.
+- Start with a single task and service, verify the setup end-to-end, then scale out.
+- Use `system status` for a live overview of service states and system health.
+- `service logs <id> 100` is the fastest way to diagnose a misbehaving server.
+- The console status bar shows live service counts and any pending update notices.
+- See the [Configuration Reference](configuration.md) for a full breakdown of every available setting.
+- Keep the runtime base path on persistent, reliable storage — `pulse.db` holds all service records.
+- Add tags and descriptions to tasks early; they become essential for readability as your setup grows.
+- Define one clear default entry task for player connections. Use the fallback list for deliberate overflow routing, not as a catch-all.
+- Note which tasks are persistent and which are disposable before scaling — the distinction matters during maintenance and migrations.
