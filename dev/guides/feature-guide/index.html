@@ -703,10 +703,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-enable-bedrock-compatibility-optional" class="md-nav__link">
+  <a href="#4-put-the-network-into-maintenance-mode-optional" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Enable Bedrock compatibility (optional)
+        4. Put the network into maintenance mode (optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-enable-bedrock-compatibility-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Enable Bedrock compatibility (optional)
       
     </span>
   </a>
@@ -746,17 +757,6 @@
     <span class="md-ellipsis">
       
         Useful jar commands
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rest-api-equivalents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        REST API equivalents
       
     </span>
   </a>
@@ -1104,10 +1104,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-enable-bedrock-compatibility-optional" class="md-nav__link">
+  <a href="#4-put-the-network-into-maintenance-mode-optional" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Enable Bedrock compatibility (optional)
+        4. Put the network into maintenance mode (optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-enable-bedrock-compatibility-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Enable Bedrock compatibility (optional)
       
     </span>
   </a>
@@ -1147,17 +1158,6 @@
     <span class="md-ellipsis">
       
         Useful jar commands
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rest-api-equivalents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        REST API equivalents
       
     </span>
   </a>
@@ -1358,10 +1358,28 @@
 <p class="admonition-title">Routing requires at least one running service</p>
 <p>The proxy routes players to a task only if at least one service from that task is in the <code>RUNNING</code> state. If no entry task service is available, it falls through the fallback list in order.</p>
 </div>
-<h3 id="4-enable-bedrock-compatibility-optional">4. Enable Bedrock compatibility <em>(optional)</em><a class="headerlink" href="#4-enable-bedrock-compatibility-optional" title="Permanent link">&para;</a></h3>
+<h3 id="4-put-the-network-into-maintenance-mode-optional">4. Put the network into maintenance mode <em>(optional)</em><a class="headerlink" href="#4-put-the-network-into-maintenance-mode-optional" title="Permanent link">&para;</a></h3>
+<p>Maintenance mode blocks players from connecting to the network while you work on it. Players with the bypass permission can still join normally.</p>
+<p><strong>Enable network-wide maintenance:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>proxy maintenance enable
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>proxy maintenance status
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>proxy maintenance disable
+</code></pre></div>
+<p><strong>Enable maintenance on a single service</strong> (blocks transfers to that server only, rest of the network stays open):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>service maintenance enable lobby-1
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>service maintenance status lobby-1
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>service maintenance disable lobby-1
+</code></pre></div>
+<p>The message shown to blocked players and the bypass permission are configurable — see <a href="../configuration/#proxy">Proxy settings</a> in the Configuration Reference.</p>
+<div class="admonition tip">
+<p class="admonition-title">Testing maintenance mode</p>
+<p>Grant yourself the bypass permission before enabling maintenance so you can verify the network is still reachable while players are blocked.</p>
+</div>
+<hr />
+<h3 id="5-enable-bedrock-compatibility-optional">5. Enable Bedrock compatibility <em>(optional)</em><a class="headerlink" href="#5-enable-bedrock-compatibility-optional" title="Permanent link">&para;</a></h3>
 <p>To allow Bedrock Edition players to connect, enable Bedrock support and restart the proxy:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>proxy bedrock enable
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>proxy restart
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>proxy bedrock enable
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>proxy restart
 </code></pre></div>
 <p>Geyser and Floodgate are downloaded and deployed automatically on the next proxy start. Ensure <strong>UDP port 19132</strong> is open in your firewall — Java players use TCP 25565 which is typically already open.</p>
 <p>See the <a href="../configuration/#bedrock">Configuration Reference</a> for available Bedrock settings.</p>
@@ -1376,7 +1394,7 @@
 <li>Create services — they automatically receive the template files.</li>
 <li>To apply updated template files to an existing service, rebuild it:</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>service rebuild lobby-1
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>service rebuild lobby-1
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Rebuild on persistent services</p>
@@ -1386,58 +1404,19 @@
 <h2 id="jar-management">JAR management<a class="headerlink" href="#jar-management" title="Permanent link">&para;</a></h2>
 <p>PulseOrchestrator downloads server JARs automatically when you create a service. It caches them in <code>server-jars/</code> so they are not downloaded again.</p>
 <h3 id="useful-jar-commands">Useful jar commands<a class="headerlink" href="#useful-jar-commands" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>jar list                      ← list all cached JARs
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>jar check                     ← check all cached JARs for newer builds
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>jar check paper               ← check only Paper JARs
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>jar check paper 1.21.4        ← check a specific version
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>jar update paper 1.21.4       ← download the latest build for that version
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>jar update-all                ← update every cached JAR
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>jar list                      ← list all cached JARs
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>jar check                     ← check all cached JARs for newer builds
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>jar check paper               ← check only Paper JARs
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>jar check paper 1.21.4        ← check a specific version
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>jar update paper 1.21.4       ← download the latest build for that version
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>jar update-all                ← update every cached JAR
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Updating JARs does not affect running services</p>
 <p>Services copy their JAR at creation time. To apply a new build to an existing service, recreate it:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>service recreate lobby-1
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>service recreate lobby-1
 </code></pre></div>
 </div>
-<h3 id="rest-api-equivalents">REST API equivalents<a class="headerlink" href="#rest-api-equivalents" title="Permanent link">&para;</a></h3>
-<p>All JAR operations are also available over the HTTP API.</p>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Path</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>GET</code></td>
-<td><code>/api/jars</code></td>
-<td>List all cached JARs</td>
-</tr>
-<tr>
-<td><code>GET</code></td>
-<td><code>/api/jars/{software}/{version}</code></td>
-<td>Get info for one cached JAR</td>
-</tr>
-<tr>
-<td><code>GET</code></td>
-<td><code>/api/jars/{software}/{version}/check</code></td>
-<td>Check for an update without downloading</td>
-</tr>
-<tr>
-<td><code>POST</code></td>
-<td><code>/api/jars/{software}/{version}/update</code></td>
-<td>Update one JAR to its latest build</td>
-</tr>
-<tr>
-<td><code>POST</code></td>
-<td><code>/api/jars/update-all</code></td>
-<td>Update every cached JAR</td>
-</tr>
-</tbody>
-</table>
-<p>All routes require the <code>Authorization: Bearer &lt;secret&gt;</code> header.</p>
 <hr />
 <h2 id="plugin-behaviour">Plugin behaviour<a class="headerlink" href="#plugin-behaviour" title="Permanent link">&para;</a></h2>
 <h3 id="paper-plugin">Paper plugin<a class="headerlink" href="#paper-plugin" title="Permanent link">&para;</a></h3>
@@ -1448,7 +1427,7 @@
 <li>A Bukkit <code>ServicesManager</code> bridge for other plugins to talk to the orchestrator</li>
 </ul>
 <h3 id="velocity-plugin">Velocity plugin<a class="headerlink" href="#velocity-plugin" title="Permanent link">&para;</a></h3>
-<p>The standalone Velocity plugin is for setups where you run your own Velocity instance instead of using the built-in proxy. It polls the HTTP API to keep server registrations in sync with the orchestrator's state.</p>
+<p>The Velocity plugin is bundled inside the orchestrator and deployed automatically to <code>proxy/plugins/</code> on every proxy start — no manual installation needed. It enforces maintenance mode at the proxy boundary: when the network or an individual service is in maintenance, the plugin blocks player connections and shows the configured message. Players with the bypass permission are unaffected.</p>
 <hr />
 <h2 id="operational-tips">Operational tips<a class="headerlink" href="#operational-tips" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1461,6 +1440,7 @@
 <li>Add tags and descriptions to tasks early; they become essential for readability as your setup grows.</li>
 <li>Define one clear default entry task for player connections. Use the fallback list for deliberate overflow routing, not as a catch-all.</li>
 <li>Note which tasks are persistent and which are disposable before scaling — the distinction matters during maintenance and migrations.</li>
+<li>Use <code>proxy maintenance enable</code> before taking the network down for updates; players see a clean message rather than a connection failure.</li>
 </ul>
 
 

@@ -882,6 +882,56 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#maintenance-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maintenance mode
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Maintenance mode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proxy-wide-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proxy-wide maintenance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-service-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-service maintenance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-variants_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Async variants
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#service-metrics" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1136,6 +1186,56 @@
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maintenance-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maintenance mode
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Maintenance mode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proxy-wide-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proxy-wide maintenance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-service-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-service maintenance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-variants_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Async variants
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1423,33 +1523,77 @@ match the name registered with the Velocity proxy (hyphens become underscores).<
 <a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>
 <a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="c1">// Proxy routing config</span>
 <a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="n">ProxyConfigDto</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">api</span><span class="p">.</span><span class="na">getProxyConfig</span><span class="p">();</span>
-<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="n">config</span><span class="p">.</span><span class="na">defaultEntryTask</span><span class="p">();</span><span class="w">  </span><span class="c1">// String</span>
-<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="n">config</span><span class="p">.</span><span class="na">fallbackTasks</span><span class="p">();</span><span class="w">     </span><span class="c1">// List&lt;String&gt;</span>
-<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="n">config</span><span class="p">.</span><span class="na">routingPolicy</span><span class="p">();</span><span class="w">     </span><span class="c1">// String</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="n">config</span><span class="p">.</span><span class="na">defaultEntryTask</span><span class="p">();</span><span class="w">             </span><span class="c1">// String</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="n">config</span><span class="p">.</span><span class="na">fallbackTasks</span><span class="p">();</span><span class="w">                </span><span class="c1">// List&lt;String&gt;</span>
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="n">config</span><span class="p">.</span><span class="na">routingPolicy</span><span class="p">();</span><span class="w">                </span><span class="c1">// String</span>
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="n">config</span><span class="p">.</span><span class="na">maintenanceMode</span><span class="p">();</span><span class="w">              </span><span class="c1">// boolean</span>
+<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="n">config</span><span class="p">.</span><span class="na">maintenanceMessage</span><span class="p">();</span><span class="w">           </span><span class="c1">// String</span>
+<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="n">config</span><span class="p">.</span><span class="na">maintenanceBypassPermission</span><span class="p">();</span><span class="w">  </span><span class="c1">// String</span>
 </code></pre></div>
+<hr />
+<h2 id="maintenance-mode">Maintenance mode<a class="headerlink" href="#maintenance-mode" title="Permanent link">&para;</a></h2>
+<p>Maintenance mode blocks player connections at the proxy level or for individual services. Players holding the configured bypass permission are unaffected.</p>
+<h3 id="proxy-wide-maintenance">Proxy-wide maintenance<a class="headerlink" href="#proxy-wide-maintenance" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1">// Check current state</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">ProxyConfigDto</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">api</span><span class="p">.</span><span class="na">getProxyConfig</span><span class="p">();</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="kt">boolean</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="na">maintenanceMode</span><span class="p">();</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="c1">// Enable — blocks all new player connections to the network</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="n">ActionResult</span><span class="o">&lt;</span><span class="n">ProxyConfigDto</span><span class="o">&gt;</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">api</span><span class="p">.</span><span class="na">setProxyMaintenanceMode</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="c1">// Disable</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="n">api</span><span class="p">.</span><span class="na">setProxyMaintenanceMode</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="per-service-maintenance">Per-service maintenance<a class="headerlink" href="#per-service-maintenance" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1">// Check whether a specific service is in maintenance</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">Optional</span><span class="o">&lt;</span><span class="n">ServiceDto</span><span class="o">&gt;</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">api</span><span class="p">.</span><span class="na">getService</span><span class="p">(</span><span class="s">&quot;lobby-1&quot;</span><span class="p">);</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">service</span><span class="p">.</span><span class="na">ifPresent</span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="na">maintenanceMode</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">        </span><span class="n">getLogger</span><span class="p">().</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;lobby-1 is in maintenance&quot;</span><span class="p">);</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="p">});</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="c1">// Put a service into maintenance (blocks transfers to it; rest of network stays open)</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="n">ActionResult</span><span class="o">&lt;</span><span class="n">ServiceDto</span><span class="o">&gt;</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">api</span><span class="p">.</span><span class="na">setServiceMaintenanceMode</span><span class="p">(</span><span class="s">&quot;lobby-1&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="c1">// Take it out of maintenance</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="n">api</span><span class="p">.</span><span class="na">setServiceMaintenanceMode</span><span class="p">(</span><span class="s">&quot;lobby-1&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="async-variants_1">Async variants<a class="headerlink" href="#async-variants_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">api</span><span class="p">.</span><span class="na">setServiceMaintenanceModeAsync</span><span class="p">(</span><span class="s">&quot;lobby-1&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">   </span><span class="p">.</span><span class="na">thenAccept</span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">       </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">success</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">           </span><span class="n">getLogger</span><span class="p">().</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;Maintenance enabled for &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="na">data</span><span class="p">().</span><span class="na">get</span><span class="p">().</span><span class="na">id</span><span class="p">());</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">       </span><span class="p">}</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">   </span><span class="p">});</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Bypass permission</p>
+<p>The permission node used for bypass is returned in <code>ProxyConfigDto.maintenanceBypassPermission()</code> and defaults to <code>pulseorchestrator.maintenance.bypass</code>. It is checked against the Velocity proxy's permission system, not the game server.</p>
+</div>
 <hr />
 <h2 id="service-metrics">Service metrics<a class="headerlink" href="#service-metrics" title="Permanent link">&para;</a></h2>
 <p><code>ServiceDto.metrics()</code> returns a <code>ServiceMetrics</code> instance when the service is running
 and has reported metrics to the orchestrator. It is <code>null</code> for stopped services or before
 the first metric push.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">api</span><span class="p">.</span><span class="na">getService</span><span class="p">(</span><span class="n">serviceId</span><span class="p">).</span><span class="na">ifPresent</span><span class="p">(</span><span class="n">service</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="n">ServiceMetrics</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">service</span><span class="p">.</span><span class="na">metrics</span><span class="p">();</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">        </span><span class="n">getLogger</span><span class="p">().</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;TPS: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="na">tps</span><span class="p">());</span>
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">        </span><span class="n">getLogger</span><span class="p">().</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;Players: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="na">onlinePlayers</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="na">maxPlayers</span><span class="p">());</span>
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">        </span><span class="n">getLogger</span><span class="p">().</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;RAM: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="na">ramUsageMb</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; MB&quot;</span><span class="p">);</span>
-<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">        </span><span class="n">getLogger</span><span class="p">().</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;Last updated: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="na">updatedAt</span><span class="p">());</span>
-<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="p">});</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">api</span><span class="p">.</span><span class="na">getService</span><span class="p">(</span><span class="n">serviceId</span><span class="p">).</span><span class="na">ifPresent</span><span class="p">(</span><span class="n">service</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="n">ServiceMetrics</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">service</span><span class="p">.</span><span class="na">metrics</span><span class="p">();</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">        </span><span class="n">getLogger</span><span class="p">().</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;TPS: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="na">tps</span><span class="p">());</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">        </span><span class="n">getLogger</span><span class="p">().</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;Players: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="na">onlinePlayers</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="na">maxPlayers</span><span class="p">());</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">        </span><span class="n">getLogger</span><span class="p">().</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;RAM: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="na">ramUsageMb</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; MB&quot;</span><span class="p">);</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">        </span><span class="n">getLogger</span><span class="p">().</span><span class="na">info</span><span class="p">(</span><span class="s">&quot;Last updated: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="na">updatedAt</span><span class="p">());</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="p">});</span>
 </code></pre></div>
 <p>All fields are nullable — check before using.</p>
 <hr />
 <h2 id="console">Console<a class="headerlink" href="#console" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1">// Send a command to a service</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">api</span><span class="p">.</span><span class="na">sendCommand</span><span class="p">(</span><span class="n">serviceId</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;say Hello from the API&quot;</span><span class="p">);</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1">// Fetch the last N lines of console output (max 500)</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lines</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">api</span><span class="p">.</span><span class="na">getConsole</span><span class="p">(</span><span class="n">serviceId</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1">// Send a command to a service</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">api</span><span class="p">.</span><span class="na">sendCommand</span><span class="p">(</span><span class="n">serviceId</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;say Hello from the API&quot;</span><span class="p">);</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="c1">// Fetch the last N lines of console output (max 500)</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lines</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">api</span><span class="p">.</span><span class="na">getConsole</span><span class="p">(</span><span class="n">serviceId</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">);</span>
 </code></pre></div>
 
 
