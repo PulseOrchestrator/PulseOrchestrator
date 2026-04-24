@@ -13,10 +13,9 @@ Before you start, make sure you have:
 - **Java 21** — the program that runs PulseOrchestrator and your game servers. You can check your version by opening a terminal and typing `java -version`. If you see `21` or higher you are good.
 - **The orchestrator jar** — the main PulseOrchestrator file, downloaded from the releases page.
 - **The Paper plugin jar** *(optional)* — only needed if you want in-game commands on Paper servers.
-- **The Velocity plugin jar** *(optional)* — only needed if you use an external Velocity proxy instead of the built-in one.
 
 !!! tip "Where to find the jars"
-    All release files are available on the [GitHub releases page](https://github.com/PulseOrchestrator/Core/releases). Download the files that match the version you want to run.
+    All release files are available on the [GitHub releases page](https://github.com/PulseOrchestrator/PulseOrchestrator/releases). Download the files that match the version you want to run.
 
 ---
 
@@ -47,12 +46,12 @@ Open a terminal, navigate into your folder, and run the jar.
 
 === "Windows"
     ```powershell
-    java -jar pulseorchestrator-orchestrator-<version>-all.jar
+    java -jar orchestrator-<version>.jar
     ```
 
 === "Linux (foreground)"
     ```bash
-    java -jar pulseorchestrator-orchestrator-<version>-all.jar
+    java -jar orchestrator-<version>.jar
     ```
 
 === "Linux (background with screen)"
@@ -62,7 +61,7 @@ Open a terminal, navigate into your folder, and run the jar.
 
     ```bash
     screen -S pulse
-    java -jar pulseorchestrator-orchestrator-<version>-all.jar
+    java -jar orchestrator-<version>.jar
     ```
 
     To leave the screen running in the background: press ++ctrl+a++ then ++d++.
@@ -70,7 +69,7 @@ Open a terminal, navigate into your folder, and run the jar.
     To come back to it later: `screen -r pulse`
 
 !!! note
-    Replace `<version>` with the actual version number, for example `pulseorchestrator-orchestrator-1.0.0-all.jar`.
+    Replace `<version>` with the actual version number, for example `orchestrator-1.0.0-beta.1.jar`.
 
 ---
 
@@ -170,22 +169,6 @@ Put the Paper jar into your Paper server's `plugins/` folder and start the serve
 ```
 
 Restart the server after saving.
-
-### Velocity plugin
-
-Put the Velocity jar into your Velocity `plugins/` folder and start Velocity once. Then open `plugins/pulseorchestrator/config.json` and fill in:
-
-```json
-{
-  "orchestratorUrl": "http://localhost:8080",
-  "apiSecret": "paste-your-secret-here",
-  "pollIntervalSeconds": 5,
-  "connectionTimeoutMs": 5000,
-  "readTimeoutMs": 10000
-}
-```
-
-Restart Velocity after saving.
 
 ---
 

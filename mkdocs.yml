@@ -61,3 +61,5 @@ nav:
   - Guides:
       - Feature Guide: guides/feature-guide.md
       - Configuration Reference: guides/configuration.md
+  - Plugin Development:
+      - Bridge API: guides/bridge-api.md
