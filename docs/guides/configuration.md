@@ -39,6 +39,9 @@ Below is a fully annotated example showing every available setting with its defa
     "maxMemoryMB": 512,
     "defaultEntryTask": "lobby",
     "fallbackTasks": ["fallback"],
+    "maintenanceMode": false,
+    "maintenanceMessage": "§cThe network is currently in maintenance mode. Please try again later.",
+    "maintenanceBypassPermission": "pulseorchestrator.maintenance.bypass",
     "bedrock": {
       "enabled": false,
       "port": 19132
@@ -131,6 +134,12 @@ The built-in proxy is what players connect to. It routes them to the right game 
 | `proxy.maxMemoryMB` | `512` | Maximum heap allocation for the proxy process, in MB. 512 MB is sufficient for most networks; increase for very high player counts. |
 | `proxy.defaultEntryTask` | *(none)* | Task whose running services receive newly connected players. Configure via `proxy route set-default <task>` in the console. |
 | `proxy.fallbackTasks` | `[]` | Ordered list of tasks to attempt if no service is available for the entry task. Manage via `proxy route add-fallback` / `remove-fallback` in the console. |
+| `proxy.maintenanceMode` | `false` | When `true`, all player connections are blocked at the proxy level. Toggle via `proxy maintenance enable` / `disable` in the console. |
+| `proxy.maintenanceMessage` | *(see below)* | Kick/disconnect message shown to blocked players. Supports legacy `§` colour codes. |
+| `proxy.maintenanceBypassPermission` | `pulseorchestrator.maintenance.bypass` | Velocity permission node that allows a player to bypass maintenance mode and connect normally. Requires a permission plugin (e.g. LuckPerms for Velocity). |
+
+!!! note "Per-service maintenance"
+  Individual services can also be put into maintenance mode independently — this blocks transfers to that specific server while the rest of the network stays open. Use `service maintenance enable <id>` in the console. Per-service maintenance uses the same `maintenanceMessage` and `maintenanceBypassPermission` as proxy-level maintenance.
 
 ---
 

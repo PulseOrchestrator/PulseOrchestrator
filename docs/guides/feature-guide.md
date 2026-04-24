@@ -132,7 +132,34 @@ proxy stop
 !!! note "Routing requires at least one running service"
     The proxy routes players to a task only if at least one service from that task is in the `RUNNING` state. If no entry task service is available, it falls through the fallback list in order.
 
-### 4. Enable Bedrock compatibility *(optional)*
+### 4. Put the network into maintenance mode *(optional)*
+
+Maintenance mode blocks players from connecting to the network while you work on it. Players with the bypass permission can still join normally.
+
+**Enable network-wide maintenance:**
+
+```text
+proxy maintenance enable
+proxy maintenance status
+proxy maintenance disable
+```
+
+**Enable maintenance on a single service** (blocks transfers to that server only, rest of the network stays open):
+
+```text
+service maintenance enable lobby-1
+service maintenance status lobby-1
+service maintenance disable lobby-1
+```
+
+The message shown to blocked players and the bypass permission are configurable — see [Proxy settings](configuration.md#proxy) in the Configuration Reference.
+
+!!! tip "Testing maintenance mode"
+    Grant yourself the bypass permission before enabling maintenance so you can verify the network is still reachable while players are blocked.
+
+---
+
+### 5. Enable Bedrock compatibility *(optional)*
 
 To allow Bedrock Edition players to connect, enable Bedrock support and restart the proxy:
 
@@ -191,20 +218,6 @@ jar update-all                ← update every cached JAR
     service recreate lobby-1
     ```
 
-### REST API equivalents
-
-All JAR operations are also available over the HTTP API.
-
-| Method | Path | Description |
-|---|---|---|
-| `GET` | `/api/jars` | List all cached JARs |
-| `GET` | `/api/jars/{software}/{version}` | Get info for one cached JAR |
-| `GET` | `/api/jars/{software}/{version}/check` | Check for an update without downloading |
-| `POST` | `/api/jars/{software}/{version}/update` | Update one JAR to its latest build |
-| `POST` | `/api/jars/update-all` | Update every cached JAR |
-
-All routes require the `Authorization: Bearer <secret>` header.
-
 ---
 
 ## Plugin behaviour
@@ -219,7 +232,7 @@ The Paper plugin gives you in-game access to orchestrator features:
 
 ### Velocity plugin
 
-The standalone Velocity plugin is for setups where you run your own Velocity instance instead of using the built-in proxy. It polls the HTTP API to keep server registrations in sync with the orchestrator's state.
+The Velocity plugin is bundled inside the orchestrator and deployed automatically to `proxy/plugins/` on every proxy start — no manual installation needed. It enforces maintenance mode at the proxy boundary: when the network or an individual service is in maintenance, the plugin blocks player connections and shows the configured message. Players with the bypass permission are unaffected.
 
 ---
 
@@ -234,3 +247,4 @@ The standalone Velocity plugin is for setups where you run your own Velocity ins
 - Add tags and descriptions to tasks early; they become essential for readability as your setup grows.
 - Define one clear default entry task for player connections. Use the fallback list for deliberate overflow routing, not as a catch-all.
 - Note which tasks are persistent and which are disposable before scaling — the distinction matters during maintenance and migrations.
+- Use `proxy maintenance enable` before taking the network down for updates; players see a clean message rather than a connection failure.

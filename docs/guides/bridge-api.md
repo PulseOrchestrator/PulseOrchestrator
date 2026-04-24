@@ -288,10 +288,65 @@ proxy.bindPort();  // int
 
 // Proxy routing config
 ProxyConfigDto config = api.getProxyConfig();
-config.defaultEntryTask();  // String
-config.fallbackTasks();     // List<String>
-config.routingPolicy();     // String
+config.defaultEntryTask();             // String
+config.fallbackTasks();                // List<String>
+config.routingPolicy();                // String
+config.maintenanceMode();              // boolean
+config.maintenanceMessage();           // String
+config.maintenanceBypassPermission();  // String
 ```
+
+---
+
+## Maintenance mode
+
+Maintenance mode blocks player connections at the proxy level or for individual services. Players holding the configured bypass permission are unaffected.
+
+### Proxy-wide maintenance
+
+```java
+// Check current state
+ProxyConfigDto config = api.getProxyConfig();
+boolean active = config.maintenanceMode();
+
+// Enable — blocks all new player connections to the network
+ActionResult<ProxyConfigDto> result = api.setProxyMaintenanceMode(true);
+
+// Disable
+api.setProxyMaintenanceMode(false);
+```
+
+### Per-service maintenance
+
+```java
+// Check whether a specific service is in maintenance
+Optional<ServiceDto> service = api.getService("lobby-1");
+service.ifPresent(s -> {
+    if (s.maintenanceMode()) {
+        getLogger().info("lobby-1 is in maintenance");
+    }
+});
+
+// Put a service into maintenance (blocks transfers to it; rest of network stays open)
+ActionResult<ServiceDto> result = api.setServiceMaintenanceMode("lobby-1", true);
+
+// Take it out of maintenance
+api.setServiceMaintenanceMode("lobby-1", false);
+```
+
+### Async variants
+
+```java
+api.setServiceMaintenanceModeAsync("lobby-1", true)
+   .thenAccept(result -> {
+       if (result.success()) {
+           getLogger().info("Maintenance enabled for " + result.data().get().id());
+       }
+   });
+```
+
+!!! note "Bypass permission"
+    The permission node used for bypass is returned in `ProxyConfigDto.maintenanceBypassPermission()` and defaults to `pulseorchestrator.maintenance.bypass`. It is checked against the Velocity proxy's permission system, not the game server.
 
 ---
 
