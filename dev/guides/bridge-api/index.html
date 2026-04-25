@@ -1311,8 +1311,8 @@
 
 <h1 id="plugin-bridge-api">Plugin Bridge API<a class="headerlink" href="#plugin-bridge-api" title="Permanent link">&para;</a></h1>
 <p>The <strong>pulse-bridge-api</strong> is a Java library that lets other Paper plugins interact with
-PulseOrchestrator at runtime — creating and managing services, reacting to lifecycle
-events, routing players, and reading metrics — without making HTTP calls or knowing
+PulseOrchestrator at runtime - creating and managing services, reacting to lifecycle
+events, routing players, and reading metrics - without making HTTP calls or knowing
 anything about the WebSocket API.</p>
 <p>The API classes are bundled inside <code>plugin-paper</code>, so <strong>no extra jar</strong> needs to be
 present on the server. Other plugins depend on the library at compile time only and
@@ -1382,7 +1382,7 @@ instance provisioned from a task. Multiple services can run from the same task.<
 <a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">ServiceDto</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lobbies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">api</span><span class="p">.</span><span class="na">listServicesForTask</span><span class="p">(</span><span class="s">&quot;lobby&quot;</span><span class="p">);</span>
 </code></pre></div>
 <h3 id="actionresult">ActionResult<a class="headerlink" href="#actionresult" title="Permanent link">&para;</a></h3>
-<p>Mutating calls return <code>ActionResult&lt;T&gt;</code> — a typed result with success/failure status,
+<p>Mutating calls return <code>ActionResult&lt;T&gt;</code> - a typed result with success/failure status,
 an optional data payload, and an error message on failure.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">ActionResult</span><span class="o">&lt;</span><span class="n">ServiceDto</span><span class="o">&gt;</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">api</span><span class="p">.</span><span class="na">createService</span><span class="p">(</span><span class="s">&quot;lobby&quot;</span><span class="p">);</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
@@ -1566,7 +1566,7 @@ match the name registered with the Velocity proxy (hyphens become underscores).<
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="n">ProxyConfigDto</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">api</span><span class="p">.</span><span class="na">getProxyConfig</span><span class="p">();</span>
 <a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="kt">boolean</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="na">maintenanceMode</span><span class="p">();</span>
 <a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="c1">// Enable — blocks all new player connections to the network</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="c1">// Enable - blocks all new player connections to the network</span>
 <a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="n">ActionResult</span><span class="o">&lt;</span><span class="n">ProxyConfigDto</span><span class="o">&gt;</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">api</span><span class="p">.</span><span class="na">setProxyMaintenanceMode</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
 <a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>
 <a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="c1">// Disable</span>
@@ -1614,7 +1614,7 @@ the first metric push.</p>
 <a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="p">});</span>
 </code></pre></div>
-<p>All fields are nullable — check before using.</p>
+<p>All fields are nullable - check before using.</p>
 <hr />
 <h2 id="console">Console<a class="headerlink" href="#console" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1">// Send a command to a service</span>

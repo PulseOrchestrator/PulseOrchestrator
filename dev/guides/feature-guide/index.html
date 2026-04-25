@@ -1272,15 +1272,15 @@
 <hr />
 <h2 id="core-concepts">Core concepts<a class="headerlink" href="#core-concepts" title="Permanent link">&para;</a></h2>
 <h3 id="task">Task<a class="headerlink" href="#task" title="Permanent link">&para;</a></h3>
-<p>A <strong>task</strong> is a blueprint that defines the properties of a server type — the software, version, memory allocation, and restart behaviour. Tasks are not running processes; they are templates from which services are created.</p>
+<p>A <strong>task</strong> is a blueprint that defines the properties of a server type - the software, version, memory allocation, and restart behaviour. Tasks are not running processes; they are templates from which services are created.</p>
 <p>Tasks are stored in <code>tasks.json</code> in your orchestrator folder.</p>
 <h3 id="service">Service<a class="headerlink" href="#service" title="Permanent link">&para;</a></h3>
-<p>A <strong>service</strong> is a running server instance provisioned from a task. Multiple services can be created from the same task — for example, two lobby servers from a single <code>lobby</code> task.</p>
+<p>A <strong>service</strong> is a running server instance provisioned from a task. Multiple services can be created from the same task - for example, two lobby servers from a single <code>lobby</code> task.</p>
 <p>Services are tracked in the orchestrator's database and stored in the <code>services/</code> folder.</p>
 <h3 id="proxy-routing">Proxy routing<a class="headerlink" href="#proxy-routing" title="Permanent link">&para;</a></h3>
 <p>Players connect to the built-in Velocity proxy, which routes them to the appropriate game server based on task configuration. The proxy uses <strong>task-based routing</strong>: you configure a default entry task (e.g. <code>lobby</code>) and an ordered fallback list. On connection, the proxy selects a <code>RUNNING</code> service matching the entry task; if none is available, it works through the fallback list in order.</p>
 <h3 id="bedrock-compatibility">Bedrock compatibility<a class="headerlink" href="#bedrock-compatibility" title="Permanent link">&para;</a></h3>
-<p>When enabled, PulseOrchestrator deploys <a href="https://geysermc.org">Geyser</a> and <a href="https://wiki.geysermc.org/floodgate/">Floodgate</a> as Velocity plugins, allowing Bedrock Edition clients to connect alongside Java clients on the same proxy process. Geyser handles protocol translation; Floodgate manages Bedrock player authentication and UUID assignment. Game servers require no changes — Bedrock players are transparent at the server level.</p>
+<p>When enabled, PulseOrchestrator deploys <a href="https://geysermc.org">Geyser</a> and <a href="https://wiki.geysermc.org/floodgate/">Floodgate</a> as Velocity plugins, allowing Bedrock Edition clients to connect alongside Java clients on the same proxy process. Geyser handles protocol translation; Floodgate manages Bedrock player authentication and UUID assignment. Game servers require no changes - Bedrock players are transparent at the server level.</p>
 <p>Both platforms use their default ports (Java: TCP 25565, Bedrock: UDP 19132), so neither player group needs to specify a port when connecting.</p>
 <hr />
 <h2 id="storage-modes">Storage modes<a class="headerlink" href="#storage-modes" title="Permanent link">&para;</a></h2>
@@ -1295,7 +1295,7 @@
 <tbody>
 <tr>
 <td><code>PERSISTENT</code></td>
-<td>The server's files are kept between restarts. World data, plugins, configs — everything is saved. Use this for servers that should hold state.</td>
+<td>The server's files are kept between restarts. World data, plugins, configs - everything is saved. Use this for servers that should hold state.</td>
 </tr>
 <tr>
 <td><code>RESET_ON_START</code></td>
@@ -1341,14 +1341,14 @@
 </code></pre></div>
 <p>The interactive wizard asks for:</p>
 <ul>
-<li><strong>Server software</strong> — <code>PAPER</code>, <code>PURPUR</code>, or <code>FABRIC</code></li>
-<li><strong>Server version</strong> — for example <code>1.21.4</code></li>
-<li><strong>Preferred port</strong> — the port PulseOrchestrator tries to assign first; it picks the next free one if taken</li>
-<li><strong>Storage mode</strong> — <code>PERSISTENT</code> or <code>RESET_ON_START</code> (see above)</li>
-<li><strong>Restart policy</strong> — <code>NEVER</code>, <code>ON_FAILURE</code>, or <code>ALWAYS</code> (see above)</li>
-<li><strong>Description and tags</strong> <em>(optional)</em> — for your own organisation</li>
-<li><strong>Template scaffolding</strong> <em>(optional)</em> — files to copy into every service created from this task</li>
-<li><strong>Advanced settings</strong> <em>(optional)</em> — custom JVM arguments, server arguments, environment variables</li>
+<li><strong>Server software</strong> - <code>PAPER</code>, <code>PURPUR</code>, or <code>FABRIC</code></li>
+<li><strong>Server version</strong> - for example <code>1.21.4</code></li>
+<li><strong>Preferred port</strong> - the port PulseOrchestrator tries to assign first; it picks the next free one if taken</li>
+<li><strong>Storage mode</strong> - <code>PERSISTENT</code> or <code>RESET_ON_START</code> (see above)</li>
+<li><strong>Restart policy</strong> - <code>NEVER</code>, <code>ON_FAILURE</code>, or <code>ALWAYS</code> (see above)</li>
+<li><strong>Description and tags</strong> <em>(optional)</em> - for your own organisation</li>
+<li><strong>Template scaffolding</strong> <em>(optional)</em> - files to copy into every service created from this task</li>
+<li><strong>Advanced settings</strong> <em>(optional)</em> - custom JVM arguments, server arguments, environment variables</li>
 </ul>
 <p>To see all your tasks:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>task list
@@ -1398,7 +1398,7 @@
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>service maintenance status lobby-1
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>service maintenance disable lobby-1
 </code></pre></div>
-<p>The message shown to blocked players and the bypass permission are configurable — see <a href="../configuration/#proxy">Proxy settings</a> in the Configuration Reference.</p>
+<p>The message shown to blocked players and the bypass permission are configurable - see <a href="../configuration/#proxy">Proxy settings</a> in the Configuration Reference.</p>
 <div class="admonition tip">
 <p class="admonition-title">Testing maintenance mode</p>
 <p>Grant yourself the bypass permission before enabling maintenance so you can verify the network is still reachable while players are blocked.</p>
@@ -1409,17 +1409,17 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>proxy bedrock enable
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>proxy restart
 </code></pre></div>
-<p>Geyser and Floodgate are downloaded and deployed automatically on the next proxy start. Ensure <strong>UDP port 19132</strong> is open in your firewall — Java players use TCP 25565 which is typically already open.</p>
+<p>Geyser and Floodgate are downloaded and deployed automatically on the next proxy start. Ensure <strong>UDP port 19132</strong> is open in your firewall - Java players use TCP 25565 which is typically already open.</p>
 <p>See the <a href="../configuration/#bedrock">Configuration Reference</a> for available Bedrock settings.</p>
 <hr />
 <h2 id="templates">Templates<a class="headerlink" href="#templates" title="Permanent link">&para;</a></h2>
-<p>Templates let you pre-fill new services with files — plugin jars, configs, worlds — so every service starts with the right setup.</p>
+<p>Templates let you pre-fill new services with files - plugin jars, configs, worlds - so every service starts with the right setup.</p>
 <p>Files placed in <code>templates/global/</code> are copied into <strong>every</strong> service regardless of task. Files in a task-specific template folder are only copied into services from that task.</p>
 <p>Typical workflow:</p>
 <ol>
 <li>Create a task.</li>
 <li>Add any files you want pre-loaded into the template folder.</li>
-<li>Create services — they automatically receive the template files.</li>
+<li>Create services - they automatically receive the template files.</li>
 <li>To apply updated template files to an existing service, rebuild it:</li>
 </ol>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>service rebuild lobby-1
@@ -1450,12 +1450,12 @@
 <h3 id="paper-plugin">Paper plugin<a class="headerlink" href="#paper-plugin" title="Permanent link">&para;</a></h3>
 <p>The Paper plugin gives you in-game access to orchestrator features:</p>
 <ul>
-<li><code>/pulse</code> — orchestrator commands from inside the game</li>
-<li><code>/hub</code> — sends the player back through the network routing flow</li>
+<li><code>/pulse</code> - orchestrator commands from inside the game</li>
+<li><code>/hub</code> - sends the player back through the network routing flow</li>
 <li>A Bukkit <code>ServicesManager</code> bridge for other plugins to talk to the orchestrator</li>
 </ul>
 <h3 id="velocity-plugin">Velocity plugin<a class="headerlink" href="#velocity-plugin" title="Permanent link">&para;</a></h3>
-<p>The Velocity plugin is bundled inside the orchestrator and deployed automatically to <code>proxy/plugins/</code> on every proxy start — no manual installation needed. It enforces maintenance mode at the proxy boundary: when the network or an individual service is in maintenance, the plugin blocks player connections and shows the configured message. Players with the bypass permission are unaffected.</p>
+<p>The Velocity plugin is bundled inside the orchestrator and deployed automatically to <code>proxy/plugins/</code> on every proxy start - no manual installation needed. It enforces maintenance mode at the proxy boundary: when the network or an individual service is in maintenance, the plugin blocks player connections and shows the configured message. Players with the bypass permission are unaffected.</p>
 <hr />
 <h2 id="operational-tips">Operational tips<a class="headerlink" href="#operational-tips" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1464,10 +1464,10 @@
 <li><code>service logs &lt;id&gt; 100</code> is the fastest way to diagnose a misbehaving server.</li>
 <li>The console status bar shows live service counts and any pending update notices.</li>
 <li>See the <a href="../configuration/">Configuration Reference</a> for a full breakdown of every available setting.</li>
-<li>Keep the runtime base path on persistent, reliable storage — <code>pulse.db</code> holds all service records.</li>
+<li>Keep the runtime base path on persistent, reliable storage - <code>pulse.db</code> holds all service records.</li>
 <li>Add tags and descriptions to tasks early; they become essential for readability as your setup grows.</li>
 <li>Define one clear default entry task for player connections. Use the fallback list for deliberate overflow routing, not as a catch-all.</li>
-<li>Note which tasks are persistent and which are disposable before scaling — the distinction matters during maintenance and migrations.</li>
+<li>Note which tasks are persistent and which are disposable before scaling - the distinction matters during maintenance and migrations.</li>
 <li>Use <code>proxy maintenance enable</code> before taking the network down for updates; players see a clean message rather than a connection failure.</li>
 </ul>
 

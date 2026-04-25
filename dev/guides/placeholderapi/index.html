@@ -729,7 +729,7 @@
   <a href="#per-service-status" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Per-service — status
+        Per-service - status
       
     </span>
   </a>
@@ -740,7 +740,7 @@
   <a href="#per-service-live-metrics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Per-service — live metrics
+        Per-service - live metrics
       
     </span>
   </a>
@@ -1002,7 +1002,7 @@
   <a href="#per-service-status" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Per-service — status
+        Per-service - status
       
     </span>
   </a>
@@ -1013,7 +1013,7 @@
   <a href="#per-service-live-metrics" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Per-service — live metrics
+        Per-service - live metrics
       
     </span>
   </a>
@@ -1085,7 +1085,7 @@
 </tr>
 <tr>
 <td>PlaceholderAPI</td>
-<td>2.11+ installed on the same server (optional — the plugin starts without it)</td>
+<td>2.11+ installed on the same server (optional - the plugin starts without it)</td>
 </tr>
 </tbody>
 </table>
@@ -1098,12 +1098,12 @@
 <p>Metric placeholders (<code>tps</code>, <code>mspt</code>, <code>ram</code>, <code>cpu</code>, <code>players</code>, <code>chunks</code>, <code>entities</code>) are populated by the <strong>metrics push</strong> mechanism: each Paper server running the plugin reports its own metrics to the orchestrator every <strong>5 seconds</strong>. The orchestrator stores these metrics alongside the service record, and they are included in the cache refresh.</p>
 <p>This means:</p>
 <ul>
-<li>Metric placeholders are available for <strong>Paper servers only</strong> — they return <code>unknown</code> for any server that does not push metrics (e.g. non-Paper servers managed by the orchestrator).</li>
+<li>Metric placeholders are available for <strong>Paper servers only</strong> - they return <code>unknown</code> for any server that does not push metrics (e.g. non-Paper servers managed by the orchestrator).</li>
 <li>After a server first starts, metric placeholders show <code>unknown</code> until the first push cycle completes (≤ 5 seconds).</li>
 <li>If a server goes offline, its last reported metrics remain visible until the service record is updated.</li>
 </ul>
 <h3 id="service-id-matching">Service ID matching<a class="headerlink" href="#service-id-matching" title="Permanent link">&para;</a></h3>
-<p>Placeholders that accept a <code>&lt;id&gt;</code> parameter match against the service's ID with flexible normalisation — hyphens (<code>-</code>) and underscores (<code>_</code>) are treated as equivalent, and matching is case-insensitive. For example, <code>%pulse_service_status_lobby-1%</code> and <code>%pulse_service_status_lobby_1%</code> resolve to the same service.</p>
+<p>Placeholders that accept a <code>&lt;id&gt;</code> parameter match against the service's ID with flexible normalisation - hyphens (<code>-</code>) and underscores (<code>_</code>) are treated as equivalent, and matching is case-insensitive. For example, <code>%pulse_service_status_lobby-1%</code> and <code>%pulse_service_status_lobby_1%</code> resolve to the same service.</p>
 <hr />
 <h2 id="placeholder-reference">Placeholder reference<a class="headerlink" href="#placeholder-reference" title="Permanent link">&para;</a></h2>
 <p>All placeholders use the <code>pulse</code> identifier and follow the format <code>%pulse_&lt;placeholder&gt;%</code>.</p>
@@ -1157,7 +1157,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="per-service-status">Per-service — status<a class="headerlink" href="#per-service-status" title="Permanent link">&para;</a></h3>
+<h3 id="per-service-status">Per-service - status<a class="headerlink" href="#per-service-status" title="Permanent link">&para;</a></h3>
 <p>Replace <code>&lt;id&gt;</code> with the service ID (e.g. <code>lobby-1</code>).</p>
 <table>
 <thead>
@@ -1190,7 +1190,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="per-service-live-metrics">Per-service — live metrics<a class="headerlink" href="#per-service-live-metrics" title="Permanent link">&para;</a></h3>
+<h3 id="per-service-live-metrics">Per-service - live metrics<a class="headerlink" href="#per-service-live-metrics" title="Permanent link">&para;</a></h3>
 <p>These are populated by the metrics push mechanism described above. They return <code>unknown</code> if the server has not reported metrics yet or is not a Paper server.</p>
 <table>
 <thead>
@@ -1263,7 +1263,7 @@
 </dd>
 <dt><strong>Metric placeholders return <code>unknown</code></strong></dt>
 <dd>
-<p>The service may not be running the Paper plugin, or fewer than 5 seconds have passed since startup. Check that <code>ServiceMetricsReporter</code> is not logging a warning about port resolution — this indicates the plugin could not identify its own orchestrator service ID.</p>
+<p>The service may not be running the Paper plugin, or fewer than 5 seconds have passed since startup. Check that <code>ServiceMetricsReporter</code> is not logging a warning about port resolution - this indicates the plugin could not identify its own orchestrator service ID.</p>
 </dd>
 <dt><strong>Service ID not found</strong></dt>
 <dd>

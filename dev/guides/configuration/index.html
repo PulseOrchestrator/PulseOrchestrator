@@ -1123,15 +1123,15 @@
 <tbody>
 <tr>
 <td><code>config.json</code></td>
-<td>All orchestrator settings — API, memory defaults, proxy, health monitoring, backups, and logs</td>
+<td>All orchestrator settings - API, memory defaults, proxy, health monitoring, backups, and logs</td>
 </tr>
 <tr>
 <td><code>tasks.json</code></td>
-<td>Your server blueprints — one entry per server type you want to run</td>
+<td>Your server blueprints - one entry per server type you want to run</td>
 </tr>
 </tbody>
 </table>
-<p>Both files are plain JSON. You can edit them in any text editor. <strong>Restart the orchestrator after making changes</strong> — it reads these files on startup.</p>
+<p>Both files are plain JSON. You can edit them in any text editor. <strong>Restart the orchestrator after making changes</strong> - it reads these files on startup.</p>
 <hr />
 <h2 id="configjson">config.json<a class="headerlink" href="#configjson" title="Permanent link">&para;</a></h2>
 <p>Below is a fully annotated example showing every available setting with its default value.</p>
@@ -1212,7 +1212,7 @@
 <tr>
 <td><code>host</code></td>
 <td><code>"127.0.0.1"</code></td>
-<td>Network address the API listens on. <code>127.0.0.1</code> restricts access to the local machine. Set to <code>0.0.0.0</code> to accept connections from other hosts — ensure your firewall limits access to trusted IPs.</td>
+<td>Network address the API listens on. <code>127.0.0.1</code> restricts access to the local machine. Set to <code>0.0.0.0</code> to accept connections from other hosts - ensure your firewall limits access to trusted IPs.</td>
 </tr>
 <tr>
 <td><code>apiPort</code></td>
@@ -1222,7 +1222,7 @@
 <tr>
 <td><code>apiSecret</code></td>
 <td><em>(generated)</em></td>
-<td>Bearer token required on every API request. Generated automatically on first run. <strong>Never expose this value publicly</strong> — copy it into plugin configs as needed.</td>
+<td>Bearer token required on every API request. Generated automatically on first run. <strong>Never expose this value publicly</strong> - copy it into plugin configs as needed.</td>
 </tr>
 </tbody>
 </table>
@@ -1257,7 +1257,7 @@
 </table>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Typical requirements: lobby/minigame servers — 512 MB to 1 GB; survival servers — 1–2 GB; large modpacks — 4–8 GB. Start conservative and increase based on observed memory pressure.</p>
+<p>Typical requirements: lobby/minigame servers - 512 MB to 1 GB; survival servers - 1–2 GB; large modpacks - 4–8 GB. Start conservative and increase based on observed memory pressure.</p>
 </div>
 <hr />
 <h3 id="port-range">Port range<a class="headerlink" href="#port-range" title="Permanent link">&para;</a></h3>
@@ -1285,7 +1285,7 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Game server ports are internal — players connect exclusively through the proxy. These ports only need to be reachable from the proxy process, which runs on the same host.</p>
+<p>Game server ports are internal - players connect exclusively through the proxy. These ports only need to be reachable from the proxy process, which runs on the same host.</p>
 </div>
 <hr />
 <h3 id="proxy-settings">Proxy settings<a class="headerlink" href="#proxy-settings" title="Permanent link">&para;</a></h3>
@@ -1349,10 +1349,10 @@
 <div class="admonition note">
 <p class="admonition-title">Per-service maintenance</p>
 </div>
-<p>Individual services can also be put into maintenance mode independently — this blocks transfers to that specific server while the rest of the network stays open. Use <code>service maintenance enable &lt;id&gt;</code> in the console. Per-service maintenance uses the same <code>maintenanceMessage</code> and <code>maintenanceBypassPermission</code> as proxy-level maintenance.</p>
+<p>Individual services can also be put into maintenance mode independently - this blocks transfers to that specific server while the rest of the network stays open. Use <code>service maintenance enable &lt;id&gt;</code> in the console. Per-service maintenance uses the same <code>maintenanceMessage</code> and <code>maintenanceBypassPermission</code> as proxy-level maintenance.</p>
 <hr />
 <h3 id="bedrock">Bedrock compatibility<a class="headerlink" href="#bedrock" title="Permanent link">&para;</a></h3>
-<p>When Bedrock support is enabled, PulseOrchestrator automatically downloads and deploys <a href="https://geysermc.org">Geyser-Velocity</a> and <a href="https://wiki.geysermc.org/floodgate/">Floodgate-Velocity</a> as proxy plugins. Bedrock players connect on the standard Bedrock port (19132) without needing to type a port number — the same as Java players on port 25565.</p>
+<p>When Bedrock support is enabled, PulseOrchestrator automatically downloads and deploys <a href="https://geysermc.org">Geyser-Velocity</a> and <a href="https://wiki.geysermc.org/floodgate/">Floodgate-Velocity</a> as proxy plugins. Bedrock players connect on the standard Bedrock port (19132) without needing to type a port number - the same as Java players on port 25565.</p>
 <div class="admonition note">
 <p class="admonition-title">How it works</p>
 <p>Geyser translates the Bedrock protocol to Java at the proxy level. Floodgate handles Bedrock player authentication and assigns stable UUIDs, making Bedrock players indistinguishable from Java players to your game servers.</p>
@@ -1382,7 +1382,7 @@
 <p class="admonition-title">Firewall</p>
 <p>UDP port 19132 must be permitted inbound for Bedrock clients. Java clients use TCP 25565, which is typically already open.</p>
 </div>
-<p>After enabling Bedrock for the first time, an initial Geyser config is written to <code>proxy/plugins/Geyser-Velocity/config.yml</code>. You can edit it freely — PulseOrchestrator will not overwrite it on subsequent starts.</p>
+<p>After enabling Bedrock for the first time, an initial Geyser config is written to <code>proxy/plugins/Geyser-Velocity/config.yml</code>. You can edit it freely - PulseOrchestrator will not overwrite it on subsequent starts.</p>
 <hr />
 <h3 id="health-monitor">Health monitor<a class="headerlink" href="#health-monitor" title="Permanent link">&para;</a></h3>
 <p>The health monitor watches your game servers and can restart them automatically if they crash.</p>
@@ -1601,7 +1601,7 @@
 <tr>
 <td><code>storageMode</code></td>
 <td>Yes</td>
-<td><code>PERSISTENT</code> — keep files between restarts. <code>RESET_ON_START</code> — wipe and re-provision on every start. See the <a href="../feature-guide/#storage-modes">Feature Guide</a> for details.</td>
+<td><code>PERSISTENT</code> - keep files between restarts. <code>RESET_ON_START</code> - wipe and re-provision on every start. See the <a href="../feature-guide/#storage-modes">Feature Guide</a> for details.</td>
 </tr>
 <tr>
 <td><code>restartPolicy</code></td>
@@ -1677,7 +1677,7 @@
 <li>Wrong bracket type: use <code>{}</code> for objects and <code>[]</code> for arrays</li>
 </ul>
 </div>
-<p>If the config is unrecoverable, delete <code>config.json</code> and run the setup wizard again. <strong>Do not delete <code>pulse.db</code></strong> — it holds all service records.</p>
+<p>If the config is unrecoverable, delete <code>config.json</code> and run the setup wizard again. <strong>Do not delete <code>pulse.db</code></strong> - it holds all service records.</p>
 
 
 
