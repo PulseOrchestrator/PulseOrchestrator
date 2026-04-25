@@ -9,7 +9,7 @@ PulseOrchestrator's Paper plugin includes an optional [PlaceholderAPI](https://g
 | Requirement | Details |
 |---|---|
 | Plugin | `plugin-paper` installed on the Paper server |
-| PlaceholderAPI | 2.11+ installed on the same server (optional — the plugin starts without it) |
+| PlaceholderAPI | 2.11+ installed on the same server (optional - the plugin starts without it) |
 
 PlaceholderAPI is a **soft dependency**. The plugin starts and functions normally whether or not PAPI is present; the expansion is registered only when PAPI is detected at startup.
 
@@ -27,13 +27,13 @@ Metric placeholders (`tps`, `mspt`, `ram`, `cpu`, `players`, `chunks`, `entities
 
 This means:
 
-- Metric placeholders are available for **Paper servers only** — they return `unknown` for any server that does not push metrics (e.g. non-Paper servers managed by the orchestrator).
+- Metric placeholders are available for **Paper servers only** - they return `unknown` for any server that does not push metrics (e.g. non-Paper servers managed by the orchestrator).
 - After a server first starts, metric placeholders show `unknown` until the first push cycle completes (≤ 5 seconds).
 - If a server goes offline, its last reported metrics remain visible until the service record is updated.
 
 ### Service ID matching
 
-Placeholders that accept a `<id>` parameter match against the service's ID with flexible normalisation — hyphens (`-`) and underscores (`_`) are treated as equivalent, and matching is case-insensitive. For example, `%pulse_service_status_lobby-1%` and `%pulse_service_status_lobby_1%` resolve to the same service.
+Placeholders that accept a `<id>` parameter match against the service's ID with flexible normalisation - hyphens (`-`) and underscores (`_`) are treated as equivalent, and matching is case-insensitive. For example, `%pulse_service_status_lobby-1%` and `%pulse_service_status_lobby_1%` resolve to the same service.
 
 ---
 
@@ -58,7 +58,7 @@ These reflect the Paper server the placeholder is being evaluated on, without an
 | `%pulse_service_count_running%` | Number of services in the `RUNNING` state | `3` |
 | `%pulse_task_running_<taskName>%` | Number of `RUNNING` services for a given task | `%pulse_task_running_lobby%` → `2` |
 
-### Per-service — status
+### Per-service - status
 
 Replace `<id>` with the service ID (e.g. `lobby-1`).
 
@@ -69,7 +69,7 @@ Replace `<id>` with the service ID (e.g. `lobby-1`).
 | `%pulse_service_task_<id>%` | Task name the service was created from | `unknown` |
 | `%pulse_service_uptime_<id>%` | Time elapsed since the service last started, formatted as `1d2h3m4s` | `unknown` |
 
-### Per-service — live metrics
+### Per-service - live metrics
 
 These are populated by the metrics push mechanism described above. They return `unknown` if the server has not reported metrics yet or is not a Paper server.
 
@@ -116,7 +116,7 @@ Lobbies online: %pulse_task_running_lobby%
 
 **Metric placeholders return `unknown`**
 
-: The service may not be running the Paper plugin, or fewer than 5 seconds have passed since startup. Check that `ServiceMetricsReporter` is not logging a warning about port resolution — this indicates the plugin could not identify its own orchestrator service ID.
+: The service may not be running the Paper plugin, or fewer than 5 seconds have passed since startup. Check that `ServiceMetricsReporter` is not logging a warning about port resolution - this indicates the plugin could not identify its own orchestrator service ID.
 
 **Service ID not found**
 

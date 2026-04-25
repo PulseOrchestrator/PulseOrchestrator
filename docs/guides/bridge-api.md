@@ -1,8 +1,8 @@
 # Plugin Bridge API
 
 The **pulse-bridge-api** is a Java library that lets other Paper plugins interact with
-PulseOrchestrator at runtime — creating and managing services, reacting to lifecycle
-events, routing players, and reading metrics — without making HTTP calls or knowing
+PulseOrchestrator at runtime - creating and managing services, reacting to lifecycle
+events, routing players, and reading metrics - without making HTTP calls or knowing
 anything about the WebSocket API.
 
 The API classes are bundled inside `plugin-paper`, so **no extra jar** needs to be
@@ -97,7 +97,7 @@ List<ServiceDto> lobbies = api.listServicesForTask("lobby");
 
 ### ActionResult
 
-Mutating calls return `ActionResult<T>` — a typed result with success/failure status,
+Mutating calls return `ActionResult<T>` - a typed result with success/failure status,
 an optional data payload, and an error message on failure.
 
 ```java
@@ -309,7 +309,7 @@ Maintenance mode blocks player connections at the proxy level or for individual 
 ProxyConfigDto config = api.getProxyConfig();
 boolean active = config.maintenanceMode();
 
-// Enable — blocks all new player connections to the network
+// Enable - blocks all new player connections to the network
 ActionResult<ProxyConfigDto> result = api.setProxyMaintenanceMode(true);
 
 // Disable
@@ -368,7 +368,7 @@ api.getService(serviceId).ifPresent(service -> {
 });
 ```
 
-All fields are nullable — check before using.
+All fields are nullable - check before using.
 
 ---
 

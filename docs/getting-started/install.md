@@ -1,6 +1,6 @@
 # Install Guide
 
-PulseOrchestrator is a server network manager for Minecraft. It runs on your machine and handles starting, stopping, and monitoring your game servers automatically — you do not need to manage each server by hand.
+PulseOrchestrator is a server network manager for Minecraft. It runs on your machine and handles starting, stopping, and monitoring your game servers automatically - you do not need to manage each server by hand.
 
 This guide walks you through installing and starting it for the first time.
 
@@ -10,9 +10,9 @@ This guide walks you through installing and starting it for the first time.
 
 Before you start, make sure you have:
 
-- **Java 21** — the program that runs PulseOrchestrator and your game servers. You can check your version by opening a terminal and typing `java -version`. If you see `21` or higher you are good.
-- **The orchestrator jar** — the main PulseOrchestrator file, downloaded from the releases page.
-- **The Paper plugin jar** *(optional)* — only needed if you want in-game commands on Paper servers.
+- **Java 21** - the program that runs PulseOrchestrator and your game servers. You can check your version by opening a terminal and typing `java -version`. If you see `21` or higher you are good.
+- **The orchestrator jar** - the main PulseOrchestrator file, downloaded from the releases page.
+- **The Paper plugin jar** *(optional)* - only needed if you want in-game commands on Paper servers.
 
 !!! tip "Where to find the jars"
     All release files are available on the [GitHub releases page](https://github.com/PulseOrchestrator/PulseOrchestrator/releases). Download the files that match the version you want to run.
@@ -77,16 +77,16 @@ Open a terminal, navigate into your folder, and run the jar.
 
 On the very first start, PulseOrchestrator detects that it has no configuration yet and runs an interactive setup wizard. It will ask you a series of questions. You can press ++enter++ on most of them to accept the suggested default.
 
-### Step 1 — API settings
+### Step 1 - API settings
 
 The API is how PulseOrchestrator communicates with the Minecraft plugins you install. It runs a small web server in the background.
 
-- **API port** — the port number the API listens on. Default is `8080`. Only change this if something else on your machine is already using that port.
-- **Bind address** — the network address the API binds to. `127.0.0.1` means it only accepts connections from the same machine. Leave this as the default unless you know what you are doing.
+- **API port** - the port number the API listens on. Default is `8080`. Only change this if something else on your machine is already using that port.
+- **Bind address** - the network address the API binds to. `127.0.0.1` means it only accepts connections from the same machine. Leave this as the default unless you know what you are doing.
 
 A long random **API secret** is generated for you automatically and saved to `config.json`. You will need to copy this into the plugin configs later.
 
-### Step 2 — Java path
+### Step 2 - Java path
 
 PulseOrchestrator needs to know where Java is installed so it can launch game servers.
 
@@ -95,27 +95,27 @@ PulseOrchestrator needs to know where Java is installed so it can launch game se
 
 You also set default memory limits here:
 
-- **Default max memory** — the maximum RAM each game server is allowed to use, in MB. Default is `1024` (1 GB). You can override this per-task later.
-- **Default min memory** — the starting memory allocation. Default is `512` MB.
+- **Default max memory** - the maximum RAM each game server is allowed to use, in MB. Default is `1024` (1 GB). You can override this per-task later.
+- **Default min memory** - the starting memory allocation. Default is `512` MB.
 
-### Step 3 — Port range
+### Step 3 - Port range
 
-PulseOrchestrator assigns a port to each game server it creates, chosen from this range. Players never connect directly to these ports — they connect through the proxy.
+PulseOrchestrator assigns a port to each game server it creates, chosen from this range. Players never connect directly to these ports - they connect through the proxy.
 
 - Default range is `25700` to `25800`, which gives room for up to 100 servers.
 - Make sure the ports in this range are not blocked by a firewall.
 
-### Step 4 — Proxy port
+### Step 4 - Proxy port
 
 The built-in proxy is what players actually connect to. It forwards them to the right game server automatically.
 
-- **Bind port** — the port players type when connecting to your network. Default is `25565` (the standard Minecraft port).
+- **Bind port** - the port players type when connecting to your network. Default is `25565` (the standard Minecraft port).
 
-### Step 5 — Minecraft EULA
+### Step 5 - Minecraft EULA
 
 You must accept the [Minecraft End User License Agreement](https://www.minecraft.net/en-us/eula) to run Minecraft servers. The wizard asks for your confirmation before proceeding.
 
-### Step 6 — Done
+### Step 6 - Done
 
 The wizard writes all your configuration files and creates the folder structure. The orchestrator then starts normally.
 
@@ -176,5 +176,5 @@ Restart the server after saving.
 
 With the orchestrator running, the next step is to define your first **task** (a server blueprint) and create a server from it.
 
-- [Feature Guide](../guides/feature-guide.md) — learn about tasks, services, the proxy, and templates
-- [Configuration Reference](../guides/configuration.md) — a full explanation of every setting in `config.json` and `tasks.json`
+- [Feature Guide](../guides/feature-guide.md) - learn about tasks, services, the proxy, and templates
+- [Configuration Reference](../guides/configuration.md) - a full explanation of every setting in `config.json` and `tasks.json`

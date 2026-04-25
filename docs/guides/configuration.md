@@ -4,10 +4,10 @@ PulseOrchestrator stores its settings in two files inside your orchestrator fold
 
 | File | Purpose |
 |---|---|
-| `config.json` | All orchestrator settings — API, memory defaults, proxy, health monitoring, backups, and logs |
-| `tasks.json` | Your server blueprints — one entry per server type you want to run |
+| `config.json` | All orchestrator settings - API, memory defaults, proxy, health monitoring, backups, and logs |
+| `tasks.json` | Your server blueprints - one entry per server type you want to run |
 
-Both files are plain JSON. You can edit them in any text editor. **Restart the orchestrator after making changes** — it reads these files on startup.
+Both files are plain JSON. You can edit them in any text editor. **Restart the orchestrator after making changes** - it reads these files on startup.
 
 ---
 
@@ -87,9 +87,9 @@ These control the web server that plugins and external tools use to talk to the 
 
 | Setting | Default | Description |
 |---|---|---|
-| `host` | `"127.0.0.1"` | Network address the API listens on. `127.0.0.1` restricts access to the local machine. Set to `0.0.0.0` to accept connections from other hosts — ensure your firewall limits access to trusted IPs. |
+| `host` | `"127.0.0.1"` | Network address the API listens on. `127.0.0.1` restricts access to the local machine. Set to `0.0.0.0` to accept connections from other hosts - ensure your firewall limits access to trusted IPs. |
 | `apiPort` | `8080` | TCP port the API server binds to. Change if the port is already in use. |
-| `apiSecret` | *(generated)* | Bearer token required on every API request. Generated automatically on first run. **Never expose this value publicly** — copy it into plugin configs as needed. |
+| `apiSecret` | *(generated)* | Bearer token required on every API request. Generated automatically on first run. **Never expose this value publicly** - copy it into plugin configs as needed. |
 
 ---
 
@@ -104,7 +104,7 @@ These tell the orchestrator where Java is and set the default memory for game se
 | `java.defaultMinMemoryMB` | `512` | Initial heap allocation for game servers, in MB. Setting min and max to the same value avoids GC pressure from heap resizing on servers with sufficient RAM. |
 
 !!! tip
-    Typical requirements: lobby/minigame servers — 512 MB to 1 GB; survival servers — 1–2 GB; large modpacks — 4–8 GB. Start conservative and increase based on observed memory pressure.
+    Typical requirements: lobby/minigame servers - 512 MB to 1 GB; survival servers - 1–2 GB; large modpacks - 4–8 GB. Start conservative and increase based on observed memory pressure.
 
 ---
 
@@ -118,7 +118,7 @@ PulseOrchestrator assigns a unique port to each game server it creates, picked f
 | `portRange.max` | `25800` | Upper bound of the port range. The default range allows up to 100 concurrent servers. |
 
 !!! note
-    Game server ports are internal — players connect exclusively through the proxy. These ports only need to be reachable from the proxy process, which runs on the same host.
+    Game server ports are internal - players connect exclusively through the proxy. These ports only need to be reachable from the proxy process, which runs on the same host.
 
 ---
 
@@ -139,13 +139,13 @@ The built-in proxy is what players connect to. It routes them to the right game 
 | `proxy.maintenanceBypassPermission` | `pulseorchestrator.maintenance.bypass` | Velocity permission node that allows a player to bypass maintenance mode and connect normally. Requires a permission plugin (e.g. LuckPerms for Velocity). |
 
 !!! note "Per-service maintenance"
-  Individual services can also be put into maintenance mode independently — this blocks transfers to that specific server while the rest of the network stays open. Use `service maintenance enable <id>` in the console. Per-service maintenance uses the same `maintenanceMessage` and `maintenanceBypassPermission` as proxy-level maintenance.
+  Individual services can also be put into maintenance mode independently - this blocks transfers to that specific server while the rest of the network stays open. Use `service maintenance enable <id>` in the console. Per-service maintenance uses the same `maintenanceMessage` and `maintenanceBypassPermission` as proxy-level maintenance.
 
 ---
 
 ### Bedrock compatibility { #bedrock }
 
-When Bedrock support is enabled, PulseOrchestrator automatically downloads and deploys [Geyser-Velocity](https://geysermc.org) and [Floodgate-Velocity](https://wiki.geysermc.org/floodgate/) as proxy plugins. Bedrock players connect on the standard Bedrock port (19132) without needing to type a port number — the same as Java players on port 25565.
+When Bedrock support is enabled, PulseOrchestrator automatically downloads and deploys [Geyser-Velocity](https://geysermc.org) and [Floodgate-Velocity](https://wiki.geysermc.org/floodgate/) as proxy plugins. Bedrock players connect on the standard Bedrock port (19132) without needing to type a port number - the same as Java players on port 25565.
 
 !!! note "How it works"
     Geyser translates the Bedrock protocol to Java at the proxy level. Floodgate handles Bedrock player authentication and assigns stable UUIDs, making Bedrock players indistinguishable from Java players to your game servers.
@@ -158,7 +158,7 @@ When Bedrock support is enabled, PulseOrchestrator automatically downloads and d
 !!! tip "Firewall"
     UDP port 19132 must be permitted inbound for Bedrock clients. Java clients use TCP 25565, which is typically already open.
 
-After enabling Bedrock for the first time, an initial Geyser config is written to `proxy/plugins/Geyser-Velocity/config.yml`. You can edit it freely — PulseOrchestrator will not overwrite it on subsequent starts.
+After enabling Bedrock for the first time, an initial Geyser config is written to `proxy/plugins/Geyser-Velocity/config.yml`. You can edit it freely - PulseOrchestrator will not overwrite it on subsequent starts.
 
 ---
 
@@ -258,7 +258,7 @@ Tasks are the blueprints for your servers. Each entry in the `tasks` array defin
 | `preferredPort` | Yes | The port PulseOrchestrator tries to assign first when creating a service from this task. If that port is already taken, it picks the next free one in the configured range. |
 | `maxMemoryMB` | Yes | Maximum RAM for servers of this type, in MB. Overrides the global default from `config.json`. |
 | `minMemoryMB` | Yes | Minimum RAM for servers of this type, in MB. |
-| `storageMode` | Yes | `PERSISTENT` — keep files between restarts. `RESET_ON_START` — wipe and re-provision on every start. See the [Feature Guide](feature-guide.md#storage-modes) for details. |
+| `storageMode` | Yes | `PERSISTENT` - keep files between restarts. `RESET_ON_START` - wipe and re-provision on every start. See the [Feature Guide](feature-guide.md#storage-modes) for details. |
 | `restartPolicy` | Yes | `NEVER`, `ON_FAILURE`, or `ALWAYS`. See the [Feature Guide](feature-guide.md#restart-policies) for details. |
 | `tags` | No | A list of text labels for your own organisation, for example `["lobby", "hub"]`. |
 | `templates` | No | Names of template folders to apply when creating services from this task. Leave empty to use only the global template. |
@@ -290,4 +290,4 @@ Tasks are the blueprints for your servers. Each entry in the `tasks` array defin
     - Unquoted string: `path: java` should be `"path": "java"`
     - Wrong bracket type: use `{}` for objects and `[]` for arrays
 
-If the config is unrecoverable, delete `config.json` and run the setup wizard again. **Do not delete `pulse.db`** — it holds all service records.
+If the config is unrecoverable, delete `config.json` and run the setup wizard again. **Do not delete `pulse.db`** - it holds all service records.

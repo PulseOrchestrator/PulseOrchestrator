@@ -8,13 +8,13 @@ This guide explains the main concepts and workflows you will use every day with 
 
 ### Task
 
-A **task** is a blueprint that defines the properties of a server type — the software, version, memory allocation, and restart behaviour. Tasks are not running processes; they are templates from which services are created.
+A **task** is a blueprint that defines the properties of a server type - the software, version, memory allocation, and restart behaviour. Tasks are not running processes; they are templates from which services are created.
 
 Tasks are stored in `tasks.json` in your orchestrator folder.
 
 ### Service
 
-A **service** is a running server instance provisioned from a task. Multiple services can be created from the same task — for example, two lobby servers from a single `lobby` task.
+A **service** is a running server instance provisioned from a task. Multiple services can be created from the same task - for example, two lobby servers from a single `lobby` task.
 
 Services are tracked in the orchestrator's database and stored in the `services/` folder.
 
@@ -24,7 +24,7 @@ Players connect to the built-in Velocity proxy, which routes them to the appropr
 
 ### Bedrock compatibility
 
-When enabled, PulseOrchestrator deploys [Geyser](https://geysermc.org) and [Floodgate](https://wiki.geysermc.org/floodgate/) as Velocity plugins, allowing Bedrock Edition clients to connect alongside Java clients on the same proxy process. Geyser handles protocol translation; Floodgate manages Bedrock player authentication and UUID assignment. Game servers require no changes — Bedrock players are transparent at the server level.
+When enabled, PulseOrchestrator deploys [Geyser](https://geysermc.org) and [Floodgate](https://wiki.geysermc.org/floodgate/) as Velocity plugins, allowing Bedrock Edition clients to connect alongside Java clients on the same proxy process. Geyser handles protocol translation; Floodgate manages Bedrock player authentication and UUID assignment. Game servers require no changes - Bedrock players are transparent at the server level.
 
 Both platforms use their default ports (Java: TCP 25565, Bedrock: UDP 19132), so neither player group needs to specify a port when connecting.
 
@@ -36,7 +36,7 @@ When creating a task you choose a storage mode. This controls what happens to a 
 
 | Mode | What it does |
 |---|---|
-| `PERSISTENT` | The server's files are kept between restarts. World data, plugins, configs — everything is saved. Use this for servers that should hold state. |
+| `PERSISTENT` | The server's files are kept between restarts. World data, plugins, configs - everything is saved. Use this for servers that should hold state. |
 | `RESET_ON_START` | The server's folder is wiped and re-provisioned from the task template every time it starts. Use this for minigame servers where each round should start fresh. |
 
 !!! tip
@@ -70,14 +70,14 @@ task create lobby
 
 The interactive wizard asks for:
 
-- **Server software** — `PAPER`, `PURPUR`, or `FABRIC`
-- **Server version** — for example `1.21.4`
-- **Preferred port** — the port PulseOrchestrator tries to assign first; it picks the next free one if taken
-- **Storage mode** — `PERSISTENT` or `RESET_ON_START` (see above)
-- **Restart policy** — `NEVER`, `ON_FAILURE`, or `ALWAYS` (see above)
-- **Description and tags** *(optional)* — for your own organisation
-- **Template scaffolding** *(optional)* — files to copy into every service created from this task
-- **Advanced settings** *(optional)* — custom JVM arguments, server arguments, environment variables
+- **Server software** - `PAPER`, `PURPUR`, or `FABRIC`
+- **Server version** - for example `1.21.4`
+- **Preferred port** - the port PulseOrchestrator tries to assign first; it picks the next free one if taken
+- **Storage mode** - `PERSISTENT` or `RESET_ON_START` (see above)
+- **Restart policy** - `NEVER`, `ON_FAILURE`, or `ALWAYS` (see above)
+- **Description and tags** *(optional)* - for your own organisation
+- **Template scaffolding** *(optional)* - files to copy into every service created from this task
+- **Advanced settings** *(optional)* - custom JVM arguments, server arguments, environment variables
 
 To see all your tasks:
 
@@ -152,7 +152,7 @@ service maintenance status lobby-1
 service maintenance disable lobby-1
 ```
 
-The message shown to blocked players and the bypass permission are configurable — see [Proxy settings](configuration.md#proxy) in the Configuration Reference.
+The message shown to blocked players and the bypass permission are configurable - see [Proxy settings](configuration.md#proxy) in the Configuration Reference.
 
 !!! tip "Testing maintenance mode"
     Grant yourself the bypass permission before enabling maintenance so you can verify the network is still reachable while players are blocked.
@@ -168,7 +168,7 @@ proxy bedrock enable
 proxy restart
 ```
 
-Geyser and Floodgate are downloaded and deployed automatically on the next proxy start. Ensure **UDP port 19132** is open in your firewall — Java players use TCP 25565 which is typically already open.
+Geyser and Floodgate are downloaded and deployed automatically on the next proxy start. Ensure **UDP port 19132** is open in your firewall - Java players use TCP 25565 which is typically already open.
 
 See the [Configuration Reference](configuration.md#bedrock) for available Bedrock settings.
 
@@ -176,7 +176,7 @@ See the [Configuration Reference](configuration.md#bedrock) for available Bedroc
 
 ## Templates
 
-Templates let you pre-fill new services with files — plugin jars, configs, worlds — so every service starts with the right setup.
+Templates let you pre-fill new services with files - plugin jars, configs, worlds - so every service starts with the right setup.
 
 Files placed in `templates/global/` are copied into **every** service regardless of task. Files in a task-specific template folder are only copied into services from that task.
 
@@ -184,7 +184,7 @@ Typical workflow:
 
 1. Create a task.
 2. Add any files you want pre-loaded into the template folder.
-3. Create services — they automatically receive the template files.
+3. Create services - they automatically receive the template files.
 4. To apply updated template files to an existing service, rebuild it:
 
 ```text
@@ -226,13 +226,13 @@ jar update-all                ← update every cached JAR
 
 The Paper plugin gives you in-game access to orchestrator features:
 
-- `/pulse` — orchestrator commands from inside the game
-- `/hub` — sends the player back through the network routing flow
+- `/pulse` - orchestrator commands from inside the game
+- `/hub` - sends the player back through the network routing flow
 - A Bukkit `ServicesManager` bridge for other plugins to talk to the orchestrator
 
 ### Velocity plugin
 
-The Velocity plugin is bundled inside the orchestrator and deployed automatically to `proxy/plugins/` on every proxy start — no manual installation needed. It enforces maintenance mode at the proxy boundary: when the network or an individual service is in maintenance, the plugin blocks player connections and shows the configured message. Players with the bypass permission are unaffected.
+The Velocity plugin is bundled inside the orchestrator and deployed automatically to `proxy/plugins/` on every proxy start - no manual installation needed. It enforces maintenance mode at the proxy boundary: when the network or an individual service is in maintenance, the plugin blocks player connections and shows the configured message. Players with the bypass permission are unaffected.
 
 ---
 
@@ -243,8 +243,8 @@ The Velocity plugin is bundled inside the orchestrator and deployed automaticall
 - `service logs <id> 100` is the fastest way to diagnose a misbehaving server.
 - The console status bar shows live service counts and any pending update notices.
 - See the [Configuration Reference](configuration.md) for a full breakdown of every available setting.
-- Keep the runtime base path on persistent, reliable storage — `pulse.db` holds all service records.
+- Keep the runtime base path on persistent, reliable storage - `pulse.db` holds all service records.
 - Add tags and descriptions to tasks early; they become essential for readability as your setup grows.
 - Define one clear default entry task for player connections. Use the fallback list for deliberate overflow routing, not as a catch-all.
-- Note which tasks are persistent and which are disposable before scaling — the distinction matters during maintenance and migrations.
+- Note which tasks are persistent and which are disposable before scaling - the distinction matters during maintenance and migrations.
 - Use `proxy maintenance enable` before taking the network down for updates; players see a clean message rather than a connection failure.
