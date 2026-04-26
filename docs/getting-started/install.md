@@ -69,7 +69,7 @@ Open a terminal, navigate into your folder, and run the jar.
     To come back to it later: `screen -r pulse`
 
 !!! note
-    Replace `<version>` with the actual version number, for example `orchestrator-1.0.0-beta.1.jar`.
+    Replace `<version>` with the actual version number, for example `orchestrator-1.0.0-beta.3.jar`.
 
 ---
 
