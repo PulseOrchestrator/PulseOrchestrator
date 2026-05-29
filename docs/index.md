@@ -17,8 +17,8 @@
     <ul>
       <li>Standalone orchestrator runtime with first-run setup</li>
       <li>Built-in Velocity proxy managed by the orchestrator</li>
-      <li>Paper plugin for in-game controls and bridge access</li>
-      <li>Velocity plugin for dynamic server registration</li>
+      <li>Paper plugin for bridge access, placeholders, and service metrics</li>
+      <li>Velocity plugin for proxy commands, routing, and maintenance integration</li>
     </ul>
   </div>
 </div>

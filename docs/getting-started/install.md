@@ -12,7 +12,7 @@ Before you start, make sure you have:
 
 - **Java 21** - the program that runs PulseOrchestrator and your game servers. You can check your version by opening a terminal and typing `java -version`. If you see `21` or higher you are good.
 - **The orchestrator jar** - the main PulseOrchestrator file, downloaded from the releases page.
-- **The Paper plugin jar** *(optional)* - only needed if you want in-game commands on Paper servers.
+- **The Paper plugin jar** *(optional)* - only needed on backend Paper servers if you want the bridge API, PlaceholderAPI integration, or per-service metrics.
 
 !!! tip "Where to find the jars"
     All release files are available on the [GitHub releases page](https://github.com/PulseOrchestrator/PulseOrchestrator/releases). Download the files that match the version you want to run.
@@ -159,16 +159,17 @@ If you are connecting from a different machine (for example a Paper server on an
 
 ### Paper plugin
 
-Put the Paper jar into your Paper server's `plugins/` folder and start the server once to generate the config. Then open `plugins/PulseOrchestrator/config.json` and fill in:
+Put the Paper jar into your Paper server's `plugins/` folder and start the server once to generate the config. Then open `plugins/PulseOrchestrator/config.yml` and fill in:
 
-```json
-{
-  "orchestratorUrl": "http://localhost:8080",
-  "apiSecret": "paste-your-secret-here"
-}
+```yaml
+orchestrator:
+    url: "http://localhost:8080"
+    secret: "paste-your-secret-here"
 ```
 
 Restart the server after saving.
+
+The in-game `/pulse` and `/hub` commands now live on the Velocity proxy plugin rather than on each Paper service.
 
 ---
 

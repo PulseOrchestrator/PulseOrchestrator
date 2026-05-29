@@ -224,15 +224,15 @@ jar update-all                ← update every cached JAR
 
 ### Paper plugin
 
-The Paper plugin gives you in-game access to orchestrator features:
+The Paper plugin keeps Paper-specific integration on backend servers:
 
-- `/pulse` - orchestrator commands from inside the game
-- `/hub` - sends the player back through the network routing flow
 - A Bukkit `ServicesManager` bridge for other plugins to talk to the orchestrator
+- PlaceholderAPI placeholders for live orchestrator and service data
+- Per-service metrics reporting back to the orchestrator
 
 ### Velocity plugin
 
-The Velocity plugin is bundled inside the orchestrator and deployed automatically to `proxy/plugins/` on every proxy start - no manual installation needed. It enforces maintenance mode at the proxy boundary: when the network or an individual service is in maintenance, the plugin blocks player connections and shows the configured message. Players with the bypass permission are unaffected.
+The Velocity plugin is bundled inside the orchestrator and deployed automatically to `proxy/plugins/` on every proxy start - no manual installation needed. It is now the player-facing access point for orchestrator controls on the network proxy: it hosts `/pulse` for proxy-safe service and routing actions, `/hub` for routing players back into the configured entry flow, and it enforces maintenance mode at the proxy boundary. Players with the bypass permission are unaffected.
 
 ---
 
