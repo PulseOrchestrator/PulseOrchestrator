@@ -1120,7 +1120,7 @@
 <ul>
 <li><strong>Java 21</strong> - the program that runs PulseOrchestrator and your game servers. You can check your version by opening a terminal and typing <code>java -version</code>. If you see <code>21</code> or higher you are good.</li>
 <li><strong>The orchestrator jar</strong> - the main PulseOrchestrator file, downloaded from the releases page.</li>
-<li><strong>The Paper plugin jar</strong> <em>(optional)</em> - only needed if you want in-game commands on Paper servers.</li>
+<li><strong>The Paper plugin jar</strong> <em>(optional)</em> - only needed on backend Paper servers if you want the bridge API, PlaceholderAPI integration, or per-service metrics.</li>
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Where to find the jars</p>
@@ -1237,13 +1237,13 @@
 </code></pre></div>
 <p>If you are connecting from a different machine (for example a Paper server on another VPS), replace <code>localhost</code> with the IP address of the machine running the orchestrator.</p>
 <h3 id="paper-plugin">Paper plugin<a class="headerlink" href="#paper-plugin" title="Permanent link">&para;</a></h3>
-<p>Put the Paper jar into your Paper server's <code>plugins/</code> folder and start the server once to generate the config. Then open <code>plugins/PulseOrchestrator/config.json</code> and fill in:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">{</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">&quot;orchestratorUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://localhost:8080&quot;</span><span class="p">,</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">&quot;apiSecret&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;paste-your-secret-here&quot;</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">}</span>
+<p>Put the Paper jar into your Paper server's <code>plugins/</code> folder and start the server once to generate the config. Then open <code>plugins/PulseOrchestrator/config.yml</code> and fill in:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">orchestrator</span><span class="p">:</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;http://localhost:8080&quot;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="nt">secret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;paste-your-secret-here&quot;</span>
 </code></pre></div>
 <p>Restart the server after saving.</p>
+<p>The in-game <code>/pulse</code> and <code>/hub</code> commands now live on the Velocity proxy plugin rather than on each Paper service.</p>
 <hr />
 <h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <p>With the orchestrator running, the next step is to define your first <strong>task</strong> (a server blueprint) and create a server from it.</p>

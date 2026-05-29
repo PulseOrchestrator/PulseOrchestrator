@@ -1448,14 +1448,14 @@
 <hr />
 <h2 id="plugin-behaviour">Plugin behaviour<a class="headerlink" href="#plugin-behaviour" title="Permanent link">&para;</a></h2>
 <h3 id="paper-plugin">Paper plugin<a class="headerlink" href="#paper-plugin" title="Permanent link">&para;</a></h3>
-<p>The Paper plugin gives you in-game access to orchestrator features:</p>
+<p>The Paper plugin keeps Paper-specific integration on backend servers:</p>
 <ul>
-<li><code>/pulse</code> - orchestrator commands from inside the game</li>
-<li><code>/hub</code> - sends the player back through the network routing flow</li>
 <li>A Bukkit <code>ServicesManager</code> bridge for other plugins to talk to the orchestrator</li>
+<li>PlaceholderAPI placeholders for live orchestrator and service data</li>
+<li>Per-service metrics reporting back to the orchestrator</li>
 </ul>
 <h3 id="velocity-plugin">Velocity plugin<a class="headerlink" href="#velocity-plugin" title="Permanent link">&para;</a></h3>
-<p>The Velocity plugin is bundled inside the orchestrator and deployed automatically to <code>proxy/plugins/</code> on every proxy start - no manual installation needed. It enforces maintenance mode at the proxy boundary: when the network or an individual service is in maintenance, the plugin blocks player connections and shows the configured message. Players with the bypass permission are unaffected.</p>
+<p>The Velocity plugin is bundled inside the orchestrator and deployed automatically to <code>proxy/plugins/</code> on every proxy start - no manual installation needed. It is now the player-facing access point for orchestrator controls on the network proxy: it hosts <code>/pulse</code> for proxy-safe service and routing actions, <code>/hub</code> for routing players back into the configured entry flow, and it enforces maintenance mode at the proxy boundary. Players with the bypass permission are unaffected.</p>
 <hr />
 <h2 id="operational-tips">Operational tips<a class="headerlink" href="#operational-tips" title="Permanent link">&para;</a></h2>
 <ul>
