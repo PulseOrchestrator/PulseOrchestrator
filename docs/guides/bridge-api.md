@@ -24,7 +24,7 @@ receive the implementation through Bukkit's `ServicesManager` at runtime.
 <dependency>
     <groupId>com.github.PulseOrchestrator</groupId>
     <artifactId>pulse-bridge-api</artifactId>
-    <version>1.0.0-beta.3</version>
+    <version>1.0.0-beta.4</version>
     <scope>provided</scope>
 </dependency>
 ```
@@ -37,7 +37,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("com.github.PulseOrchestrator:pulse-bridge-api:v1.0.0-beta.3")
+    compileOnly("com.github.PulseOrchestrator:pulse-bridge-api:v1.0.0-beta.4")
 }
 ```
 
