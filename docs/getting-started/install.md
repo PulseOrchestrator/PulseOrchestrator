@@ -11,7 +11,7 @@ This guide walks you through installing and starting it for the first time.
 Before you start, make sure you have:
 
 - **Java 21** - the program that runs PulseOrchestrator and your game servers. You can check your version by opening a terminal and typing `java -version`. If you see `21` or higher you are good.
-- **The orchestrator jar** - the main PulseOrchestrator file, downloaded from the releases page.
+- **The Launcher, Runtime Host, and orchestrator jars** - the three production runtime files, downloaded from the same release.
 - **The Paper plugin jar** *(optional)* - only needed on backend Paper servers if you want the bridge API, PlaceholderAPI integration, or per-service metrics.
 
 !!! tip "Where to find the jars"
@@ -33,43 +33,42 @@ PulseOrchestrator needs a dedicated folder to store everything: your configurati
     /home/yourname/pulseorchestrator/
     ```
 
-Copy the orchestrator jar into that folder.
+Copy all three runtime JARs into that folder. Keep the Launcher filename versioned, but rename the other two bootstrap files as shown:
+
+```text
+launcher-<version>.jar
+runtime-host.jar
+orchestrator.jar
+```
+
+The Launcher copies active components into `runtime/versions/` and manages later orchestrator updates from there.
 
 !!! warning "Keep this folder in a safe place"
     Do not put it in a temporary or download folder. All your server data will live here.
 
 ---
 
-## Start the orchestrator
+## Start Pulse through the Launcher
 
-Open a terminal, navigate into your folder, and run the jar.
+Open a terminal, navigate into your Pulse home folder, and run the Launcher. The orchestrator console still appears in the same terminal.
 
 === "Windows"
     ```powershell
-    java -jar orchestrator-<version>.jar
+    java -jar launcher-<version>.jar
     ```
 
-=== "Linux (foreground)"
+=== "Linux (degraded mode)"
     ```bash
-    java -jar orchestrator-<version>.jar
+    java -jar orchestrator.jar
     ```
 
-=== "Linux (background with screen)"
-    `screen` keeps the program running after you close your SSH connection.
-
-    If you do not have screen installed: `sudo apt install screen`
-
-    ```bash
-    screen -S pulse
-    java -jar orchestrator-<version>.jar
-    ```
-
-    To leave the screen running in the background: press ++ctrl+a++ then ++d++.
-
-    To come back to it later: `screen -r pulse`
+!!! warning "Current Linux limitation"
+    Launcher-managed startup currently resolves child Java processes through `java.exe` and therefore requires Windows. Direct Linux startup works as a development/recovery mode, but `system update` and warm process continuity are disabled. Do not present direct startup as an update-safe production deployment.
 
 !!! note
-    Replace `<version>` with the actual version number, for example `orchestrator-1.0.0-beta.3.jar`.
+    Replace `<version>` with the actual Launcher version, for example `launcher-1.0.0-beta.4.jar`.
+
+The Launcher creates an exclusive lock for this home folder, starts the Runtime Host, and then starts the orchestrator. A second Launcher for the same folder exits instead of creating duplicate services.
 
 ---
 
@@ -136,10 +135,17 @@ Once setup finishes your folder will look like this:
   server-jars/         ← downloaded server JARs (auto-managed)
   proxy/               ← built-in Velocity proxy files
   logs/                ← orchestrator logs
+    runtime/              ← launcher-managed versions and local control state
+        current-release.json
+        versions/
+        control/
 ```
 
 !!! warning "Do not delete pulse.db"
     The `pulse.db` file is the database that tracks all your services. Deleting it means PulseOrchestrator forgets about all existing servers.
+
+!!! danger "Protect runtime/control"
+    The control folder contains local authentication tokens and update requests. Restrict the complete Pulse home folder to the operating-system account that runs Pulse, and never publish this folder in a support bundle without removing secrets.
 
 ---
 
@@ -178,4 +184,6 @@ The in-game `/pulse` and `/hub` commands now live on the Velocity proxy plugin r
 With the orchestrator running, the next step is to define your first **task** (a server blueprint) and create a server from it.
 
 - [Feature Guide](../guides/feature-guide.md) - learn about tasks, services, the proxy, and templates
+- [Runtime Architecture](../guides/runtime-architecture.md) - understand Launcher, Runtime Host, and orchestrator ownership
+- [Updating Pulse](../guides/updates.md) - configure and verify warm or maintenance updates
 - [Configuration Reference](../guides/configuration.md) - a full explanation of every setting in `config.json` and `tasks.json`

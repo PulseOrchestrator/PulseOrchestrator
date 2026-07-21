@@ -5,7 +5,7 @@
     <p class="eyebrow">Operations docs</p>
     <h1>Run, route, and scale Minecraft services from one control plane.</h1>
     <p class="hero-copy">
-      PulseOrchestrator combines a runtime orchestrator, a built-in Velocity proxy, and Paper or Velocity integrations into a single workflow for provisioning and routing game services.
+      PulseOrchestrator combines a launcher-managed control plane, a persistent process host, a built-in Velocity proxy, and Minecraft integrations into one workflow for provisioning and routing game services.
     </p>
     <div class="hero-actions">
       <a class="md-button md-button--primary" href="getting-started/install/">Install guide</a>
@@ -15,8 +15,9 @@
   <div class="hero-panel">
     <p class="hero-kicker">What ships together</p>
     <ul>
-      <li>Standalone orchestrator runtime with first-run setup</li>
-      <li>Built-in Velocity proxy managed by the orchestrator</li>
+      <li>Launcher for version activation and orchestrator restart</li>
+      <li>Runtime Host that keeps proxy and service processes alive</li>
+      <li>Orchestrator CLI, API, setup, and lifecycle policy</li>
       <li>Paper plugin for bridge access, placeholders, and service metrics</li>
       <li>Velocity plugin for proxy commands, routing, and maintenance integration</li>
     </ul>
@@ -34,6 +35,14 @@
     <strong>Feature guide</strong>
     <span>The core concepts, CLI flows, proxy routing model, and day-to-day operations.</span>
   </a>
+  <a class="doc-card" href="guides/runtime-architecture/">
+    <strong>Runtime architecture</strong>
+    <span>How Launcher, Runtime Host, and Orchestrator divide ownership and preserve live services.</span>
+  </a>
+  <a class="doc-card" href="guides/updates/">
+    <strong>Updating Pulse</strong>
+    <span>Warm updates, maintenance updates, rollback limits, verification, and recovery.</span>
+  </a>
 </div>
 
 ## What These Docs Cover
@@ -46,6 +55,8 @@ The focus is:
 - connecting Paper and Velocity integrations
 - understanding the task, service, and proxy model
 - learning the main operational commands and workflows
+- applying compatible updates without restarting Minecraft services
+- planning maintenance when the Runtime Host or persistence model changes
 
 ## Typical Next Steps
 

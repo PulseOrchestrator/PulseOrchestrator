@@ -72,9 +72,14 @@ Below is a fully annotated example showing every available setting with its defa
   "updates": {
     "enabled": false,
     "checkOnStartup": true,
+    "autoApply": false,
     "includePrereleases": false,
     "checkIntervalHours": 12,
-    "runtimeWarningIntervalHours": 8
+    "runtimeWarningIntervalHours": 8,
+    "githubOwner": "PulseOrchestrator",
+    "githubRepo": "PulseOrchestrator",
+    "policyUrl": "https://raw.githubusercontent.com/PulseOrchestrator/PulseOrchestrator/refs/heads/main/update-policy.json",
+    "releaseManifestUrl": "https://raw.githubusercontent.com/PulseOrchestrator/PulseOrchestrator/refs/heads/main/release-manifest.json"
   }
 }
 ```
@@ -205,7 +210,7 @@ PulseOrchestrator has a built-in backup system that saves snapshots of your serv
 
 ### Update settings
 
-These control whether the orchestrator checks for newer versions of itself.
+These control whether the orchestrator checks for newer versions and can hand a compatible release to the Launcher. See [Updating Pulse](updates.md) for the complete operator workflow.
 
 !!! note
     Update checking is disabled by default on pre-release builds. You can leave these settings as-is unless you want to opt in.
@@ -214,9 +219,17 @@ These control whether the orchestrator checks for newer versions of itself.
 |---|---|---|
 | `updates.enabled` | `false` | Turn update checking on or off. |
 | `updates.checkOnStartup` | `true` | Run a check when the orchestrator starts. |
+| `updates.autoApply` | `false` | Automatically queue compatible warm updates when Launcher-managed. Maintenance updates are never auto-applied. |
 | `updates.includePrereleases` | `false` | Whether pre-release versions count as "newer". Leave `false` for stable deployments. |
 | `updates.checkIntervalHours` | `12` | How often (in hours) to re-check in the background. |
 | `updates.runtimeWarningIntervalHours` | `8` | If you are running an unsafe version, how often (in hours) to show the warning again. |
+| `updates.githubOwner` | `"PulseOrchestrator"` | GitHub owner used to discover public release information. |
+| `updates.githubRepo` | `"PulseOrchestrator"` | GitHub repository used to discover public release information. |
+| `updates.policyUrl` | Official raw GitHub URL | Safety policy that can mark installed versions unsafe. Use HTTPS. |
+| `updates.releaseManifestUrl` | *(none)* | Machine-readable component and compatibility manifest required by `system update`. Use the official HTTPS raw GitHub URL shown above. |
+
+!!! warning
+  `system update` requires Launcher-managed startup and a reachable Runtime Host. Direct orchestrator startup can check for releases but cannot preserve service processes across replacement.
 
 ---
 
