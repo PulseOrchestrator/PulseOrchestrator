@@ -89,13 +89,15 @@ After reattachment, the orchestrator can again:
 
 If the Runtime Host cannot be reached, `system status` reports `HOST_UNAVAILABLE`. Persisted service information may still be shown, but live control is not reliable until the host connection is restored.
 
+A temporary host connection failure does not by itself mark a service as stopped or failed. Pulse keeps the last host-confirmed runtime identity and reconnects with backoff; an exit is accepted only after the host returns a matching stopped runtime.
+
 ## Shutdown behavior
 
 | Action | Orchestrator | Runtime Host | Services and proxy |
 |---|---|---|---|
 | Compatible warm update | Restarts | Keeps running | Keep running |
-| Maintenance update | Restarts | May be replaced | Stop and are restored once from the request-bound maintenance plan |
-| `system shutdown` | Stops | Stops with Launcher | Stop |
+| Maintenance update | Restarts | Drains and is replaced when required | Stop and are restored once from the request-bound maintenance plan |
+| `system shutdown` | Stops | Drains, then stops with Launcher | Stop |
 | Direct orchestrator restart | Restarts | Not available | Continuity is not guaranteed |
 
 A warm update protects game-process continuity, not every possible failure. A Runtime Host crash loses the live stdin/stdout ownership that makes reattachment possible. The current architecture detects this condition but does not transparently recover those process handles.
@@ -108,5 +110,6 @@ A warm update protects game-process continuity, not every possible failure. A Ru
 - Keep the Runtime Host stable. Routine features and policy changes should normally ship in the orchestrator.
 - Check `system status` after every update and test a service command plus fresh console output.
 - Treat a Runtime Host update as planned maintenance even when the updater automates it.
+- During a host replacement, wait for the Launcher to finish the drain operation before starting any manual recovery action.
 
 See [Updating Pulse](updates.md) for update modes and the operator workflow.
