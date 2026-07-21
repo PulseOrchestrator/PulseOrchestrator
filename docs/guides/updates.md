@@ -51,13 +51,13 @@ The update can have one of three results:
 
 | Mode | Downtime | Behavior |
 |---|---|---|
-| `WARM_UPDATE` | Orchestrator API/CLI restarts briefly; services and proxy stay online | Only the orchestrator artifact is activated, then it reattaches to the existing Runtime Host |
-| `MAINTENANCE_UPDATE` | Services and proxy stop | After confirmation, the runtime stops, required artifacts are activated, and the previously running service set is restored |
+| `WARM_UPDATE` | Orchestrator API/CLI restarts briefly; services and proxy stay online | Only explicitly complete and compatible protocol/persistence metadata permits the orchestrator artifact to activate, then it reattaches to the existing Runtime Host |
+| `MAINTENANCE_UPDATE` | Services and proxy stop | After confirmation, the runtime stops, required artifacts are activated, and a request-bound plan restores only the previously running proxy and services once |
 | `UNSUPPORTED` | None | Pulse explains the blocking reason and makes no change |
 
 ## Warm update flow
 
-1. Orchestrator verifies that the target release is compatible with the installed Runtime Host protocol and persistence model.
+1. Orchestrator verifies that the target release has complete, internally consistent protocol metadata and an explicitly backward-compatible persistence model for the installed Runtime Host.
 2. Orchestrator queues an update request and shuts down only its API, CLI, health monitor, and other control-plane components.
 3. Runtime Host keeps Velocity and Minecraft service JVMs running.
 4. Launcher downloads the target orchestrator JAR and verifies its SHA-256 checksum.
@@ -80,10 +80,10 @@ Before confirming:
 3. verify enough disk space exists for old and new versioned JARs plus service backups; and
 4. keep direct terminal access to the host.
 
-After confirmation, Pulse captures which services are running, stops the proxy and services, activates the required orchestrator and Runtime Host artifacts, and starts the control plane again. Verify every expected service and the proxy after startup.
+After confirmation, Pulse atomically records the queued update ID, the running services, and proxy state in a one-time restore plan before stopping the runtime. It activates the required orchestrator and Runtime Host artifacts, then consumes that plan as the control plane returns. Verify every expected service and the proxy after startup.
 
-!!! warning "Beta maintenance behavior"
-    Maintenance restoration is automated but should currently be supervised. Confirm that old Java processes exited, that only the previously running services returned, and that intentionally stopped services remain stopped after the next restart.
+!!! warning "Maintenance validation"
+  Confirm that old Java processes exited, that only the previously running services returned once, and that intentionally stopped services remain stopped after the next restart. Host stop acknowledgement remains a beta limitation.
 
 ## Verify an update
 

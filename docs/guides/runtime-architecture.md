@@ -94,7 +94,7 @@ If the Runtime Host cannot be reached, `system status` reports `HOST_UNAVAILABLE
 | Action | Orchestrator | Runtime Host | Services and proxy |
 |---|---|---|---|
 | Compatible warm update | Restarts | Keeps running | Keep running |
-| Maintenance update | Restarts | May be replaced | Stop and are restored |
+| Maintenance update | Restarts | May be replaced | Stop and are restored once from the request-bound maintenance plan |
 | `system shutdown` | Stops | Stops with Launcher | Stop |
 | Direct orchestrator restart | Restarts | Not available | Continuity is not guaranteed |
 
