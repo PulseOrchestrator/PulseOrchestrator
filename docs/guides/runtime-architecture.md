@@ -71,7 +71,7 @@ runtime/
 - `control/` contains local session tokens, process metadata, the launcher lock, and pending update requests.
 
 !!! danger "Protect the control folder"
-    Run Pulse under a dedicated operating-system account and restrict the complete Pulse home folder to that account. A local user who can read the Runtime Host token can control services; a user who can modify update control files can interfere with updates.
+  The Launcher creates `control/` with owner-only permissions and verifies them before every launcher-managed start: `0700` for the directory and `0600` for files on POSIX, or an ACL limited to the runtime user and required System account on Windows. An unsafe owner, ACL, permission mode, or symbolic link stops launcher-managed startup. Run Pulse under a dedicated operating-system account and do not expose this folder in diagnostics.
 
 Do not edit files in `runtime/control/` while Pulse is running. Do not use `pulse.db` or a saved PID as proof that a service is live. The Runtime Host is the source of truth for current process state.
 

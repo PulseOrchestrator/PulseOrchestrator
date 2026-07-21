@@ -70,6 +70,8 @@ Open a terminal, navigate into your Pulse home folder, and run the Launcher. The
 
 The Launcher creates an exclusive lock for this home folder, starts the Runtime Host, and then starts the orchestrator. A second Launcher for the same folder exits instead of creating duplicate services.
 
+Nothing else is required for official updates. The Launcher already knows the official release source and verifies signed updates automatically. Once a signed release is available, use `system check-update` and `system update` from the orchestrator console.
+
 ---
 
 ## First-time setup wizard
@@ -145,7 +147,7 @@ Once setup finishes your folder will look like this:
     The `pulse.db` file is the database that tracks all your services. Deleting it means PulseOrchestrator forgets about all existing servers.
 
 !!! danger "Protect runtime/control"
-    The control folder contains local authentication tokens and update requests. Restrict the complete Pulse home folder to the operating-system account that runs Pulse, and never publish this folder in a support bundle without removing secrets.
+    The Launcher enforces owner-only `runtime/control` permissions: `0700` for the directory and `0600` for files on POSIX, or current-user/System ACLs on Windows. It refuses launcher-managed startup when it cannot verify these permissions. Keep the complete Pulse home folder restricted to the runtime account and never publish `runtime/control` in a support bundle.
 
 ---
 

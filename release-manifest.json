@@ -26,10 +26,10 @@
     }
   },
   "updatePlan": {
-    "defaultUpdateMode": "WARM_UPDATE",
+    "defaultUpdateMode": "UNSUPPORTED",
     "hostUpgradeRequired": false,
     "maintenanceRequired": false,
-    "blockingReason": null
+    "blockingReason": "This unsigned release cannot be activated by the signed launcher update flow."
   },
   "notesUrl": "https://github.com/PulseOrchestrator/PulseOrchestrator/releases/tag/v1.0.0-beta.4"
 }

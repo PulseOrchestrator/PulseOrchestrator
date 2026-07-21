@@ -226,7 +226,7 @@ These control whether the orchestrator checks for newer versions and can hand a 
 | `updates.githubOwner` | `"PulseOrchestrator"` | GitHub owner used to discover public release information. |
 | `updates.githubRepo` | `"PulseOrchestrator"` | GitHub repository used to discover public release information. |
 | `updates.policyUrl` | Official raw GitHub URL | Safety policy that can mark installed versions unsafe. Use HTTPS. |
-| `updates.releaseManifestUrl` | *(none)* | Machine-readable component and compatibility manifest required by `system update`. Use the official HTTPS raw GitHub URL shown above. |
+| `updates.releaseManifestUrl` | *(none)* | Machine-readable component and compatibility manifest used for update checks. The Launcher independently reloads its built-in official signed manifest URL before activation. |
 
 !!! warning
   `system update` requires Launcher-managed startup and a reachable Runtime Host. Direct orchestrator startup can check for releases but cannot preserve service processes across replacement.

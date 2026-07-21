@@ -35,6 +35,10 @@ Keep `autoApply` disabled when you want every update to be operator-initiated. W
 
 Set `includePrereleases` to `true` only for beta installations. Stable installations should leave it disabled.
 
+## Release verification
+
+No setup is required beyond starting the official Launcher. It contains the official raw GitHub manifest endpoint, the allowed GitHub Release download path, and the public Ed25519 verification key. The orchestrator setting is used to discover and display update information; the Launcher independently loads the official manifest, verifies `release-manifest.json.sig`, and validates every downloaded JAR with its SHA-256 checksum and detached Ed25519 signature.
+
 ## Check and apply
 
 Use the orchestrator console:
@@ -45,7 +49,7 @@ system check-update
 system update
 ```
 
-`system status` should show `LAUNCHER_MANAGED` and a `LIVE` host before you start an update. `system check-update` fetches the safety policy and release information without changing the runtime. `system update` checks again, creates a request for the Launcher, and then follows the mode declared by the release.
+`system status` should show `LAUNCHER_MANAGED` and a `LIVE` host before you start an update. `system check-update` fetches the safety policy and release information without changing the runtime. `system update` checks again and creates a small request containing only the selected target version, channel, source version, timestamp, and request ID. The Launcher independently reloads the built-in signed manifest source and reclassifies the mode before it downloads anything.
 
 The update can have one of three results:
 
@@ -60,7 +64,7 @@ The update can have one of three results:
 1. Orchestrator verifies that the target release has complete, internally consistent protocol metadata and an explicitly backward-compatible persistence model for the installed Runtime Host.
 2. Orchestrator queues an update request and shuts down only its API, CLI, health monitor, and other control-plane components.
 3. Runtime Host keeps Velocity and Minecraft service JVMs running.
-4. Launcher downloads the target orchestrator JAR and verifies its SHA-256 checksum.
+4. Launcher checks request freshness and source version, verifies `release-manifest.json.sig` against its compiled Ed25519 key, rejects HTTP or foreign release paths, then downloads the target orchestrator JAR and verifies its SHA-256 checksum plus detached signature.
 5. Launcher stores the JAR under `runtime/versions/`, updates `runtime/current-release.json`, and starts it.
 6. The new orchestrator reconnects to the Runtime Host and regains live control.
 
@@ -126,6 +130,6 @@ Do not replace an artifact in `runtime/versions/` while Pulse is running. Do not
 
 ## Security properties
 
-The current updater verifies downloaded JARs with SHA-256 values from the release manifest. Detached signature URLs are part of the manifest model, but signature verification is not yet enforced by the Launcher. SHA-256 detects an artifact that differs from the manifest; it does not protect against a compromised manifest that supplies both a malicious URL and matching hash.
+The Launcher treats the local update request as a selector, not as authority for URLs, hashes, or update mode. It accepts only a fresh request for the active source version, then independently reloads its built-in official HTTPS manifest URL. The exact manifest bytes and every required artifact signature must verify with the compiled Ed25519 public key. Initial artifact URLs must use the official GitHub Release path; GitHub's HTTPS CDN redirects are then accepted while the final JAR is still checked against its detached signature and SHA-256 hash. A wrong hash, missing signature, invalid signature, HTTP URL, foreign release path, stale request, unsafe control permission, or inconsistent release metadata fails closed without artifact activation.
 
-Use only the official HTTPS manifest and release URLs, protect the GitHub maintainer accounts, and restrict the Pulse home folder to the dedicated runtime account.
+Keep the Pulse home folder restricted to the dedicated runtime account. The Launcher verifies `runtime/control` before each managed start and refuses an unsafe owner, permission mode, ACL, or symbolic link.
