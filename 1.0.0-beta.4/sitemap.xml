@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://pulseorchestrator.github.io/PulseOrchestrator/1.0.0-beta.4/</loc>
+         <lastmod>2026-08-03</lastmod>
+    </url>
+    <url>
+         <loc>https://pulseorchestrator.github.io/PulseOrchestrator/1.0.0-beta.4/getting-started/install/</loc>
+         <lastmod>2026-08-03</lastmod>
+    </url>
+    <url>
+         <loc>https://pulseorchestrator.github.io/PulseOrchestrator/1.0.0-beta.4/guides/bridge-api/</loc>
+         <lastmod>2026-08-03</lastmod>
+    </url>
+    <url>
+         <loc>https://pulseorchestrator.github.io/PulseOrchestrator/1.0.0-beta.4/guides/configuration/</loc>
+         <lastmod>2026-08-03</lastmod>
+    </url>
+    <url>
+         <loc>https://pulseorchestrator.github.io/PulseOrchestrator/1.0.0-beta.4/guides/feature-guide/</loc>
+         <lastmod>2026-08-03</lastmod>
+    </url>
+    <url>
+         <loc>https://pulseorchestrator.github.io/PulseOrchestrator/1.0.0-beta.4/guides/placeholderapi/</loc>
+         <lastmod>2026-08-03</lastmod>
+    </url>
+</urlset>
