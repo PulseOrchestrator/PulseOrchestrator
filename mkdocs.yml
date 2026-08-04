@@ -60,6 +60,8 @@ nav:
       - Install Guide: getting-started/install.md
   - Guides:
       - Feature Guide: guides/feature-guide.md
+      - Runtime Architecture: guides/runtime-architecture.md
+      - Updating Pulse: guides/updates.md
       - Configuration Reference: guides/configuration.md
       - PlaceholderAPI Integration: guides/placeholderapi.md
   - Plugin Development:

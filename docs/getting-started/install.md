@@ -11,7 +11,7 @@ This guide walks you through installing and starting it for the first time.
 Before you start, make sure you have:
 
 - **Java 21** - the program that runs PulseOrchestrator and your game servers. You can check your version by opening a terminal and typing `java -version`. If you see `21` or higher you are good.
-- **The orchestrator jar** - the main PulseOrchestrator file, downloaded from the releases page.
+- **The Launcher, Runtime Host, and orchestrator jars** - the three production runtime files, downloaded from the same release.
 - **The Paper plugin jar** *(optional)* - only needed on backend Paper servers if you want the bridge API, PlaceholderAPI integration, or per-service metrics.
 
 !!! tip "Where to find the jars"
@@ -33,43 +33,44 @@ PulseOrchestrator needs a dedicated folder to store everything: your configurati
     /home/yourname/pulseorchestrator/
     ```
 
-Copy the orchestrator jar into that folder.
+Copy all three runtime JARs into that folder. Keep the Launcher filename versioned, but rename the other two bootstrap files as shown:
+
+```text
+launcher-<version>.jar
+runtime-host.jar
+orchestrator.jar
+```
+
+The Launcher copies active components into `runtime/versions/` and manages later orchestrator updates from there.
 
 !!! warning "Keep this folder in a safe place"
     Do not put it in a temporary or download folder. All your server data will live here.
 
 ---
 
-## Start the orchestrator
+## Start Pulse through the Launcher
 
-Open a terminal, navigate into your folder, and run the jar.
+Open a terminal, navigate into your Pulse home folder, and run the Launcher. The orchestrator console still appears in the same terminal.
 
 === "Windows"
     ```powershell
-    java -jar orchestrator-<version>.jar
+    java -jar launcher-<version>.jar
     ```
 
-=== "Linux (foreground)"
+=== "Linux"
     ```bash
-    java -jar orchestrator-<version>.jar
+    java -jar launcher-<version>.jar
     ```
-
-=== "Linux (background with screen)"
-    `screen` keeps the program running after you close your SSH connection.
-
-    If you do not have screen installed: `sudo apt install screen`
-
-    ```bash
-    screen -S pulse
-    java -jar orchestrator-<version>.jar
-    ```
-
-    To leave the screen running in the background: press ++ctrl+a++ then ++d++.
-
-    To come back to it later: `screen -r pulse`
 
 !!! note
-    Replace `<version>` with the actual version number, for example `orchestrator-1.0.0-beta.3.jar`.
+    Replace `<version>` with the actual Launcher version, for example `launcher-1.0.0-beta.4.jar`.
+
+The Launcher creates an exclusive lock for this home folder, starts the Runtime Host, and then starts the orchestrator. A second Launcher for the same folder exits instead of creating duplicate services.
+
+Nothing else is required for official updates. The Launcher already knows the official release source and verifies signed updates automatically. Once a signed release is available, use `system check-update` and `system update` from the orchestrator console.
+
+!!! warning "Direct orchestrator startup"
+    Running `java -jar orchestrator.jar` directly is a development and recovery option on every platform. It runs in degraded mode, so `system update` and warm process continuity are disabled. Use the Launcher for production deployments.
 
 ---
 
@@ -136,10 +137,17 @@ Once setup finishes your folder will look like this:
   server-jars/         ← downloaded server JARs (auto-managed)
   proxy/               ← built-in Velocity proxy files
   logs/                ← orchestrator logs
+    runtime/              ← launcher-managed versions and local control state
+        current-release.json
+        versions/
+        control/
 ```
 
 !!! warning "Do not delete pulse.db"
     The `pulse.db` file is the database that tracks all your services. Deleting it means PulseOrchestrator forgets about all existing servers.
+
+!!! danger "Protect runtime/control"
+    The Launcher enforces owner-only `runtime/control` permissions: `0700` for the directory and `0600` for files on POSIX, or current-user/System ACLs on Windows. It refuses launcher-managed startup when it cannot verify these permissions. Keep the complete Pulse home folder restricted to the runtime account and never publish `runtime/control` in a support bundle.
 
 ---
 
@@ -178,4 +186,6 @@ The in-game `/pulse` and `/hub` commands now live on the Velocity proxy plugin r
 With the orchestrator running, the next step is to define your first **task** (a server blueprint) and create a server from it.
 
 - [Feature Guide](../guides/feature-guide.md) - learn about tasks, services, the proxy, and templates
+- [Runtime Architecture](../guides/runtime-architecture.md) - understand Launcher, Runtime Host, and orchestrator ownership
+- [Updating Pulse](../guides/updates.md) - configure and verify warm or maintenance updates
 - [Configuration Reference](../guides/configuration.md) - a full explanation of every setting in `config.json` and `tasks.json`

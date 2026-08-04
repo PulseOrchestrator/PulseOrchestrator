@@ -27,6 +27,13 @@ Below is a fully annotated example showing every available setting with its defa
     "defaultMinMemoryMB": 512
   },
 
+  "startupRequirements": {
+    "startupChecksEnabled": true,
+    "failFast": true,
+    "minimumJavaFeatureVersion": 21,
+    "supportedJavaFeatureVersions": []
+  },
+
   "portRange": {
     "min": 25700,
     "max": 25800
@@ -34,11 +41,13 @@ Below is a fully annotated example showing every available setting with its defa
 
   "proxy": {
     "type": "VELOCITY",
+    "jarPath": "proxy/velocity.jar",
     "bindPort": 25565,
     "minMemoryMB": 256,
     "maxMemoryMB": 512,
-    "defaultEntryTask": "lobby",
-    "fallbackTasks": ["fallback"],
+    "defaultEntryTask": null,
+    "fallbackTasks": [],
+    "hubTaskOverrides": {},
     "maintenanceMode": false,
     "maintenanceMessage": "§cThe network is currently in maintenance mode. Please try again later.",
     "maintenanceBypassPermission": "pulseorchestrator.maintenance.bypass",
@@ -57,6 +66,7 @@ Below is a fully annotated example showing every available setting with its defa
   },
 
   "logs": {
+    "logLevel": "INFO",
     "rotationEnabled": true,
     "maxLogFiles": 10,
     "maxLogSizeMB": 50,
@@ -72,10 +82,17 @@ Below is a fully annotated example showing every available setting with its defa
   "updates": {
     "enabled": false,
     "checkOnStartup": true,
+    "autoApply": false,
     "includePrereleases": false,
     "checkIntervalHours": 12,
-    "runtimeWarningIntervalHours": 8
-  }
+    "runtimeWarningIntervalHours": 8,
+    "githubOwner": "PulseOrchestrator",
+    "githubRepo": "PulseOrchestrator",
+    "policyUrl": "https://raw.githubusercontent.com/PulseOrchestrator/PulseOrchestrator/refs/heads/main/update-policy.json",
+    "releaseManifestUrl": null
+  },
+
+  "enforceVersionApproval": true
 }
 ```
 
@@ -108,6 +125,19 @@ These tell the orchestrator where Java is and set the default memory for game se
 
 ---
 
+### Startup requirements
+
+These checks verify the Java executable configured in `java.path` before runtime initialization.
+
+| Setting | Default | Description |
+|---|---|---|
+| `startupRequirements.startupChecksEnabled` | `true` | Run Java runtime checks before the orchestrator starts. |
+| `startupRequirements.failFast` | `true` | Stop startup when Java cannot be inspected or fails a configured requirement. When `false`, Pulse records the failure and continues. |
+| `startupRequirements.minimumJavaFeatureVersion` | `21` | Lowest accepted Java feature version. |
+| `startupRequirements.supportedJavaFeatureVersions` | `[]` | Optional allow-list of accepted Java feature versions. An empty list accepts any version at or above the minimum. |
+
+---
+
 ### Port range
 
 PulseOrchestrator assigns a unique port to each game server it creates, picked from this range.
@@ -129,11 +159,13 @@ The built-in proxy is what players connect to. It routes them to the right game 
 | Setting | Default | Description |
 |---|---|---|
 | `proxy.type` | `"VELOCITY"` | Proxy software. Currently always `VELOCITY`. |
+| `proxy.jarPath` | `"proxy/velocity.jar"` | Path to the Velocity JAR relative to the Pulse home folder. |
 | `proxy.bindPort` | `25565` | TCP port Java players connect to. `25565` is the Minecraft default, so no port suffix is needed in the server address. |
 | `proxy.minMemoryMB` | `256` | Minimum heap allocation for the proxy process, in MB. |
 | `proxy.maxMemoryMB` | `512` | Maximum heap allocation for the proxy process, in MB. 512 MB is sufficient for most networks; increase for very high player counts. |
 | `proxy.defaultEntryTask` | *(none)* | Task whose running services receive newly connected players. Configure via `proxy route set-default <task>` in the console. |
 | `proxy.fallbackTasks` | `[]` | Ordered list of tasks to attempt if no service is available for the entry task. Manage via `proxy route add-fallback` / `remove-fallback` in the console. |
+| `proxy.hubTaskOverrides` | `{}` | Per-task hub-routing overrides used by the Velocity `/hub` command. |
 | `proxy.maintenanceMode` | `false` | When `true`, all player connections are blocked at the proxy level. Toggle via `proxy maintenance enable` / `disable` in the console. |
 | `proxy.maintenanceMessage` | *(see below)* | Kick/disconnect message shown to blocked players. Supports legacy `§` colour codes. |
 | `proxy.maintenanceBypassPermission` | `pulseorchestrator.maintenance.bypass` | Velocity permission node that allows a player to bypass maintenance mode and connect normally. Requires a permission plugin (e.g. LuckPerms for Velocity). |
@@ -184,6 +216,7 @@ These control how the orchestrator manages its own log files in the `logs/` fold
 
 | Setting | Default | Description |
 |---|---|---|
+| `logs.logLevel` | `"INFO"` | Minimum level written by the orchestrator logger. |
 | `logs.rotationEnabled` | `true` | Whether old log files are automatically cleaned up. |
 | `logs.maxLogFiles` | `10` | The maximum number of log files to keep per service. Older files are deleted when this limit is reached. |
 | `logs.maxLogSizeMB` | `50` | The maximum size of a single log file in megabytes before it is rotated. |
@@ -205,7 +238,7 @@ PulseOrchestrator has a built-in backup system that saves snapshots of your serv
 
 ### Update settings
 
-These control whether the orchestrator checks for newer versions of itself.
+These control whether the orchestrator checks for newer versions and can hand a compatible release to the Launcher. See [Updating Pulse](updates.md) for the complete operator workflow.
 
 !!! note
     Update checking is disabled by default on pre-release builds. You can leave these settings as-is unless you want to opt in.
@@ -214,9 +247,25 @@ These control whether the orchestrator checks for newer versions of itself.
 |---|---|---|
 | `updates.enabled` | `false` | Turn update checking on or off. |
 | `updates.checkOnStartup` | `true` | Run a check when the orchestrator starts. |
+| `updates.autoApply` | `false` | Automatically queue compatible warm updates when Launcher-managed. Maintenance updates are never auto-applied. |
 | `updates.includePrereleases` | `false` | Whether pre-release versions count as "newer". Leave `false` for stable deployments. |
 | `updates.checkIntervalHours` | `12` | How often (in hours) to re-check in the background. |
 | `updates.runtimeWarningIntervalHours` | `8` | If you are running an unsafe version, how often (in hours) to show the warning again. |
+| `updates.githubOwner` | `"PulseOrchestrator"` | GitHub owner used to discover public release information. |
+| `updates.githubRepo` | `"PulseOrchestrator"` | GitHub repository used to discover public release information. |
+| `updates.policyUrl` | Official raw GitHub URL | Safety policy that can mark installed versions unsafe. Use HTTPS. |
+| `updates.releaseManifestUrl` | *(none)* | Machine-readable component and compatibility manifest used for update checks. The Launcher independently reloads its built-in official signed manifest URL before activation. |
+
+!!! warning
+  `system update` requires Launcher-managed startup and a reachable Runtime Host. Direct orchestrator startup can check for releases but cannot preserve service processes across replacement.
+
+---
+
+### Version approval
+
+| Setting | Default | Description |
+|---|---|---|
+| `enforceVersionApproval` | `true` | Require task server software and versions to pass Pulse's approved-version checks during provisioning operations. |
 
 ---
 

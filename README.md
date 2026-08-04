@@ -10,6 +10,7 @@ Pulse helps you manage multiple Minecraft servers with templates, tasks, and in-
 
 - 🎯 **Template-based server management** - Create servers from reusable templates
 - 🔄 **Automatic updates** - Bridge plugins stay in sync with the orchestrator
+- 🧩 **Warm orchestrator updates** - Launcher and Runtime Host keep compatible updates from restarting game services
 - 🎮 **In-game orchestration** - Manage your network from Minecraft via commands
 - ⚡ **Lightweight** - Built for small networks (2-10 servers), not enterprise scale
 - 🛠️ **Easy setup** - Interactive setup wizard gets you running in minutes
@@ -46,7 +47,7 @@ Quick links:
 Pulse is closed-source software. This repository hosts:
 - Public release artifacts (JARs)
 - Versioned documentation (published via GitHub Pages)
-- Update manifests (`update-policy.json`)
+- Update and compatibility manifests (`update-policy.json`, `release-manifest.json`)
 
 ---
 

@@ -1,0 +1,545 @@
+diff --git a/README.md b/README.md
+index da157ee..a982e10 100644
+--- a/README.md
++++ b/README.md
+@@ -10,6 +10,7 @@ Pulse helps you manage multiple Minecraft servers with templates, tasks, and in-
+ 
+ - 🎯 **Template-based server management** - Create servers from reusable templates
+ - 🔄 **Automatic updates** - Bridge plugins stay in sync with the orchestrator
++- 🧩 **Warm orchestrator updates** - Launcher and Runtime Host keep compatible updates from restarting game services
+ - 🎮 **In-game orchestration** - Manage your network from Minecraft via commands
+ - ⚡ **Lightweight** - Built for small networks (2-10 servers), not enterprise scale
+ - 🛠️ **Easy setup** - Interactive setup wizard gets you running in minutes
+@@ -46,7 +47,7 @@ Quick links:
+ Pulse is closed-source software. This repository hosts:
+ - Public release artifacts (JARs)
+ - Versioned documentation (published via GitHub Pages)
+-- Update manifests (`update-policy.json`)
++- Update and compatibility manifests (`update-policy.json`, `release-manifest.json`)
+ 
+ ---
+ 
+diff --git a/docs/getting-started/install.md b/docs/getting-started/install.md
+index 02b6e96..78a4fc2 100644
+--- a/docs/getting-started/install.md
++++ b/docs/getting-started/install.md
+@@ -11,7 +11,7 @@ This guide walks you through installing and starting it for the first time.
+ Before you start, make sure you have:
+ 
+ - **Java 21** - the program that runs PulseOrchestrator and your game servers. You can check your version by opening a terminal and typing `java -version`. If you see `21` or higher you are good.
+-- **The orchestrator jar** - the main PulseOrchestrator file, downloaded from the releases page.
++- **The Launcher, Runtime Host, and orchestrator jars** - the three production runtime files, downloaded from the same release.
+ - **The Paper plugin jar** *(optional)* - only needed on backend Paper servers if you want the bridge API, PlaceholderAPI integration, or per-service metrics.
+ 
+ !!! tip "Where to find the jars"
+@@ -33,43 +33,44 @@ PulseOrchestrator needs a dedicated folder to store everything: your configurati
+     /home/yourname/pulseorchestrator/
+     ```
+ 
+-Copy the orchestrator jar into that folder.
++Copy all three runtime JARs into that folder. Keep the Launcher filename versioned, but rename the other two bootstrap files as shown:
++
++```text
++launcher-<version>.jar
++runtime-host.jar
++orchestrator.jar
++```
++
++The Launcher copies active components into `runtime/versions/` and manages later orchestrator updates from there.
+ 
+ !!! warning "Keep this folder in a safe place"
+     Do not put it in a temporary or download folder. All your server data will live here.
+ 
+ ---
+ 
+-## Start the orchestrator
++## Start Pulse through the Launcher
+ 
+-Open a terminal, navigate into your folder, and run the jar.
++Open a terminal, navigate into your Pulse home folder, and run the Launcher. The orchestrator console still appears in the same terminal.
+ 
+ === "Windows"
+     ```powershell
+-    java -jar orchestrator-<version>.jar
++    java -jar launcher-<version>.jar
+     ```
+ 
+-=== "Linux (foreground)"
++=== "Linux (degraded mode)"
+     ```bash
+-    java -jar orchestrator-<version>.jar
++    java -jar orchestrator.jar
+     ```
+ 
+-=== "Linux (background with screen)"
+-    `screen` keeps the program running after you close your SSH connection.
+-
+-    If you do not have screen installed: `sudo apt install screen`
++!!! warning "Current Linux limitation"
++    Launcher-managed startup currently resolves child Java processes through `java.exe` and therefore requires Windows. Direct Linux startup works as a development/recovery mode, but `system update` and warm process continuity are disabled. Do not present direct startup as an update-safe production deployment.
+ 
+-    ```bash
+-    screen -S pulse
+-    java -jar orchestrator-<version>.jar
+-    ```
++!!! note
++    Replace `<version>` with the actual Launcher version, for example `launcher-1.0.0-beta.4.jar`.
+ 
+-    To leave the screen running in the background: press ++ctrl+a++ then ++d++.
++The Launcher creates an exclusive lock for this home folder, starts the Runtime Host, and then starts the orchestrator. A second Launcher for the same folder exits instead of creating duplicate services.
+ 
+-    To come back to it later: `screen -r pulse`
+-
+-!!! note
+-    Replace `<version>` with the actual version number, for example `orchestrator-1.0.0-beta.3.jar`.
++Nothing else is required for official updates. The Launcher already knows the official release source and verifies signed updates automatically. Once a signed release is available, use `system check-update` and `system update` from the orchestrator console.
+ 
+ ---
+ 
+@@ -136,11 +137,18 @@ Once setup finishes your folder will look like this:
+   server-jars/         ← downloaded server JARs (auto-managed)
+   proxy/               ← built-in Velocity proxy files
+   logs/                ← orchestrator logs
++    runtime/              ← launcher-managed versions and local control state
++        current-release.json
++        versions/
++        control/
+ ```
+ 
+ !!! warning "Do not delete pulse.db"
+     The `pulse.db` file is the database that tracks all your services. Deleting it means PulseOrchestrator forgets about all existing servers.
+ 
++!!! danger "Protect runtime/control"
++    The Launcher enforces owner-only `runtime/control` permissions: `0700` for the directory and `0600` for files on POSIX, or current-user/System ACLs on Windows. It refuses launcher-managed startup when it cannot verify these permissions. Keep the complete Pulse home folder restricted to the runtime account and never publish `runtime/control` in a support bundle.
++
+ ---
+ 
+ ## Connect the plugins
+@@ -178,4 +186,6 @@ The in-game `/pulse` and `/hub` commands now live on the Velocity proxy plugin r
+ With the orchestrator running, the next step is to define your first **task** (a server blueprint) and create a server from it.
+ 
+ - [Feature Guide](../guides/feature-guide.md) - learn about tasks, services, the proxy, and templates
++- [Runtime Architecture](../guides/runtime-architecture.md) - understand Launcher, Runtime Host, and orchestrator ownership
++- [Updating Pulse](../guides/updates.md) - configure and verify warm or maintenance updates
+ - [Configuration Reference](../guides/configuration.md) - a full explanation of every setting in `config.json` and `tasks.json`
+diff --git a/docs/guides/configuration.md b/docs/guides/configuration.md
+index 0e2bb73..0cced51 100644
+--- a/docs/guides/configuration.md
++++ b/docs/guides/configuration.md
+@@ -72,9 +72,14 @@ Below is a fully annotated example showing every available setting with its defa
+   "updates": {
+     "enabled": false,
+     "checkOnStartup": true,
++    "autoApply": false,
+     "includePrereleases": false,
+     "checkIntervalHours": 12,
+-    "runtimeWarningIntervalHours": 8
++    "runtimeWarningIntervalHours": 8,
++    "githubOwner": "PulseOrchestrator",
++    "githubRepo": "PulseOrchestrator",
++    "policyUrl": "https://raw.githubusercontent.com/PulseOrchestrator/PulseOrchestrator/refs/heads/main/update-policy.json",
++    "releaseManifestUrl": "https://raw.githubusercontent.com/PulseOrchestrator/PulseOrchestrator/refs/heads/main/release-manifest.json"
+   }
+ }
+ ```
+@@ -205,7 +210,7 @@ PulseOrchestrator has a built-in backup system that saves snapshots of your serv
+ 
+ ### Update settings
+ 
+-These control whether the orchestrator checks for newer versions of itself.
++These control whether the orchestrator checks for newer versions and can hand a compatible release to the Launcher. See [Updating Pulse](updates.md) for the complete operator workflow.
+ 
+ !!! note
+     Update checking is disabled by default on pre-release builds. You can leave these settings as-is unless you want to opt in.
+@@ -214,9 +219,17 @@ These control whether the orchestrator checks for newer versions of itself.
+ |---|---|---|
+ | `updates.enabled` | `false` | Turn update checking on or off. |
+ | `updates.checkOnStartup` | `true` | Run a check when the orchestrator starts. |
++| `updates.autoApply` | `false` | Automatically queue compatible warm updates when Launcher-managed. Maintenance updates are never auto-applied. |
+ | `updates.includePrereleases` | `false` | Whether pre-release versions count as "newer". Leave `false` for stable deployments. |
+ | `updates.checkIntervalHours` | `12` | How often (in hours) to re-check in the background. |
+ | `updates.runtimeWarningIntervalHours` | `8` | If you are running an unsafe version, how often (in hours) to show the warning again. |
++| `updates.githubOwner` | `"PulseOrchestrator"` | GitHub owner used to discover public release information. |
++| `updates.githubRepo` | `"PulseOrchestrator"` | GitHub repository used to discover public release information. |
++| `updates.policyUrl` | Official raw GitHub URL | Safety policy that can mark installed versions unsafe. Use HTTPS. |
++| `updates.releaseManifestUrl` | *(none)* | Machine-readable component and compatibility manifest used for update checks. The Launcher independently reloads its built-in official signed manifest URL before activation. |
++
++!!! warning
++  `system update` requires Launcher-managed startup and a reachable Runtime Host. Direct orchestrator startup can check for releases but cannot preserve service processes across replacement.
+ 
+ ---
+ 
+diff --git a/docs/guides/runtime-architecture.md b/docs/guides/runtime-architecture.md
+new file mode 100644
+index 0000000..74ec417
+--- /dev/null
++++ b/docs/guides/runtime-architecture.md
+@@ -0,0 +1,115 @@
++# Runtime Architecture
++
++Pulse separates the operator-facing control plane from the processes that keep Minecraft services online. A normal production installation runs three Java components with different responsibilities.
++
++## Components
++
++| Component | Responsibility | Update frequency |
++|---|---|---|
++| Launcher | Starts the runtime in the correct order, prevents a second instance, activates downloaded versions, and restarts the orchestrator | Rare |
++| Runtime Host | Owns the Velocity and Minecraft process handles, command input, console output, and live runtime state | Infrequent |
++| Orchestrator | Provides the CLI and API, reads configuration, stores service metadata, provisions services, applies policy, and requests lifecycle actions | Frequent |
++
++The Minecraft services and built-in Velocity proxy are children of the Runtime Host, not the orchestrator. This is why the orchestrator can restart during a compatible update without restarting the game network.
++
++```text
++Launcher
++  |-- Runtime Host
++  |     |-- Velocity proxy
++  |     `-- Minecraft service JVMs
++  |
++  `-- Orchestrator
++        |-- interactive console
++        |-- public API
++        |-- config, tasks, and database
++        `-- local authenticated control connection to Runtime Host
++```
++
++The Runtime Host is internal. Operators use the orchestrator console and API; plugins also communicate only with the orchestrator API.
++
++## Supported startup
++
++Start Pulse through the Launcher for production use. The Launcher:
++
++1. acquires an exclusive lock for the Pulse home folder;
++2. starts or reconnects to the Runtime Host;
++3. starts the orchestrator in the same terminal;
++4. keeps running while the orchestrator is active; and
++5. processes update requests after the orchestrator exits for an update.
++
++Starting the orchestrator JAR directly is a development and recovery option. It runs in degraded mode and cannot use launcher-managed `system update`. Processes started in that mode cannot be guaranteed to survive an orchestrator restart.
++
++!!! warning "Current platform limit"
++    Launcher-managed startup currently requires Windows because child Java processes are resolved through `java.exe`. Linux can run the orchestrator directly in degraded mode, but warm launcher-managed updates are not supported there yet.
++
++## State and folders
++
++User-managed state remains in the Pulse home folder:
++
++```text
++config.json
++tasks.json
++pulse.db
++services/
++templates/
++server-jars/
++proxy/
++logs/
++```
++
++Launcher-managed state is stored separately:
++
++```text
++runtime/
++  current-release.json
++  versions/
++  control/
++```
++
++- `current-release.json` selects the active orchestrator and Runtime Host JARs.
++- `versions/` contains immutable versioned artifacts.
++- `control/` contains local session tokens, process metadata, the launcher lock, and pending update requests.
++
++!!! danger "Protect the control folder"
++  The Launcher creates `control/` with owner-only permissions and verifies them before every launcher-managed start: `0700` for the directory and `0600` for files on POSIX, or an ACL limited to the runtime user and required System account on Windows. An unsafe owner, ACL, permission mode, or symbolic link stops launcher-managed startup. Run Pulse under a dedicated operating-system account and do not expose this folder in diagnostics.
++
++Do not edit files in `runtime/control/` while Pulse is running. Do not use `pulse.db` or a saved PID as proof that a service is live. The Runtime Host is the source of truth for current process state.
++
++## Reattachment after orchestrator restart
++
++During a warm update, the Runtime Host remains alive and retains every process handle. The new orchestrator asks the host for its runtime registry and reattaches to existing service identities. It does not merely look up persisted PIDs.
++
++After reattachment, the orchestrator can again:
++
++- show live status;
++- send console commands;
++- read console output;
++- stop and restart services; and
++- update proxy routing.
++
++If the Runtime Host cannot be reached, `system status` reports `HOST_UNAVAILABLE`. Persisted service information may still be shown, but live control is not reliable until the host connection is restored.
++
++A temporary host connection failure does not by itself mark a service as stopped or failed. Pulse keeps the last host-confirmed runtime identity and reconnects with backoff; an exit is accepted only after the host returns a matching stopped runtime.
++
++## Shutdown behavior
++
++| Action | Orchestrator | Runtime Host | Services and proxy |
++|---|---|---|---|
++| Compatible warm update | Restarts | Keeps running | Keep running |
++| Maintenance update | Restarts | Drains and is replaced when required | Stop and are restored once from the request-bound maintenance plan |
++| `system shutdown` | Stops | Drains, then stops with Launcher | Stop |
++| Direct orchestrator restart | Restarts | Not available | Continuity is not guaranteed |
++
++A warm update protects game-process continuity, not every possible failure. A Runtime Host crash loses the live stdin/stdout ownership that makes reattachment possible. The current architecture detects this condition but does not transparently recover those process handles.
++
++## Operational recommendations
++
++- Keep the Launcher attached to a service supervisor that stops the whole Pulse process tree intentionally.
++- Do not configure a supervisor to kill and restart only one of the three components.
++- Back up `pulse.db`, `config.json`, `tasks.json`, `services/`, and `proxy/` before maintenance updates.
++- Keep the Runtime Host stable. Routine features and policy changes should normally ship in the orchestrator.
++- Check `system status` after every update and test a service command plus fresh console output.
++- Treat a Runtime Host update as planned maintenance even when the updater automates it.
++- During a host replacement, wait for the Launcher to finish the drain operation before starting any manual recovery action.
++
++See [Updating Pulse](updates.md) for update modes and the operator workflow.
+diff --git a/docs/guides/updates.md b/docs/guides/updates.md
+new file mode 100644
+index 0000000..fd932b9
+--- /dev/null
++++ b/docs/guides/updates.md
+@@ -0,0 +1,135 @@
++# Updating Pulse
++
++Pulse uses release metadata to decide whether a new orchestrator can be activated while the Minecraft network stays online or whether the complete runtime needs maintenance.
++
++## Before enabling updates
++
++Launcher-managed updates require:
++
++- Windows and Java 21;
++- startup through the Launcher, not directly through the orchestrator JAR;
++- a writable Pulse home folder;
++- access to the public GitHub release and raw manifest URLs; and
++- an update configuration with checks enabled and a release manifest URL.
++
++Example:
++
++```json
++{
++  "updates": {
++    "enabled": true,
++    "checkOnStartup": true,
++    "autoApply": false,
++    "includePrereleases": false,
++    "checkIntervalHours": 12,
++    "runtimeWarningIntervalHours": 8,
++    "githubOwner": "PulseOrchestrator",
++    "githubRepo": "PulseOrchestrator",
++    "policyUrl": "https://raw.githubusercontent.com/PulseOrchestrator/PulseOrchestrator/refs/heads/main/update-policy.json",
++    "releaseManifestUrl": "https://raw.githubusercontent.com/PulseOrchestrator/PulseOrchestrator/refs/heads/main/release-manifest.json"
++  }
++}
++```
++
++Keep `autoApply` disabled when you want every update to be operator-initiated. When enabled, only warm updates may be applied automatically. Maintenance updates always require manual confirmation.
++
++Set `includePrereleases` to `true` only for beta installations. Stable installations should leave it disabled.
++
++## Release verification
++
++No setup is required beyond starting the official Launcher. It contains the official raw GitHub manifest endpoint, the allowed GitHub Release download path, and the public Ed25519 verification key. The orchestrator setting is used to discover and display update information; the Launcher independently loads the official manifest, verifies `release-manifest.json.sig`, and validates every downloaded JAR with its SHA-256 checksum and detached Ed25519 signature.
++
++## Check and apply
++
++Use the orchestrator console:
++
++```text
++system status
++system check-update
++system update
++```
++
++`system status` should show `LAUNCHER_MANAGED` and a `LIVE` host before you start an update. `system check-update` fetches the safety policy and release information without changing the runtime. `system update` checks again and creates a small request containing only the selected target version, channel, source version, timestamp, and request ID. The Launcher independently reloads the built-in signed manifest source and reclassifies the mode before it downloads anything.
++
++The update can have one of three results:
++
++| Mode | Downtime | Behavior |
++|---|---|---|
++| `WARM_UPDATE` | Orchestrator API/CLI restarts briefly; services and proxy stay online | Only explicitly complete and compatible protocol/persistence metadata permits the orchestrator artifact to activate, then it reattaches to the existing Runtime Host |
++| `MAINTENANCE_UPDATE` | Services and proxy stop | After confirmation, the runtime stops, required artifacts are activated, and a request-bound plan restores only the previously running proxy and services once |
++| `UNSUPPORTED` | None | Pulse explains the blocking reason and makes no change |
++
++## Warm update flow
++
++1. Orchestrator verifies that the target release has complete, internally consistent protocol metadata and an explicitly backward-compatible persistence model for the installed Runtime Host.
++2. Orchestrator queues an update request and shuts down only its API, CLI, health monitor, and other control-plane components.
++3. Runtime Host keeps Velocity and Minecraft service JVMs running.
++4. Launcher checks request freshness and source version, verifies `release-manifest.json.sig` against its compiled Ed25519 key, rejects HTTP or foreign release paths, then downloads the target orchestrator JAR and verifies its SHA-256 checksum plus detached signature.
++5. Launcher stores the JAR under `runtime/versions/`, updates `runtime/current-release.json`, and starts it.
++6. The new orchestrator reconnects to the Runtime Host and regains live control.
++
++If the new orchestrator exits with an error in the first 20 seconds, the Launcher can make one best-effort attempt to reactivate the previous orchestrator JAR. Services remain under the same Runtime Host during this attempt.
++
++!!! warning "Rollback limits"
++    Warm rollback does not undo configuration, task, or database migrations. It also does not cover failures that appear after the startup window. Release compatibility is the primary safety mechanism; rollback is a last recovery attempt.
++
++## Maintenance update flow
++
++A Runtime Host update, incompatible host protocol, or non-backward-compatible persistence change requires maintenance.
++
++Before confirming:
++
++1. notify players;
++2. create backups of `pulse.db`, `config.json`, `tasks.json`, `services/`, and `proxy/`;
++3. verify enough disk space exists for old and new versioned JARs plus service backups; and
++4. keep direct terminal access to the host.
++
++After confirmation, Pulse atomically records the queued update ID, the running services, and proxy state in a one-time restore plan before stopping the runtime. The Launcher requests a controlled host drain and waits for the final operation to confirm that no service or proxy child remains. It then verifies that the old host process and session are gone before starting the replacement host, activates the required artifacts, and consumes the plan as the control plane returns. Verify every expected service and the proxy after startup.
++
++!!! warning "Maintenance validation"
++  Confirm that old Java processes exited, that only the previously running services returned once, and that intentionally stopped services remain stopped after the next restart. Do not start a second Launcher or recover manually while the controlled host drain is still in progress.
++
++## Verify an update
++
++After either update type:
++
++1. Run `system status` and confirm the host is `LIVE`.
++2. Compare the expected running service count.
++3. Attach to one service or request its console tail and confirm new lines arrive.
++4. Send a harmless command such as `list` and verify its response.
++5. Confirm players can connect through the proxy.
++6. Review `logs/` and the Launcher/Runtime Host terminal output for errors.
++7. Inspect `runtime/current-release.json` only when troubleshooting; do not edit it during normal operation.
++
++For a warm update, service and proxy PIDs should remain unchanged. For a maintenance update, new PIDs are expected.
++
++## When the host is unavailable
++
++If `system status` reports `HOST_UNAVAILABLE`:
++
++- do not assume persisted `RUNNING` states prove that processes are controllable;
++- do not start duplicate services manually on the same ports;
++- preserve the terminal output and `logs/`;
++- inspect the process list for the Launcher, Runtime Host, orchestrator, Velocity, and service JVMs; and
++- plan a controlled full restart if the Runtime Host cannot be recovered.
++
++The orchestrator cannot reconstruct lost stdin/stdout handles from a PID alone.
++
++## Manual recovery
++
++If the Launcher cannot activate a release:
++
++1. Stop the complete Pulse runtime and confirm all child Java processes have exited.
++2. Back up the Pulse home folder before changing control files.
++3. Preserve `runtime/current-release.json`, `runtime/control/`, and logs for diagnosis.
++4. Restore the previous known-good orchestrator and Runtime Host JARs from `runtime/versions/` only while Pulse is fully stopped.
++5. Restore database/config/service backups when the release included incompatible migrations.
++6. Start through the Launcher and verify `system status` before admitting players.
++
++Do not replace an artifact in `runtime/versions/` while Pulse is running. Do not delete `pulse.db` to resolve an update problem.
++
++## Security properties
++
++The Launcher treats the local update request as a selector, not as authority for URLs, hashes, or update mode. It accepts only a fresh request for the active source version, then independently reloads its built-in official HTTPS manifest URL. The exact manifest bytes and every required artifact signature must verify with the compiled Ed25519 public key. Initial artifact URLs must use the official GitHub Release path; GitHub's HTTPS CDN redirects are then accepted while the final JAR is still checked against its detached signature and SHA-256 hash. A wrong hash, missing signature, invalid signature, HTTP URL, foreign release path, stale request, unsafe control permission, or inconsistent release metadata fails closed without artifact activation.
++
++Keep the Pulse home folder restricted to the dedicated runtime account. The Launcher verifies `runtime/control` before each managed start and refuses an unsafe owner, permission mode, ACL, or symbolic link.
+diff --git a/docs/index.md b/docs/index.md
+index c03416a..2ac9a35 100644
+--- a/docs/index.md
++++ b/docs/index.md
+@@ -5,7 +5,7 @@
+     <p class="eyebrow">Operations docs</p>
+     <h1>Run, route, and scale Minecraft services from one control plane.</h1>
+     <p class="hero-copy">
+-      PulseOrchestrator combines a runtime orchestrator, a built-in Velocity proxy, and Paper or Velocity integrations into a single workflow for provisioning and routing game services.
++      PulseOrchestrator combines a launcher-managed control plane, a persistent process host, a built-in Velocity proxy, and Minecraft integrations into one workflow for provisioning and routing game services.
+     </p>
+     <div class="hero-actions">
+       <a class="md-button md-button--primary" href="getting-started/install/">Install guide</a>
+@@ -15,8 +15,9 @@
+   <div class="hero-panel">
+     <p class="hero-kicker">What ships together</p>
+     <ul>
+-      <li>Standalone orchestrator runtime with first-run setup</li>
+-      <li>Built-in Velocity proxy managed by the orchestrator</li>
++      <li>Launcher for version activation and orchestrator restart</li>
++      <li>Runtime Host that keeps proxy and service processes alive</li>
++      <li>Orchestrator CLI, API, setup, and lifecycle policy</li>
+       <li>Paper plugin for bridge access, placeholders, and service metrics</li>
+       <li>Velocity plugin for proxy commands, routing, and maintenance integration</li>
+     </ul>
+@@ -34,6 +35,14 @@
+     <strong>Feature guide</strong>
+     <span>The core concepts, CLI flows, proxy routing model, and day-to-day operations.</span>
+   </a>
++  <a class="doc-card" href="guides/runtime-architecture/">
++    <strong>Runtime architecture</strong>
++    <span>How Launcher, Runtime Host, and Orchestrator divide ownership and preserve live services.</span>
++  </a>
++  <a class="doc-card" href="guides/updates/">
++    <strong>Updating Pulse</strong>
++    <span>Warm updates, maintenance updates, rollback limits, verification, and recovery.</span>
++  </a>
+ </div>
+ 
+ ## What These Docs Cover
+@@ -46,6 +55,8 @@ The focus is:
+ - connecting Paper and Velocity integrations
+ - understanding the task, service, and proxy model
+ - learning the main operational commands and workflows
++- applying compatible updates without restarting Minecraft services
++- planning maintenance when the Runtime Host or persistence model changes
+ 
+ ## Typical Next Steps
+ 
+diff --git a/mkdocs.yml b/mkdocs.yml
+index 4465932..7e1f228 100644
+--- a/mkdocs.yml
++++ b/mkdocs.yml
+@@ -60,6 +60,8 @@ nav:
+       - Install Guide: getting-started/install.md
+   - Guides:
+       - Feature Guide: guides/feature-guide.md
++      - Runtime Architecture: guides/runtime-architecture.md
++      - Updating Pulse: guides/updates.md
+       - Configuration Reference: guides/configuration.md
+       - PlaceholderAPI Integration: guides/placeholderapi.md
+   - Plugin Development:
+diff --git a/release-manifest.json b/release-manifest.json
+index 1bc77b1..0fa7501 100644
+--- a/release-manifest.json
++++ b/release-manifest.json
+@@ -1,35 +1,35 @@
+ {
+-  "releaseVersion": "1.0.0-beta.3",
++  "releaseVersion": "1.0.0-beta.4",
+   "channel": "beta",
+   "publishedAt": "2026-06-15T00:00:00Z",
+   "components": {
+     "orchestrator": {
+-      "version": "1.0.0-beta.3",
++      "version": "1.0.0-beta.4",
+       "protocolVersion": 1,
+       "minHostProtocolVersion": 1,
+       "persistenceCompatibility": "backward-compatible",
+       "rollbackSafe": true,
+-      "artifactUrl": "https://github.com/PulseOrchestrator/PulseOrchestrator/releases/download/v1.0.0-beta.3/orchestrator-1.0.0-beta.3.jar",
++      "artifactUrl": "https://github.com/PulseOrchestrator/PulseOrchestrator/releases/download/v1.0.0-beta.4/orchestrator-1.0.0-beta.4.jar",
+       "sha256": "9e60adbde44447f3c843239f7d4d48e8c6056ac8bac4347529df581efb4481c7"
+     },
+     "runtimeHost": {
+-      "version": "1.0.0-beta.3",
++      "version": "1.0.0-beta.4",
+       "protocolVersion": 1,
+       "rollbackSafe": true,
+-      "artifactUrl": "https://github.com/PulseOrchestrator/PulseOrchestrator/releases/download/v1.0.0-beta.3/runtime-host-1.0.0-beta.3.jar",
++      "artifactUrl": "https://github.com/PulseOrchestrator/PulseOrchestrator/releases/download/v1.0.0-beta.4/runtime-host-1.0.0-beta.4.jar",
+       "sha256": "59152e9e38dc0c9e7adb7fdffbcbaaa34354ee0d11bfca7819d7402783224d36"
+     },
+     "launcher": {
+-      "version": "1.0.0-beta.3",
+-      "artifactUrl": "https://github.com/PulseOrchestrator/PulseOrchestrator/releases/download/v1.0.0-beta.3/launcher-1.0.0-beta.3.jar",
++      "version": "1.0.0-beta.4",
++      "artifactUrl": "https://github.com/PulseOrchestrator/PulseOrchestrator/releases/download/v1.0.0-beta.4/launcher-1.0.0-beta.4.jar",
+       "sha256": "ad3a944ae711c925be5ff728e5924b2b750a5ffd8ecb53ba105c67b62bf0c9b5"
+     }
+   },
+   "updatePlan": {
+-    "defaultUpdateMode": "WARM_UPDATE",
++    "defaultUpdateMode": "UNSUPPORTED",
+     "hostUpgradeRequired": false,
+     "maintenanceRequired": false,
+-    "blockingReason": null
++    "blockingReason": "This unsigned release cannot be activated by the signed launcher update flow."
+   },
+-  "notesUrl": "https://github.com/PulseOrchestrator/PulseOrchestrator/releases/tag/v1.0.0-beta.3"
++  "notesUrl": "https://github.com/PulseOrchestrator/PulseOrchestrator/releases/tag/v1.0.0-beta.4"
+ }

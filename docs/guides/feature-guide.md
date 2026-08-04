@@ -106,7 +106,6 @@ service command lobby-1 say hello ← send a command directly to the server
 service restart lobby-1
 service stop lobby-1
 service rebuild lobby-1           ← wipe and re-provision from the task template
-service recreate lobby-1          ← delete and create a fresh service
 ```
 
 ### 3. Route players through the proxy
@@ -212,11 +211,13 @@ jar update-all                ← update every cached JAR
 ```
 
 !!! note "Updating JARs does not affect running services"
-    Services copy their JAR at creation time. To apply a new build to an existing service, recreate it:
+    Services copy their JAR at creation time. To apply a new build to an existing service, rebuild it:
 
     ```text
-    service recreate lobby-1
+    service rebuild lobby-1
     ```
+
+    Rebuilding wipes and re-provisions the service directory. Back up persistent service data before running it.
 
 ---
 
