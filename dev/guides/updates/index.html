@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://pulseorchestrator.github.io/PulseOrchestrator/dev/guides/placeholderapi/">
+        <link rel="canonical" href="https://pulseorchestrator.github.io/PulseOrchestrator/dev/guides/updates/">
       
       
-        <link rel="prev" href="../configuration/">
+        <link rel="prev" href="../runtime-architecture/">
       
       
-        <link rel="next" href="../bridge-api/">
+        <link rel="next" href="../configuration/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>PlaceholderAPI Integration - PulseOrchestrator Docs</title>
+        <title>Updating Pulse - PulseOrchestrator Docs</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#placeholderapi-integration" class="md-skip">
+        <a href="#updating-pulse" class="md-skip">
           Skip to content
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              PlaceholderAPI Integration
+              Updating Pulse
             
           </span>
         </div>
@@ -568,10 +568,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../updates/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Updating Pulse
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -587,6 +614,125 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#before-enabling-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before enabling updates
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release verification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-and-apply" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check and apply
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#warm-update-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Warm update flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maintenance-update-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maintenance update flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-an-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify an update
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-the-host-is-unavailable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When the host is unavailable
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual recovery
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -624,37 +770,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    PlaceholderAPI Integration
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../placeholderapi/" class="md-nav__link">
         
   
   
@@ -670,170 +789,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Requirements
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-it-works" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How it works
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="How it works">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#service-data-cache" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Service data cache
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#live-metrics-push" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Live metrics push
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#service-id-matching" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Service ID matching
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#placeholder-reference" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Placeholder reference
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Placeholder reference">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#local-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Local server
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#network-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Network overview
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#per-service-status" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Per-service - status
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#per-service-live-metrics" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Per-service - live metrics
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Examples
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Troubleshooting
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -960,10 +915,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
+  <a href="#before-enabling-updates" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Requirements
+        Before enabling updates
       
     </span>
   </a>
@@ -971,121 +926,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-it-works" class="md-nav__link">
+  <a href="#release-verification" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How it works
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="How it works">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#service-data-cache" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Service data cache
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#live-metrics-push" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Live metrics push
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#service-id-matching" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Service ID matching
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#placeholder-reference" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Placeholder reference
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Placeholder reference">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#local-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Local server
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#network-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Network overview
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#per-service-status" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Per-service - status
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#per-service-live-metrics" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Per-service - live metrics
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Examples
+        Release verification
       
     </span>
   </a>
@@ -1093,10 +937,76 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
+  <a href="#check-and-apply" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Troubleshooting
+        Check and apply
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#warm-update-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Warm update flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maintenance-update-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maintenance update flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-an-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify an update
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-the-host-is-unavailable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When the host is unavailable
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual recovery
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security properties
       
     </span>
   </a>
@@ -1123,209 +1033,135 @@
   
 
 
-<h1 id="placeholderapi-integration">PlaceholderAPI Integration<a class="headerlink" href="#placeholderapi-integration" title="Permanent link">&para;</a></h1>
-<p>PulseOrchestrator's Paper plugin includes an optional <a href="https://github.com/PlaceholderAPI/PlaceholderAPI">PlaceholderAPI</a> expansion that exposes live orchestrator data as placeholders usable in scoreboards, chat formats, GUIs, holograms, and any other plugin that supports PAPI.</p>
-<hr />
-<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Requirement</th>
-<th>Details</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Plugin</td>
-<td><code>plugin-paper</code> installed on the Paper server</td>
-</tr>
-<tr>
-<td>PlaceholderAPI</td>
-<td>2.11+ installed on the same server (optional - the plugin starts without it)</td>
-</tr>
-</tbody>
-</table>
-<p>PlaceholderAPI is a <strong>soft dependency</strong>. The plugin starts and functions normally whether or not PAPI is present; the expansion is registered only when PAPI is detected at startup.</p>
-<hr />
-<h2 id="how-it-works">How it works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
-<h3 id="service-data-cache">Service data cache<a class="headerlink" href="#service-data-cache" title="Permanent link">&para;</a></h3>
-<p>The expansion maintains a local cache of all services, refreshed from the orchestrator every <strong>30 seconds</strong> in the background. Non-metric placeholders (status, port, uptime, task name) are served from this cache.</p>
-<h3 id="live-metrics-push">Live metrics push<a class="headerlink" href="#live-metrics-push" title="Permanent link">&para;</a></h3>
-<p>Metric placeholders (<code>tps</code>, <code>mspt</code>, <code>ram</code>, <code>cpu</code>, <code>players</code>, <code>chunks</code>, <code>entities</code>) are populated by the <strong>metrics push</strong> mechanism: each Paper server running the plugin reports its own metrics to the orchestrator every <strong>5 seconds</strong>. The orchestrator stores these metrics alongside the service record, and they are included in the cache refresh.</p>
-<p>This means:</p>
+<h1 id="updating-pulse">Updating Pulse<a class="headerlink" href="#updating-pulse" title="Permanent link">&para;</a></h1>
+<p>Pulse uses release metadata to decide whether a new orchestrator can be activated while the Minecraft network stays online or whether the complete runtime needs maintenance.</p>
+<h2 id="before-enabling-updates">Before enabling updates<a class="headerlink" href="#before-enabling-updates" title="Permanent link">&para;</a></h2>
+<p>Launcher-managed updates require:</p>
 <ul>
-<li>Metric placeholders are available for <strong>Paper servers only</strong> - they return <code>unknown</code> for any server that does not push metrics (e.g. non-Paper servers managed by the orchestrator).</li>
-<li>After a server first starts, metric placeholders show <code>unknown</code> until the first push cycle completes (≤ 5 seconds).</li>
-<li>If a server goes offline, its last reported metrics remain visible until the service record is updated.</li>
+<li>Java 21;</li>
+<li>startup through the Launcher, not directly through the orchestrator JAR;</li>
+<li>a writable Pulse home folder;</li>
+<li>access to the public GitHub release and raw manifest URLs; and</li>
+<li>an update configuration with checks enabled and a release manifest URL.</li>
 </ul>
-<h3 id="service-id-matching">Service ID matching<a class="headerlink" href="#service-id-matching" title="Permanent link">&para;</a></h3>
-<p>Placeholders that accept a <code>&lt;id&gt;</code> parameter match against the service's ID with flexible normalisation - hyphens (<code>-</code>) and underscores (<code>_</code>) are treated as equivalent, and matching is case-insensitive. For example, <code>%pulse_service_status_lobby-1%</code> and <code>%pulse_service_status_lobby_1%</code> resolve to the same service.</p>
-<hr />
-<h2 id="placeholder-reference">Placeholder reference<a class="headerlink" href="#placeholder-reference" title="Permanent link">&para;</a></h2>
-<p>All placeholders use the <code>pulse</code> identifier and follow the format <code>%pulse_&lt;placeholder&gt;%</code>.</p>
-<h3 id="local-server">Local server<a class="headerlink" href="#local-server" title="Permanent link">&para;</a></h3>
-<p>These reflect the Paper server the placeholder is being evaluated on, without any orchestrator lookup.</p>
-<table>
-<thead>
-<tr>
-<th>Placeholder</th>
-<th>Returns</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>%pulse_local_online%</code></td>
-<td>Number of players currently online on this server</td>
-<td><code>12</code></td>
-</tr>
-<tr>
-<td><code>%pulse_local_max%</code></td>
-<td>Max player slots configured for this server</td>
-<td><code>100</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="network-overview">Network overview<a class="headerlink" href="#network-overview" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Placeholder</th>
-<th>Returns</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>%pulse_service_count_total%</code></td>
-<td>Total number of services (all states)</td>
-<td><code>5</code></td>
-</tr>
-<tr>
-<td><code>%pulse_service_count_running%</code></td>
-<td>Number of services in the <code>RUNNING</code> state</td>
-<td><code>3</code></td>
-</tr>
-<tr>
-<td><code>%pulse_task_running_&lt;taskName&gt;%</code></td>
-<td>Number of <code>RUNNING</code> services for a given task</td>
-<td><code>%pulse_task_running_lobby%</code> → <code>2</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="per-service-status">Per-service - status<a class="headerlink" href="#per-service-status" title="Permanent link">&para;</a></h3>
-<p>Replace <code>&lt;id&gt;</code> with the service ID (e.g. <code>lobby-1</code>).</p>
-<table>
-<thead>
-<tr>
-<th>Placeholder</th>
-<th>Returns</th>
-<th>Fallback</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>%pulse_service_status_&lt;id&gt;%</code></td>
-<td>Service state: <code>RUNNING</code>, <code>STOPPED</code>, <code>STARTING</code>, <code>FAILED</code>, etc.</td>
-<td><code>unknown</code></td>
-</tr>
-<tr>
-<td><code>%pulse_service_port_&lt;id&gt;%</code></td>
-<td>Port the service is bound to</td>
-<td><code>-1</code></td>
-</tr>
-<tr>
-<td><code>%pulse_service_task_&lt;id&gt;%</code></td>
-<td>Task name the service was created from</td>
-<td><code>unknown</code></td>
-</tr>
-<tr>
-<td><code>%pulse_service_uptime_&lt;id&gt;%</code></td>
-<td>Time elapsed since the service last started, formatted as <code>1d2h3m4s</code></td>
-<td><code>unknown</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="per-service-live-metrics">Per-service - live metrics<a class="headerlink" href="#per-service-live-metrics" title="Permanent link">&para;</a></h3>
-<p>These are populated by the metrics push mechanism described above. They return <code>unknown</code> if the server has not reported metrics yet or is not a Paper server.</p>
-<table>
-<thead>
-<tr>
-<th>Placeholder</th>
-<th>Returns</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>%pulse_service_online_players_&lt;id&gt;%</code></td>
-<td>Online player count</td>
-<td><code>7</code></td>
-</tr>
-<tr>
-<td><code>%pulse_service_max_players_&lt;id&gt;%</code></td>
-<td>Max player slots</td>
-<td><code>100</code></td>
-</tr>
-<tr>
-<td><code>%pulse_service_tps_&lt;id&gt;%</code></td>
-<td>Ticks per second (1-minute average), 2 decimal places</td>
-<td><code>19.98</code></td>
-</tr>
-<tr>
-<td><code>%pulse_service_mspt_&lt;id&gt;%</code></td>
-<td>Milliseconds per tick, 2 decimal places</td>
-<td><code>1.23</code></td>
-</tr>
-<tr>
-<td><code>%pulse_service_cpu_&lt;id&gt;%</code></td>
-<td>JVM process CPU usage, 2 decimal places</td>
-<td><code>4.72%</code></td>
-</tr>
-<tr>
-<td><code>%pulse_service_ram_&lt;id&gt;%</code></td>
-<td>JVM heap usage in megabytes</td>
-<td><code>512</code></td>
-</tr>
-<tr>
-<td><code>%pulse_service_chunks_&lt;id&gt;%</code></td>
-<td>Total loaded chunks across all worlds</td>
-<td><code>846</code></td>
-</tr>
-<tr>
-<td><code>%pulse_service_entities_&lt;id&gt;%</code></td>
-<td>Total loaded entities across all worlds</td>
-<td><code>1204</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
-<p>Show how full a lobby server is in a scoreboard:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>%pulse_service_online_players_lobby-1% / %pulse_service_max_players_lobby-1%
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&quot;updates&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">&quot;checkOnStartup&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">&quot;autoApply&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nt">&quot;includePrereleases&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nt">&quot;checkIntervalHours&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">&quot;runtimeWarningIntervalHours&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nt">&quot;githubOwner&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PulseOrchestrator&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nt">&quot;githubRepo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PulseOrchestrator&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nt">&quot;policyUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://raw.githubusercontent.com/PulseOrchestrator/PulseOrchestrator/refs/heads/main/update-policy.json&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="nt">&quot;releaseManifestUrl&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://raw.githubusercontent.com/PulseOrchestrator/PulseOrchestrator/refs/heads/main/release-manifest.json&quot;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">}</span>
 </code></pre></div>
-<p>Show TPS next to a service's status:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>lobby-1: %pulse_service_status_lobby-1% | TPS: %pulse_service_tps_lobby-1%
+<p>Keep <code>autoApply</code> disabled when you want every update to be operator-initiated. When enabled, only warm updates may be applied automatically. Maintenance updates always require manual confirmation.</p>
+<p>Set <code>includePrereleases</code> to <code>true</code> only for beta installations. Stable installations should leave it disabled.</p>
+<h2 id="release-verification">Release verification<a class="headerlink" href="#release-verification" title="Permanent link">&para;</a></h2>
+<p>No setup is required beyond starting the official Launcher. It contains the official raw GitHub manifest endpoint, the allowed GitHub Release download path, and the public Ed25519 verification key. The orchestrator setting is used to discover and display update information; the Launcher independently loads the official manifest, verifies <code>release-manifest.json.sig</code>, and validates every downloaded JAR with its SHA-256 checksum and detached Ed25519 signature.</p>
+<h2 id="check-and-apply">Check and apply<a class="headerlink" href="#check-and-apply" title="Permanent link">&para;</a></h2>
+<p>Use the orchestrator console:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>system status
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>system check-update
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>system update
 </code></pre></div>
-<p>Count running lobby servers network-wide:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Lobbies online: %pulse_task_running_lobby%
-</code></pre></div>
-<hr />
-<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
-<dl>
-<dt><strong>Placeholders all return blank / do not resolve</strong></dt>
-<dd>
-<p>Confirm PlaceholderAPI is installed and enabled (<code>/plugins</code>). The plugin logs <code>Registered PlaceholderAPI expansion 'pulse'</code> on enable if registration succeeded.</p>
-</dd>
-<dt><strong>Metric placeholders return <code>unknown</code></strong></dt>
-<dd>
-<p>The service may not be running the Paper plugin, or fewer than 5 seconds have passed since startup. Check that <code>ServiceMetricsReporter</code> is not logging a warning about port resolution - this indicates the plugin could not identify its own orchestrator service ID.</p>
-</dd>
-<dt><strong>Service ID not found</strong></dt>
-<dd>
-<p>Check the service ID as shown by <code>service list</code> in the orchestrator console. Remember that hyphens and underscores are normalised, but spelling must match.</p>
-</dd>
-</dl>
+<p><code>system status</code> should show <code>LAUNCHER_MANAGED</code> and a <code>LIVE</code> host before you start an update. <code>system check-update</code> fetches the safety policy and release information without changing the runtime. <code>system update</code> checks again and creates a small request containing only the selected target version, channel, source version, timestamp, and request ID. The Launcher independently reloads the built-in signed manifest source and reclassifies the mode before it downloads anything.</p>
+<p>The update can have one of three results:</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Downtime</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WARM_UPDATE</code></td>
+<td>Orchestrator API/CLI restarts briefly; services and proxy stay online</td>
+<td>Only explicitly complete and compatible protocol/persistence metadata permits the orchestrator artifact to activate, then it reattaches to the existing Runtime Host</td>
+</tr>
+<tr>
+<td><code>MAINTENANCE_UPDATE</code></td>
+<td>Services and proxy stop</td>
+<td>After confirmation, the runtime stops, required artifacts are activated, and a request-bound plan restores only the previously running proxy and services once</td>
+</tr>
+<tr>
+<td><code>UNSUPPORTED</code></td>
+<td>None</td>
+<td>Pulse explains the blocking reason and makes no change</td>
+</tr>
+</tbody>
+</table>
+<h2 id="warm-update-flow">Warm update flow<a class="headerlink" href="#warm-update-flow" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Orchestrator verifies that the target release has complete, internally consistent protocol metadata and an explicitly backward-compatible persistence model for the installed Runtime Host.</li>
+<li>Orchestrator queues an update request and shuts down only its API, CLI, health monitor, and other control-plane components.</li>
+<li>Runtime Host keeps Velocity and Minecraft service JVMs running.</li>
+<li>Launcher checks request freshness and source version, verifies <code>release-manifest.json.sig</code> against its compiled Ed25519 key, rejects HTTP or foreign release paths, then downloads the target orchestrator JAR and verifies its SHA-256 checksum plus detached signature.</li>
+<li>Launcher stores the JAR under <code>runtime/versions/</code>, updates <code>runtime/current-release.json</code>, and starts it.</li>
+<li>The new orchestrator reconnects to the Runtime Host and regains live control.</li>
+</ol>
+<p>If the new orchestrator exits with an error in the first 20 seconds, the Launcher can make one best-effort attempt to reactivate the previous orchestrator JAR. Services remain under the same Runtime Host during this attempt.</p>
+<div class="admonition warning">
+<p class="admonition-title">Rollback limits</p>
+<p>Warm rollback does not undo configuration, task, or database migrations. It also does not cover failures that appear after the startup window. Release compatibility is the primary safety mechanism; rollback is a last recovery attempt.</p>
+</div>
+<h2 id="maintenance-update-flow">Maintenance update flow<a class="headerlink" href="#maintenance-update-flow" title="Permanent link">&para;</a></h2>
+<p>A Runtime Host update, incompatible host protocol, or non-backward-compatible persistence change requires maintenance.</p>
+<p>Before confirming:</p>
+<ol>
+<li>notify players;</li>
+<li>create backups of <code>pulse.db</code>, <code>config.json</code>, <code>tasks.json</code>, <code>services/</code>, and <code>proxy/</code>;</li>
+<li>verify enough disk space exists for old and new versioned JARs plus service backups; and</li>
+<li>keep direct terminal access to the host.</li>
+</ol>
+<p>After confirmation, Pulse atomically records the queued update ID, the running services, and proxy state in a one-time restore plan before stopping the runtime. The Launcher requests a controlled host drain and waits for the final operation to confirm that no service or proxy child remains. It then verifies that the old host process and session are gone before starting the replacement host, activates the required artifacts, and consumes the plan as the control plane returns. Verify every expected service and the proxy after startup.</p>
+<div class="admonition warning">
+<p class="admonition-title">Maintenance validation</p>
+</div>
+<p>Confirm that old Java processes exited, that only the previously running services returned once, and that intentionally stopped services remain stopped after the next restart. Do not start a second Launcher or recover manually while the controlled host drain is still in progress.</p>
+<h2 id="verify-an-update">Verify an update<a class="headerlink" href="#verify-an-update" title="Permanent link">&para;</a></h2>
+<p>After either update type:</p>
+<ol>
+<li>Run <code>system status</code> and confirm the host is <code>LIVE</code>.</li>
+<li>Compare the expected running service count.</li>
+<li>Attach to one service or request its console tail and confirm new lines arrive.</li>
+<li>Send a harmless command such as <code>list</code> and verify its response.</li>
+<li>Confirm players can connect through the proxy.</li>
+<li>Review <code>logs/</code> and the Launcher/Runtime Host terminal output for errors.</li>
+<li>Inspect <code>runtime/current-release.json</code> only when troubleshooting; do not edit it during normal operation.</li>
+</ol>
+<p>For a warm update, service and proxy PIDs should remain unchanged. For a maintenance update, new PIDs are expected.</p>
+<h2 id="when-the-host-is-unavailable">When the host is unavailable<a class="headerlink" href="#when-the-host-is-unavailable" title="Permanent link">&para;</a></h2>
+<p>If <code>system status</code> reports <code>HOST_UNAVAILABLE</code>:</p>
+<ul>
+<li>do not assume persisted <code>RUNNING</code> states prove that processes are controllable;</li>
+<li>do not start duplicate services manually on the same ports;</li>
+<li>preserve the terminal output and <code>logs/</code>;</li>
+<li>inspect the process list for the Launcher, Runtime Host, orchestrator, Velocity, and service JVMs; and</li>
+<li>plan a controlled full restart if the Runtime Host cannot be recovered.</li>
+</ul>
+<p>The orchestrator cannot reconstruct lost stdin/stdout handles from a PID alone.</p>
+<h2 id="manual-recovery">Manual recovery<a class="headerlink" href="#manual-recovery" title="Permanent link">&para;</a></h2>
+<p>If the Launcher cannot activate a release:</p>
+<ol>
+<li>Stop the complete Pulse runtime and confirm all child Java processes have exited.</li>
+<li>Back up the Pulse home folder before changing control files.</li>
+<li>Preserve <code>runtime/current-release.json</code>, <code>runtime/control/</code>, and logs for diagnosis.</li>
+<li>Restore the previous known-good orchestrator and Runtime Host JARs from <code>runtime/versions/</code> only while Pulse is fully stopped.</li>
+<li>Restore database/config/service backups when the release included incompatible migrations.</li>
+<li>Start through the Launcher and verify <code>system status</code> before admitting players.</li>
+</ol>
+<p>Do not replace an artifact in <code>runtime/versions/</code> while Pulse is running. Do not delete <code>pulse.db</code> to resolve an update problem.</p>
+<h2 id="security-properties">Security properties<a class="headerlink" href="#security-properties" title="Permanent link">&para;</a></h2>
+<p>The Launcher treats the local update request as a selector, not as authority for URLs, hashes, or update mode. It accepts only a fresh request for the active source version, then independently reloads its built-in official HTTPS manifest URL. The exact manifest bytes and every required artifact signature must verify with the compiled Ed25519 public key. Initial artifact URLs must use the official GitHub Release path; GitHub's HTTPS CDN redirects are then accepted while the final JAR is still checked against its detached signature and SHA-256 hash. A wrong hash, missing signature, invalid signature, HTTP URL, foreign release path, stale request, unsafe control permission, or inconsistent release metadata fails closed without artifact activation.</p>
+<p>Keep the Pulse home folder restricted to the dedicated runtime account. The Launcher verifies <code>runtime/control</code> before each managed start and refuses an unsafe owner, permission mode, ACL, or symbolic link.</p>
 
 
 

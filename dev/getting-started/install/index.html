@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -31,7 +31,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -510,10 +510,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#start-the-orchestrator" class="md-nav__link">
+  <a href="#start-pulse-through-the-launcher" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Start the orchestrator
+        Start Pulse through the Launcher
       
     </span>
   </a>
@@ -756,6 +756,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../../guides/runtime-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runtime Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/updates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Updating Pulse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../guides/configuration/" class="md-nav__link">
         
   
@@ -948,10 +1004,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#start-the-orchestrator" class="md-nav__link">
+  <a href="#start-pulse-through-the-launcher" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Start the orchestrator
+        Start Pulse through the Launcher
       
     </span>
   </a>
@@ -1119,7 +1175,7 @@
 <p>Before you start, make sure you have:</p>
 <ul>
 <li><strong>Java 21</strong> - the program that runs PulseOrchestrator and your game servers. You can check your version by opening a terminal and typing <code>java -version</code>. If you see <code>21</code> or higher you are good.</li>
-<li><strong>The orchestrator jar</strong> - the main PulseOrchestrator file, downloaded from the releases page.</li>
+<li><strong>The Launcher, Runtime Host, and orchestrator jars</strong> - the three production runtime files, downloaded from the same release.</li>
 <li><strong>The Paper plugin jar</strong> <em>(optional)</em> - only needed on backend Paper servers if you want the bridge API, PlaceholderAPI integration, or per-service metrics.</li>
 </ul>
 <div class="admonition tip">
@@ -1141,38 +1197,40 @@
 </div>
 </div>
 </div>
-<p>Copy the orchestrator jar into that folder.</p>
+<p>Copy all three runtime JARs into that folder. Keep the Launcher filename versioned, but rename the other two bootstrap files as shown:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>launcher-&lt;version&gt;.jar
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>runtime-host.jar
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>orchestrator.jar
+</code></pre></div>
+<p>The Launcher copies active components into <code>runtime/versions/</code> and manages later orchestrator updates from there.</p>
 <div class="admonition warning">
 <p class="admonition-title">Keep this folder in a safe place</p>
 <p>Do not put it in a temporary or download folder. All your server data will live here.</p>
 </div>
 <hr />
-<h2 id="start-the-orchestrator">Start the orchestrator<a class="headerlink" href="#start-the-orchestrator" title="Permanent link">&para;</a></h2>
-<p>Open a terminal, navigate into your folder, and run the jar.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Windows</label><label for="__tabbed_2_2">Linux (foreground)</label><label for="__tabbed_2_3">Linux (background with screen)</label></div>
+<h2 id="start-pulse-through-the-launcher">Start Pulse through the Launcher<a class="headerlink" href="#start-pulse-through-the-launcher" title="Permanent link">&para;</a></h2>
+<p>Open a terminal, navigate into your Pulse home folder, and run the Launcher. The orchestrator console still appears in the same terminal.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Windows</label><label for="__tabbed_2_2">Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">java</span> <span class="n">-jar</span> <span class="n">orchestrator</span><span class="p">-&lt;</span><span class="n">version</span><span class="p">&gt;.</span><span class="n">jar</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">java</span> <span class="n">-jar</span> <span class="n">launcher</span><span class="p">-&lt;</span><span class="n">version</span><span class="p">&gt;.</span><span class="n">jar</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>java<span class="w"> </span>-jar<span class="w"> </span>orchestrator-&lt;version&gt;.jar
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>java<span class="w"> </span>-jar<span class="w"> </span>launcher-&lt;version&gt;.jar
 </code></pre></div>
-</div>
-<div class="tabbed-block">
-<p><code>screen</code> keeps the program running after you close your SSH connection.</p>
-<p>If you do not have screen installed: <code>sudo apt install screen</code></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>screen<span class="w"> </span>-S<span class="w"> </span>pulse
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>java<span class="w"> </span>-jar<span class="w"> </span>orchestrator-&lt;version&gt;.jar
-</code></pre></div>
-<p>To leave the screen running in the background: press ++ctrl+a++ then ++d++.</p>
-<p>To come back to it later: <code>screen -r pulse</code></p>
 </div>
 </div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Replace <code>&lt;version&gt;</code> with the actual version number, for example <code>orchestrator-1.0.0-beta.3.jar</code>.</p>
+<p>Replace <code>&lt;version&gt;</code> with the actual Launcher version, for example <code>launcher-1.0.0-beta.4.jar</code>.</p>
+</div>
+<p>The Launcher creates an exclusive lock for this home folder, starts the Runtime Host, and then starts the orchestrator. A second Launcher for the same folder exits instead of creating duplicate services.</p>
+<p>Nothing else is required for official updates. The Launcher already knows the official release source and verifies signed updates automatically. Once a signed release is available, use <code>system check-update</code> and <code>system update</code> from the orchestrator console.</p>
+<div class="admonition warning">
+<p class="admonition-title">Direct orchestrator startup</p>
+<p>Running <code>java -jar orchestrator.jar</code> directly is a development and recovery option on every platform. It runs in degraded mode, so <code>system update</code> and warm process continuity are disabled. Use the Launcher for production deployments.</p>
 </div>
 <hr />
 <h2 id="first-time-setup-wizard">First-time setup wizard<a class="headerlink" href="#first-time-setup-wizard" title="Permanent link">&para;</a></h2>
@@ -1223,10 +1281,18 @@
 <a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>  server-jars/         ← downloaded server JARs (auto-managed)
 <a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>  proxy/               ← built-in Velocity proxy files
 <a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>  logs/                ← orchestrator logs
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    runtime/              ← launcher-managed versions and local control state
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>        current-release.json
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>        versions/
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>        control/
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Do not delete pulse.db</p>
 <p>The <code>pulse.db</code> file is the database that tracks all your services. Deleting it means PulseOrchestrator forgets about all existing servers.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Protect runtime/control</p>
+<p>The Launcher enforces owner-only <code>runtime/control</code> permissions: <code>0700</code> for the directory and <code>0600</code> for files on POSIX, or current-user/System ACLs on Windows. It refuses launcher-managed startup when it cannot verify these permissions. Keep the complete Pulse home folder restricted to the runtime account and never publish <code>runtime/control</code> in a support bundle.</p>
 </div>
 <hr />
 <h2 id="connect-the-plugins">Connect the plugins<a class="headerlink" href="#connect-the-plugins" title="Permanent link">&para;</a></h2>
@@ -1249,6 +1315,8 @@
 <p>With the orchestrator running, the next step is to define your first <strong>task</strong> (a server blueprint) and create a server from it.</p>
 <ul>
 <li><a href="../../guides/feature-guide/">Feature Guide</a> - learn about tasks, services, the proxy, and templates</li>
+<li><a href="../../guides/runtime-architecture/">Runtime Architecture</a> - understand Launcher, Runtime Host, and orchestrator ownership</li>
+<li><a href="../../guides/updates/">Updating Pulse</a> - configure and verify warm or maintenance updates</li>
 <li><a href="../../guides/configuration/">Configuration Reference</a> - a full explanation of every setting in <code>config.json</code> and <code>tasks.json</code></li>
 </ul>
 
@@ -1311,7 +1379,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

@@ -10,29 +10,31 @@
       
       
       
-        <link rel="canonical" href="https://pulseorchestrator.github.io/PulseOrchestrator/dev/">
+        <link rel="canonical" href="https://pulseorchestrator.github.io/PulseOrchestrator/dev/guides/runtime-architecture/">
       
       
+        <link rel="prev" href="../feature-guide/">
       
-        <link rel="next" href="getting-started/install/">
+      
+        <link rel="next" href="../updates/">
       
       
         
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>PulseOrchestrator Docs</title>
+        <title>Runtime Architecture - PulseOrchestrator Docs</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,9 +53,9 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/extra.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#pulseorchestrator" class="md-skip">
+        <a href="#runtime-architecture" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +98,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="PulseOrchestrator Docs" class="md-header__button md-logo" aria-label="PulseOrchestrator Docs" data-md-component="logo">
+    <a href="../.." title="PulseOrchestrator Docs" class="md-header__button md-logo" aria-label="PulseOrchestrator Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -116,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Runtime Architecture
             
           </span>
         </div>
@@ -213,11 +215,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -238,7 +238,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="getting-started/install/" class="md-tabs__link">
+        <a href="../../getting-started/install/" class="md-tabs__link">
           
   
   
@@ -254,11 +254,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="guides/feature-guide/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../feature-guide/" class="md-tabs__link">
           
   
   
@@ -278,7 +280,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="guides/bridge-api/" class="md-tabs__link">
+        <a href="../bridge-api/" class="md-tabs__link">
           
   
   
@@ -312,7 +314,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="PulseOrchestrator Docs" class="md-nav__button md-logo" aria-label="PulseOrchestrator Docs" data-md-component="logo">
+    <a href="../.." title="PulseOrchestrator Docs" class="md-nav__button md-logo" aria-label="PulseOrchestrator Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -339,37 +341,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Home
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -385,59 +360,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#documentation-map" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Documentation map
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-these-docs-cover" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What These Docs Cover
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#typical-next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Typical Next Steps
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -501,7 +423,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting-started/install/" class="md-nav__link">
+      <a href="../../getting-started/install/" class="md-nav__link">
         
   
   
@@ -533,26 +455,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -570,7 +497,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -588,7 +515,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/feature-guide/" class="md-nav__link">
+      <a href="../feature-guide/" class="md-nav__link">
         
   
   
@@ -613,10 +540,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="guides/runtime-architecture/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runtime Architecture
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -632,6 +586,92 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supported-startup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported startup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#state-and-folders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State and folders
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reattachment-after-orchestrator-restart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reattachment after orchestrator restart
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shutdown-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shutdown behavior
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-recommendations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational recommendations
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -644,7 +684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/updates/" class="md-nav__link">
+      <a href="../updates/" class="md-nav__link">
         
   
   
@@ -672,7 +712,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/configuration/" class="md-nav__link">
+      <a href="../configuration/" class="md-nav__link">
         
   
   
@@ -700,7 +740,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/placeholderapi/" class="md-nav__link">
+      <a href="../placeholderapi/" class="md-nav__link">
         
   
   
@@ -787,7 +827,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/bridge-api/" class="md-nav__link">
+      <a href="../bridge-api/" class="md-nav__link">
         
   
   
@@ -842,10 +882,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#documentation-map" class="md-nav__link">
+  <a href="#components" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Documentation map
+        Components
       
     </span>
   </a>
@@ -853,10 +893,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-these-docs-cover" class="md-nav__link">
+  <a href="#supported-startup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What These Docs Cover
+        Supported startup
       
     </span>
   </a>
@@ -864,10 +904,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#typical-next-steps" class="md-nav__link">
+  <a href="#state-and-folders" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Typical Next Steps
+        State and folders
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reattachment-after-orchestrator-restart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reattachment after orchestrator restart
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shutdown-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shutdown behavior
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-recommendations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational recommendations
       
     </span>
   </a>
@@ -894,70 +967,147 @@
   
 
 
-<h1 id="pulseorchestrator">PulseOrchestrator<a class="headerlink" href="#pulseorchestrator" title="Permanent link">&para;</a></h1>
-<div class="hero">
-  <div>
-    <p class="eyebrow">Operations docs</p>
-    <h1>Run, route, and scale Minecraft services from one control plane.</h1>
-    <p class="hero-copy">
-      PulseOrchestrator combines a launcher-managed control plane, a persistent process host, a built-in Velocity proxy, and Minecraft integrations into one workflow for provisioning and routing game services.
-    </p>
-    <div class="hero-actions">
-      <a class="md-button md-button--primary" href="getting-started/install/">Install guide</a>
-      <a class="md-button" href="guides/feature-guide/">Feature guide</a>
-    </div>
-  </div>
-  <div class="hero-panel">
-    <p class="hero-kicker">What ships together</p>
-    <ul>
-      <li>Launcher for version activation and orchestrator restart</li>
-      <li>Runtime Host that keeps proxy and service processes alive</li>
-      <li>Orchestrator CLI, API, setup, and lifecycle policy</li>
-      <li>Paper plugin for bridge access, placeholders, and service metrics</li>
-      <li>Velocity plugin for proxy commands, routing, and maintenance integration</li>
-    </ul>
-  </div>
-</div>
-
-<h2 id="documentation-map">Documentation map<a class="headerlink" href="#documentation-map" title="Permanent link">&para;</a></h2>
-<div class="card-grid">
-  <a class="doc-card" href="getting-started/install/">
-    <strong>Install guide</strong>
-    <span>What to download, how to start the orchestrator, what the setup wizard does, and how to connect the plugins.</span>
-  </a>
-  <a class="doc-card" href="guides/feature-guide/">
-    <strong>Feature guide</strong>
-    <span>The core concepts, CLI flows, proxy routing model, and day-to-day operations.</span>
-  </a>
-  <a class="doc-card" href="guides/runtime-architecture/">
-    <strong>Runtime architecture</strong>
-    <span>How Launcher, Runtime Host, and Orchestrator divide ownership and preserve live services.</span>
-  </a>
-  <a class="doc-card" href="guides/updates/">
-    <strong>Updating Pulse</strong>
-    <span>Warm updates, maintenance updates, rollback limits, verification, and recovery.</span>
-  </a>
-</div>
-
-<h2 id="what-these-docs-cover">What These Docs Cover<a class="headerlink" href="#what-these-docs-cover" title="Permanent link">&para;</a></h2>
-<p>This site is for PulseOrchestrator users and operators.</p>
-<p>The focus is:</p>
-<ul>
-<li>getting the orchestrator running</li>
-<li>connecting Paper and Velocity integrations</li>
-<li>understanding the task, service, and proxy model</li>
-<li>learning the main operational commands and workflows</li>
-<li>applying compatible updates without restarting Minecraft services</li>
-<li>planning maintenance when the Runtime Host or persistence model changes</li>
-</ul>
-<h2 id="typical-next-steps">Typical Next Steps<a class="headerlink" href="#typical-next-steps" title="Permanent link">&para;</a></h2>
+<h1 id="runtime-architecture">Runtime Architecture<a class="headerlink" href="#runtime-architecture" title="Permanent link">&para;</a></h1>
+<p>Pulse separates the operator-facing control plane from the processes that keep Minecraft services online. A normal production installation runs three Java components with different responsibilities.</p>
+<h2 id="components">Components<a class="headerlink" href="#components" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Responsibility</th>
+<th>Update frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Launcher</td>
+<td>Starts the runtime in the correct order, prevents a second instance, activates downloaded versions, and restarts the orchestrator</td>
+<td>Rare</td>
+</tr>
+<tr>
+<td>Runtime Host</td>
+<td>Owns the Velocity and Minecraft process handles, command input, console output, and live runtime state</td>
+<td>Infrequent</td>
+</tr>
+<tr>
+<td>Orchestrator</td>
+<td>Provides the CLI and API, reads configuration, stores service metadata, provisions services, applies policy, and requests lifecycle actions</td>
+<td>Frequent</td>
+</tr>
+</tbody>
+</table>
+<p>The Minecraft services and built-in Velocity proxy are children of the Runtime Host, not the orchestrator. This is why the orchestrator can restart during a compatible update without restarting the game network.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Launcher
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  |-- Runtime Host
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  |     |-- Velocity proxy
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  |     `-- Minecraft service JVMs
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  |
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  `-- Orchestrator
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        |-- interactive console
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        |-- public API
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        |-- config, tasks, and database
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        `-- local authenticated control connection to Runtime Host
+</code></pre></div>
+<p>The Runtime Host is internal. Operators use the orchestrator console and API; plugins also communicate only with the orchestrator API.</p>
+<h2 id="supported-startup">Supported startup<a class="headerlink" href="#supported-startup" title="Permanent link">&para;</a></h2>
+<p>Start Pulse through the Launcher for production use. The Launcher:</p>
 <ol>
-<li>Install PulseOrchestrator and complete the setup wizard.</li>
-<li>Connect the Paper plugin or Velocity plugin to the API.</li>
-<li>Create your first task blueprint.</li>
-<li>Create and start your first service.</li>
-<li>Configure proxy routing for player entry and fallback behavior.</li>
+<li>acquires an exclusive lock for the Pulse home folder;</li>
+<li>starts or reconnects to the Runtime Host;</li>
+<li>starts the orchestrator in the same terminal;</li>
+<li>keeps running while the orchestrator is active; and</li>
+<li>processes update requests after the orchestrator exits for an update.</li>
 </ol>
+<p>Starting the orchestrator JAR directly is a development and recovery option. It runs in degraded mode and cannot use launcher-managed <code>system update</code>. Processes started in that mode cannot be guaranteed to survive an orchestrator restart.</p>
+<p>The Launcher starts child processes with the Java runtime that started it: <code>java.exe</code> on Windows and <code>java</code> on other platforms.</p>
+<h2 id="state-and-folders">State and folders<a class="headerlink" href="#state-and-folders" title="Permanent link">&para;</a></h2>
+<p>User-managed state remains in the Pulse home folder:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>config.json
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>tasks.json
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>pulse.db
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>services/
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>templates/
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>server-jars/
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>proxy/
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>logs/
+</code></pre></div>
+<p>Launcher-managed state is stored separately:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>runtime/
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  current-release.json
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  versions/
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  control/
+</code></pre></div>
+<ul>
+<li><code>current-release.json</code> selects the active orchestrator and Runtime Host JARs.</li>
+<li><code>versions/</code> contains immutable versioned artifacts.</li>
+<li><code>control/</code> contains local session tokens, process metadata, the launcher lock, and pending update requests.</li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">Protect the control folder</p>
+</div>
+<p>The Launcher creates <code>control/</code> with owner-only permissions and verifies them before every launcher-managed start: <code>0700</code> for the directory and <code>0600</code> for files on POSIX, or an ACL limited to the runtime user and required System account on Windows. An unsafe owner, ACL, permission mode, or symbolic link stops launcher-managed startup. Run Pulse under a dedicated operating-system account and do not expose this folder in diagnostics.</p>
+<p>Do not edit files in <code>runtime/control/</code> while Pulse is running. Do not use <code>pulse.db</code> or a saved PID as proof that a service is live. The Runtime Host is the source of truth for current process state.</p>
+<h2 id="reattachment-after-orchestrator-restart">Reattachment after orchestrator restart<a class="headerlink" href="#reattachment-after-orchestrator-restart" title="Permanent link">&para;</a></h2>
+<p>During a warm update, the Runtime Host remains alive and retains every process handle. The new orchestrator asks the host for its runtime registry and reattaches to existing service identities. It does not merely look up persisted PIDs.</p>
+<p>After reattachment, the orchestrator can again:</p>
+<ul>
+<li>show live status;</li>
+<li>send console commands;</li>
+<li>read console output;</li>
+<li>stop and restart services; and</li>
+<li>update proxy routing.</li>
+</ul>
+<p>If the Runtime Host cannot be reached, <code>system status</code> reports <code>HOST_UNAVAILABLE</code>. Persisted service information may still be shown, but live control is not reliable until the host connection is restored.</p>
+<p>A temporary host connection failure does not by itself mark a service as stopped or failed. Pulse keeps the last host-confirmed runtime identity and reconnects with backoff; an exit is accepted only after the host returns a matching stopped runtime.</p>
+<h2 id="shutdown-behavior">Shutdown behavior<a class="headerlink" href="#shutdown-behavior" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Orchestrator</th>
+<th>Runtime Host</th>
+<th>Services and proxy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Compatible warm update</td>
+<td>Restarts</td>
+<td>Keeps running</td>
+<td>Keep running</td>
+</tr>
+<tr>
+<td>Maintenance update</td>
+<td>Restarts</td>
+<td>Drains and is replaced when required</td>
+<td>Stop and are restored once from the request-bound maintenance plan</td>
+</tr>
+<tr>
+<td><code>system shutdown</code></td>
+<td>Stops</td>
+<td>Drains, then stops with Launcher</td>
+<td>Stop</td>
+</tr>
+<tr>
+<td>Direct orchestrator restart</td>
+<td>Restarts</td>
+<td>Not available</td>
+<td>Continuity is not guaranteed</td>
+</tr>
+</tbody>
+</table>
+<p>A warm update protects game-process continuity, not every possible failure. A Runtime Host crash loses the live stdin/stdout ownership that makes reattachment possible. The current architecture detects this condition but does not transparently recover those process handles.</p>
+<h2 id="operational-recommendations">Operational recommendations<a class="headerlink" href="#operational-recommendations" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Keep the Launcher attached to a service supervisor that stops the whole Pulse process tree intentionally.</li>
+<li>Do not configure a supervisor to kill and restart only one of the three components.</li>
+<li>Back up <code>pulse.db</code>, <code>config.json</code>, <code>tasks.json</code>, <code>services/</code>, and <code>proxy/</code> before maintenance updates.</li>
+<li>Keep the Runtime Host stable. Routine features and policy changes should normally ship in the orchestrator.</li>
+<li>Check <code>system status</code> after every update and test a service command plus fresh console output.</li>
+<li>Treat a Runtime Host update as planned maintenance even when the updater automates it.</li>
+<li>During a host replacement, wait for the Launcher to finish the drain operation before starting any manual recovery action.</li>
+</ul>
+<p>See <a href="../updates/">Updating Pulse</a> for update modes and the operator workflow.</p>
 
 
 
@@ -1015,10 +1165,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight", "toc.follow"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
