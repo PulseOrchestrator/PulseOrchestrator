@@ -769,6 +769,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#upgrading-a-server-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upgrading a server version
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#plugin-behaviour" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1254,6 +1265,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#upgrading-a-server-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upgrading a server version
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#plugin-behaviour" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1495,11 +1517,24 @@
 <a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>jar update-all                ← update every cached JAR
 </code></pre></div>
 <div class="admonition note">
-<p class="admonition-title">Updating JARs does not affect running services</p>
-<p>Services copy their JAR at creation time. To apply a new build to an existing service, rebuild it:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>service rebuild lobby-1
+<p class="admonition-title">Applying a new build to a service</p>
+<p>A running service keeps using its current JAR until it is restarted. The server JAR is
+refreshed from the cache on the next start, so once the cache holds the new build, a plain
+restart applies it without touching world or config data:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>service restart lobby-1
 </code></pre></div>
-<p>Rebuilding wipes and re-provisions the service directory. Back up persistent service data before running it.</p>
+</div>
+<hr />
+<h2 id="upgrading-a-server-version">Upgrading a server version<a class="headerlink" href="#upgrading-a-server-version" title="Permanent link">&para;</a></h2>
+<p>To move a task (and its services) to a newer Minecraft version, upgrade the task blueprint and then restart the running services:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>task upgrade lobby            ← upgrade to the latest version for the task's software
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>task upgrade lobby 1.21.5     ← or upgrade to a specific version
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>service restart lobby-1       ← apply the new version to a running service
+</code></pre></div>
+<p><code>task upgrade</code> downloads the target JAR and points the task at the new version, so <strong>new</strong> services from that task use it immediately. <strong>Existing</strong> services pick up the new version on their next restart - the server JAR is swapped in place while worlds, configs, and plugins are preserved.</p>
+<div class="admonition warning">
+<p class="admonition-title">Never rebuild to change versions</p>
+<p>Do not use <code>service rebuild</code> to apply a version change. Rebuild re-provisions the service directory from the template and <strong>deletes</strong> any data that is not part of the template, including worlds. A plain <code>service restart</code> is all that is needed and is data-safe.</p>
 </div>
 <hr />
 <h2 id="plugin-behaviour">Plugin behaviour<a class="headerlink" href="#plugin-behaviour" title="Permanent link">&para;</a></h2>
