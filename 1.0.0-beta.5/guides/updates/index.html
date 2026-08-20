@@ -1,0 +1,1229 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Installation, operations, and feature documentation for PulseOrchestrator.">
+      
+      
+      
+        <link rel="canonical" href="https://pulseorchestrator.github.io/PulseOrchestrator/1.0.0-beta.5/guides/updates/">
+      
+      
+        <link rel="prev" href="../runtime-architecture/">
+      
+      
+        <link rel="next" href="../configuration/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Updating Pulse - PulseOrchestrator Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"IBM Plex Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#updating-pulse" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="PulseOrchestrator Docs" class="md-header__button md-logo" aria-label="PulseOrchestrator Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PulseOrchestrator Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Updating Pulse
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/PulseOrchestrator/PulseOrchestrator" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    PulseOrchestrator/PulseOrchestrator
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/install/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../feature-guide/" class="md-tabs__link">
+          
+  
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../bridge-api/" class="md-tabs__link">
+          
+  
+  
+  Plugin Development
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PulseOrchestrator Docs" class="md-nav__button md-logo" aria-label="PulseOrchestrator Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    PulseOrchestrator Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/PulseOrchestrator/PulseOrchestrator" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    PulseOrchestrator/PulseOrchestrator
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feature Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runtime-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runtime Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Updating Pulse
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Updating Pulse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#before-enabling-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before enabling updates
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release verification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-and-apply" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check and apply
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#warm-update-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Warm update flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maintenance-update-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maintenance update flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-an-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify an update
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-the-host-is-unavailable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When the host is unavailable
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual recovery
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../placeholderapi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PlaceholderAPI Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin Development
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Plugin Development
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bridge-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bridge API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#before-enabling-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before enabling updates
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release verification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-and-apply" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check and apply
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#warm-update-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Warm update flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maintenance-update-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maintenance update flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-an-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify an update
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-the-host-is-unavailable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When the host is unavailable
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual recovery
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="updating-pulse">Updating Pulse<a class="headerlink" href="#updating-pulse" title="Permanent link">&para;</a></h1>
+<p>Pulse uses release metadata to decide whether a new orchestrator can be activated while the Minecraft network stays online or whether the complete runtime needs maintenance.</p>
+<h2 id="before-enabling-updates">Before enabling updates<a class="headerlink" href="#before-enabling-updates" title="Permanent link">&para;</a></h2>
+<p>Launcher-managed updates require:</p>
+<ul>
+<li>Java 21;</li>
+<li>startup through the Launcher, not directly through the orchestrator JAR;</li>
+<li>a writable Pulse home folder;</li>
+<li>access to the public GitHub release and raw manifest URLs; and</li>
+<li>an update configuration with checks enabled and a release manifest URL.</li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">"updates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">"checkOnStartup"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">"autoApply"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nt">"includePrereleases"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nt">"checkIntervalHours"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">"runtimeWarningIntervalHours"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nt">"githubOwner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PulseOrchestrator"</span><span class="p">,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nt">"githubRepo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PulseOrchestrator"</span><span class="p">,</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nt">"policyUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://raw.githubusercontent.com/PulseOrchestrator/PulseOrchestrator/refs/heads/main/update-policy.json"</span><span class="p">,</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="nt">"releaseManifestUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://raw.githubusercontent.com/PulseOrchestrator/PulseOrchestrator/refs/heads/main/release-manifest.json"</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">}</span>
+</code></pre></div>
+<p>Keep <code>autoApply</code> disabled when you want every update to be operator-initiated. When enabled, only warm updates may be applied automatically. Maintenance updates always require manual confirmation.</p>
+<p>Set <code>includePrereleases</code> to <code>true</code> only for beta installations. Stable installations should leave it disabled.</p>
+<h2 id="release-verification">Release verification<a class="headerlink" href="#release-verification" title="Permanent link">&para;</a></h2>
+<p>No setup is required beyond starting the official Launcher. It contains the official raw GitHub manifest endpoint, the allowed GitHub Release download path, and the public Ed25519 verification key. The orchestrator setting is used to discover and display update information; the Launcher independently loads the official manifest, verifies <code>release-manifest.json.sig</code>, and validates every downloaded JAR with its SHA-256 checksum and detached Ed25519 signature.</p>
+<h2 id="check-and-apply">Check and apply<a class="headerlink" href="#check-and-apply" title="Permanent link">&para;</a></h2>
+<p>Use the orchestrator console:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>system status
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>system check-update
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>system update
+</code></pre></div>
+<p><code>system status</code> should show <code>LAUNCHER_MANAGED</code> and a <code>LIVE</code> host before you start an update. <code>system check-update</code> fetches the safety policy and release information without changing the runtime. <code>system update</code> checks again and creates a small request containing only the selected target version, channel, source version, timestamp, and request ID. The Launcher independently reloads the built-in signed manifest source and reclassifies the mode before it downloads anything.</p>
+<p>The update can have one of three results:</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Downtime</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WARM_UPDATE</code></td>
+<td>Orchestrator API/CLI restarts briefly; services and proxy stay online</td>
+<td>Only explicitly complete and compatible protocol/persistence metadata permits the orchestrator artifact to activate, then it reattaches to the existing Runtime Host</td>
+</tr>
+<tr>
+<td><code>MAINTENANCE_UPDATE</code></td>
+<td>Services and proxy stop</td>
+<td>After confirmation, the runtime stops, required artifacts are activated, and a request-bound plan restores only the previously running proxy and services once</td>
+</tr>
+<tr>
+<td><code>UNSUPPORTED</code></td>
+<td>None</td>
+<td>Pulse explains the blocking reason and makes no change</td>
+</tr>
+</tbody>
+</table>
+<h2 id="warm-update-flow">Warm update flow<a class="headerlink" href="#warm-update-flow" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Orchestrator verifies that the target release has complete, internally consistent protocol metadata and an explicitly backward-compatible persistence model for the installed Runtime Host.</li>
+<li>Orchestrator queues an update request and shuts down only its API, CLI, health monitor, and other control-plane components.</li>
+<li>Runtime Host keeps Velocity and Minecraft service JVMs running.</li>
+<li>Launcher checks request freshness and source version, verifies <code>release-manifest.json.sig</code> against its compiled Ed25519 key, rejects HTTP or foreign release paths, then downloads the target orchestrator JAR and verifies its SHA-256 checksum plus detached signature.</li>
+<li>Launcher stores the JAR under <code>runtime/versions/</code>, updates <code>runtime/current-release.json</code>, and starts it.</li>
+<li>The new orchestrator reconnects to the Runtime Host and regains live control.</li>
+</ol>
+<p>If the new orchestrator exits with an error in the first 20 seconds, the Launcher can make one best-effort attempt to reactivate the previous orchestrator JAR. Services remain under the same Runtime Host during this attempt.</p>
+<div class="admonition warning">
+<p class="admonition-title">Rollback limits</p>
+<p>Warm rollback does not undo configuration, task, or database migrations. It also does not cover failures that appear after the startup window. Release compatibility is the primary safety mechanism; rollback is a last recovery attempt.</p>
+</div>
+<h2 id="maintenance-update-flow">Maintenance update flow<a class="headerlink" href="#maintenance-update-flow" title="Permanent link">&para;</a></h2>
+<p>A Runtime Host update, incompatible host protocol, or non-backward-compatible persistence change requires maintenance.</p>
+<p>Before confirming:</p>
+<ol>
+<li>notify players;</li>
+<li>create backups of <code>pulse.db</code>, <code>config.json</code>, <code>tasks.json</code>, <code>services/</code>, and <code>proxy/</code>;</li>
+<li>verify enough disk space exists for old and new versioned JARs plus service backups; and</li>
+<li>keep direct terminal access to the host.</li>
+</ol>
+<p>After confirmation, Pulse atomically records the queued update ID, the running services, and proxy state in a one-time restore plan before stopping the runtime. The Launcher requests a controlled host drain and waits for the final operation to confirm that no service or proxy child remains. It then verifies that the old host process and session are gone before starting the replacement host, activates the required artifacts, and consumes the plan as the control plane returns. Verify every expected service and the proxy after startup.</p>
+<div class="admonition warning">
+<p class="admonition-title">Maintenance validation</p>
+</div>
+<p>Confirm that old Java processes exited, that only the previously running services returned once, and that intentionally stopped services remain stopped after the next restart. Do not start a second Launcher or recover manually while the controlled host drain is still in progress.</p>
+<h2 id="verify-an-update">Verify an update<a class="headerlink" href="#verify-an-update" title="Permanent link">&para;</a></h2>
+<p>After either update type:</p>
+<ol>
+<li>Run <code>system status</code> and confirm the host is <code>LIVE</code>.</li>
+<li>Compare the expected running service count.</li>
+<li>Attach to one service or request its console tail and confirm new lines arrive.</li>
+<li>Send a harmless command such as <code>list</code> and verify its response.</li>
+<li>Confirm players can connect through the proxy.</li>
+<li>Review <code>logs/</code> and the Launcher/Runtime Host terminal output for errors.</li>
+<li>Inspect <code>runtime/current-release.json</code> only when troubleshooting; do not edit it during normal operation.</li>
+</ol>
+<p>For a warm update, service and proxy PIDs should remain unchanged. For a maintenance update, new PIDs are expected.</p>
+<h2 id="when-the-host-is-unavailable">When the host is unavailable<a class="headerlink" href="#when-the-host-is-unavailable" title="Permanent link">&para;</a></h2>
+<p>If <code>system status</code> reports <code>HOST_UNAVAILABLE</code>:</p>
+<ul>
+<li>do not assume persisted <code>RUNNING</code> states prove that processes are controllable;</li>
+<li>do not start duplicate services manually on the same ports;</li>
+<li>preserve the terminal output and <code>logs/</code>;</li>
+<li>inspect the process list for the Launcher, Runtime Host, orchestrator, Velocity, and service JVMs; and</li>
+<li>plan a controlled full restart if the Runtime Host cannot be recovered.</li>
+</ul>
+<p>The orchestrator cannot reconstruct lost stdin/stdout handles from a PID alone.</p>
+<h2 id="manual-recovery">Manual recovery<a class="headerlink" href="#manual-recovery" title="Permanent link">&para;</a></h2>
+<p>If the Launcher cannot activate a release:</p>
+<ol>
+<li>Stop the complete Pulse runtime and confirm all child Java processes have exited.</li>
+<li>Back up the Pulse home folder before changing control files.</li>
+<li>Preserve <code>runtime/current-release.json</code>, <code>runtime/control/</code>, and logs for diagnosis.</li>
+<li>Restore the previous known-good orchestrator and Runtime Host JARs from <code>runtime/versions/</code> only while Pulse is fully stopped.</li>
+<li>Restore database/config/service backups when the release included incompatible migrations.</li>
+<li>Start through the Launcher and verify <code>system status</code> before admitting players.</li>
+</ol>
+<p>Do not replace an artifact in <code>runtime/versions/</code> while Pulse is running. Do not delete <code>pulse.db</code> to resolve an update problem.</p>
+<h2 id="security-properties">Security properties<a class="headerlink" href="#security-properties" title="Permanent link">&para;</a></h2>
+<p>The Launcher treats the local update request as a selector, not as authority for URLs, hashes, or update mode. It accepts only a fresh request for the active source version, then independently reloads its built-in official HTTPS manifest URL. The exact manifest bytes and every required artifact signature must verify with the compiled Ed25519 public key. Initial artifact URLs must use the official GitHub Release path; GitHub's HTTPS CDN redirects are then accepted while the final JAR is still checked against its detached signature and SHA-256 hash. A wrong hash, missing signature, invalid signature, HTTP URL, foreign release path, stale request, unsafe control permission, or inconsistent release metadata fails closed without artifact activation.</p>
+<p>Keep the Pulse home folder restricted to the dedicated runtime account. The Launcher verifies <code>runtime/control</code> before each managed start and refuses an unsafe owner, permission mode, ACL, or symbolic link.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "content.code.copy", "content.tabs.link", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
