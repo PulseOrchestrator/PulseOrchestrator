@@ -210,14 +210,31 @@ jar update paper 1.21.4       ← download the latest build for that version
 jar update-all                ← update every cached JAR
 ```
 
-!!! note "Updating JARs does not affect running services"
-    Services copy their JAR at creation time. To apply a new build to an existing service, rebuild it:
+!!! note "Applying a new build to a service"
+    A running service keeps using its current JAR until it is restarted. The server JAR is
+    refreshed from the cache on the next start, so once the cache holds the new build, a plain
+    restart applies it without touching world or config data:
 
     ```text
-    service rebuild lobby-1
+    service restart lobby-1
     ```
 
-    Rebuilding wipes and re-provisions the service directory. Back up persistent service data before running it.
+---
+
+## Upgrading a server version
+
+To move a task (and its services) to a newer Minecraft version, upgrade the task blueprint and then restart the running services:
+
+```text
+task upgrade lobby            ← upgrade to the latest version for the task's software
+task upgrade lobby 1.21.5     ← or upgrade to a specific version
+service restart lobby-1       ← apply the new version to a running service
+```
+
+`task upgrade` downloads the target JAR and points the task at the new version, so **new** services from that task use it immediately. **Existing** services pick up the new version on their next restart - the server JAR is swapped in place while worlds, configs, and plugins are preserved.
+
+!!! warning "Never rebuild to change versions"
+    Do not use `service rebuild` to apply a version change. Rebuild re-provisions the service directory from the template and **deletes** any data that is not part of the template, including worlds. A plain `service restart` is all that is needed and is data-safe.
 
 ---
 
