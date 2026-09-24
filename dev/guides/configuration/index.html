@@ -1279,40 +1279,42 @@
 <a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">  </span><span class="nt">"health"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">    </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">    </span><span class="nt">"checkIntervalSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
-<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">    </span><span class="nt">"maxRestartAttempts"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">    </span><span class="nt">"restartCooldownSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span>
-<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">    </span><span class="nt">"crashWindowSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span>
-<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">  </span><span class="p">},</span>
-<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
-<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">  </span><span class="nt">"logs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">    </span><span class="nt">"logLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INFO"</span><span class="p">,</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">    </span><span class="nt">"rotationEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="w">    </span><span class="nt">"maxLogFiles"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="w">    </span><span class="nt">"maxLogSizeMB"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
-<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="w">    </span><span class="nt">"cleanupIntervalHours"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span>
-<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="w">    </span><span class="nt">"retentionDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span>
-<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="w">  </span><span class="p">},</span>
-<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
-<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="w">  </span><span class="nt">"backups"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="w">    </span><span class="nt">"maxSlots"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
-<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="w">    </span><span class="nt">"excludedDirs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"logs"</span><span class="p">,</span><span class="w"> </span><span class="s2">"cache"</span><span class="p">,</span><span class="w"> </span><span class="s2">"bundler"</span><span class="p">,</span><span class="w"> </span><span class="s2">".paper-remapped"</span><span class="p">]</span>
-<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="w">  </span><span class="p">},</span>
-<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>
-<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="w">  </span><span class="nt">"updates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="w">    </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="w">    </span><span class="nt">"checkOnStartup"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a><span class="w">    </span><span class="nt">"autoApply"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="w">    </span><span class="nt">"includePrereleases"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="w">    </span><span class="nt">"checkIntervalHours"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
-<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a><span class="w">    </span><span class="nt">"runtimeWarningIntervalHours"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
-<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a><span class="w">    </span><span class="nt">"githubOwner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PulseOrchestrator"</span><span class="p">,</span>
-<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a><span class="w">    </span><span class="nt">"githubRepo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PulseOrchestrator"</span><span class="p">,</span>
-<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="w">    </span><span class="nt">"policyUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://raw.githubusercontent.com/PulseOrchestrator/PulseOrchestrator/refs/heads/main/update-policy.json"</span><span class="p">,</span>
-<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a><span class="w">    </span><span class="nt">"releaseManifestUrl"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
-<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="w">  </span><span class="p">},</span>
-<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>
-<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="w">  </span><span class="nt">"enforceVersionApproval"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a><span class="p">}</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">    </span><span class="nt">"crashWindowSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">    </span><span class="nt">"restartBackoffInitialSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">    </span><span class="nt">"restartBackoffMaxSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">    </span><span class="nt">"maxParallelStarts"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">    </span><span class="nt">"giveUpAfterFailures"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">  </span><span class="nt">"logs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="w">    </span><span class="nt">"logLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INFO"</span><span class="p">,</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="w">    </span><span class="nt">"rotationEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="w">    </span><span class="nt">"maxLogFiles"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="w">    </span><span class="nt">"maxLogSizeMB"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="w">    </span><span class="nt">"cleanupIntervalHours"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="w">    </span><span class="nt">"retentionDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="w">  </span><span class="nt">"backups"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="w">    </span><span class="nt">"maxSlots"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="w">    </span><span class="nt">"excludedDirs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"logs"</span><span class="p">,</span><span class="w"> </span><span class="s2">"cache"</span><span class="p">,</span><span class="w"> </span><span class="s2">"bundler"</span><span class="p">,</span><span class="w"> </span><span class="s2">".paper-remapped"</span><span class="p">]</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="w">  </span><span class="nt">"updates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a><span class="w">    </span><span class="nt">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="w">    </span><span class="nt">"checkOnStartup"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="w">    </span><span class="nt">"autoApply"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a><span class="w">    </span><span class="nt">"includePrereleases"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a><span class="w">    </span><span class="nt">"checkIntervalHours"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a><span class="w">    </span><span class="nt">"runtimeWarningIntervalHours"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="w">    </span><span class="nt">"githubOwner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PulseOrchestrator"</span><span class="p">,</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a><span class="w">    </span><span class="nt">"githubRepo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PulseOrchestrator"</span><span class="p">,</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="w">    </span><span class="nt">"policyUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://raw.githubusercontent.com/PulseOrchestrator/PulseOrchestrator/refs/heads/main/update-policy.json"</span><span class="p">,</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="w">    </span><span class="nt">"releaseManifestUrl"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>
+<a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a><span class="w">  </span><span class="nt">"enforceVersionApproval"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a><span class="p">}</span>
 </code></pre></div>
 <hr />
 <h3 id="api-settings">API settings<a class="headerlink" href="#api-settings" title="Permanent link">&para;</a></h3>
@@ -1546,7 +1548,8 @@
 <p>After enabling Bedrock for the first time, an initial Geyser config is written to <code>proxy/plugins/Geyser-Velocity/config.yml</code>. You can edit it freely - PulseOrchestrator will not overwrite it on subsequent starts.</p>
 <hr />
 <h3 id="health-monitor">Health monitor<a class="headerlink" href="#health-monitor" title="Permanent link">&para;</a></h3>
-<p>The health monitor watches your game servers and can restart them automatically if they crash.</p>
+<p>The health monitor keeps every server in the state you asked for. <code>service start</code> marks a server as <em>should run</em>, <code>service stop</code> marks it as <em>should stay stopped</em>. Pulse stores this choice and restores it after every orchestrator restart or full shutdown. A server you stopped stays stopped, even with <code>restartPolicy</code> <code>ALWAYS</code>.</p>
+<p>When a server exits on its own, the task's <code>restartPolicy</code> decides whether it comes back: <code>ALWAYS</code> restarts after every exit (including an in-game <code>/stop</code>), <code>ON_FAILURE</code> restarts after crashes and failed starts, <code>NEVER</code> leaves it stopped.</p>
 <table>
 <thead>
 <tr>
@@ -1559,31 +1562,41 @@
 <tr>
 <td><code>health.enabled</code></td>
 <td><code>true</code></td>
-<td>Turn automatic health checking on or off. Leave this <code>true</code> in almost all cases.</td>
+<td>Turn automatic restarts after unexpected exits on or off. Servers that should run are still started when Pulse starts.</td>
 </tr>
 <tr>
 <td><code>health.checkIntervalSeconds</code></td>
 <td><code>30</code></td>
-<td>How often (in seconds) the monitor checks each server's status.</td>
+<td>Safety-net interval (in seconds) for checking all servers. Exits and state changes are handled immediately.</td>
 </tr>
 <tr>
-<td><code>health.maxRestartAttempts</code></td>
-<td><code>3</code></td>
-<td>How many times the monitor will try to restart a crashed server before giving up and marking it <code>FAILED</code>.</td>
+<td><code>health.restartBackoffInitialSeconds</code></td>
+<td><code>5</code></td>
+<td>Wait before the first automatic restart. Each further consecutive failure doubles the wait.</td>
 </tr>
 <tr>
-<td><code>health.restartCooldownSeconds</code></td>
-<td><code>60</code></td>
-<td>How many seconds to wait between restart attempts. This prevents rapid restart loops.</td>
+<td><code>health.restartBackoffMaxSeconds</code></td>
+<td><code>300</code></td>
+<td>Upper limit for the wait between automatic restarts.</td>
 </tr>
 <tr>
 <td><code>health.crashWindowSeconds</code></td>
 <td><code>300</code></td>
-<td>The time window (in seconds) used to count crashes. If a server crashes <code>maxRestartAttempts</code> times within this window, it is marked <code>FAILED</code>. Set it higher to be more tolerant of occasional crashes.</td>
+<td>After a server has run this long without exiting, its failure counter is reset.</td>
+</tr>
+<tr>
+<td><code>health.maxParallelStarts</code></td>
+<td><code>2</code></td>
+<td>How many servers Pulse starts at the same time. Tasks with a higher <code>startPriority</code> start first, then the proxy entry and fallback tasks.</td>
+</tr>
+<tr>
+<td><code>health.giveUpAfterFailures</code></td>
+<td><code>0</code></td>
+<td>After this many consecutive failures, Pulse stops trying and marks the server as <em>should stay stopped</em>. <code>0</code> keeps retrying with backoff.</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Example:</strong> With default settings, a server that crashes 3 times within 5 minutes is marked <code>FAILED</code> and left stopped. Investigate the logs and restart it manually.</p>
+<p><strong>Example:</strong> With default settings, a crashing server is restarted after 5, 10, 20, 40 ... seconds, at most every 5 minutes. <code>service start</code> resets the counter immediately.</p>
 <hr />
 <h3 id="log-settings">Log settings<a class="headerlink" href="#log-settings" title="Permanent link">&para;</a></h3>
 <p>These control how the orchestrator manages its own log files in the <code>logs/</code> folder.</p>
