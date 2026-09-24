@@ -60,9 +60,11 @@ Below is a fully annotated example showing every available setting with its defa
   "health": {
     "enabled": true,
     "checkIntervalSeconds": 30,
-    "maxRestartAttempts": 3,
-    "restartCooldownSeconds": 60,
-    "crashWindowSeconds": 300
+    "crashWindowSeconds": 300,
+    "restartBackoffInitialSeconds": 5,
+    "restartBackoffMaxSeconds": 300,
+    "maxParallelStarts": 2,
+    "giveUpAfterFailures": 0
   },
 
   "logs": {
@@ -196,17 +198,21 @@ After enabling Bedrock for the first time, an initial Geyser config is written t
 
 ### Health monitor { #health-monitor }
 
-The health monitor watches your game servers and can restart them automatically if they crash.
+The health monitor keeps every server in the state you asked for. `service start` marks a server as *should run*, `service stop` marks it as *should stay stopped*. Pulse stores this choice and restores it after every orchestrator restart or full shutdown. A server you stopped stays stopped, even with `restartPolicy` `ALWAYS`.
+
+When a server exits on its own, the task's `restartPolicy` decides whether it comes back: `ALWAYS` restarts after every exit (including an in-game `/stop`), `ON_FAILURE` restarts after crashes and failed starts, `NEVER` leaves it stopped.
 
 | Setting | Default | Description |
 |---|---|---|
-| `health.enabled` | `true` | Turn automatic health checking on or off. Leave this `true` in almost all cases. |
-| `health.checkIntervalSeconds` | `30` | How often (in seconds) the monitor checks each server's status. |
-| `health.maxRestartAttempts` | `3` | How many times the monitor will try to restart a crashed server before giving up and marking it `FAILED`. |
-| `health.restartCooldownSeconds` | `60` | How many seconds to wait between restart attempts. This prevents rapid restart loops. |
-| `health.crashWindowSeconds` | `300` | The time window (in seconds) used to count crashes. If a server crashes `maxRestartAttempts` times within this window, it is marked `FAILED`. Set it higher to be more tolerant of occasional crashes. |
+| `health.enabled` | `true` | Turn automatic restarts after unexpected exits on or off. Servers that should run are still started when Pulse starts. |
+| `health.checkIntervalSeconds` | `30` | Safety-net interval (in seconds) for checking all servers. Exits and state changes are handled immediately. |
+| `health.restartBackoffInitialSeconds` | `5` | Wait before the first automatic restart. Each further consecutive failure doubles the wait. |
+| `health.restartBackoffMaxSeconds` | `300` | Upper limit for the wait between automatic restarts. |
+| `health.crashWindowSeconds` | `300` | After a server has run this long without exiting, its failure counter is reset. |
+| `health.maxParallelStarts` | `2` | How many servers Pulse starts at the same time. Tasks with a higher `startPriority` start first, then the proxy entry and fallback tasks. |
+| `health.giveUpAfterFailures` | `0` | After this many consecutive failures, Pulse stops trying and marks the server as *should stay stopped*. `0` keeps retrying with backoff. |
 
-**Example:** With default settings, a server that crashes 3 times within 5 minutes is marked `FAILED` and left stopped. Investigate the logs and restart it manually.
+**Example:** With default settings, a crashing server is restarted after 5, 10, 20, 40 ... seconds, at most every 5 minutes. `service start` resets the counter immediately.
 
 ---
 

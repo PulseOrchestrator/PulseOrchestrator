@@ -84,7 +84,7 @@ Before confirming:
 3. verify enough disk space exists for old and new versioned JARs plus service backups; and
 4. keep direct terminal access to the host.
 
-After confirmation, Pulse atomically records the queued update ID, the running services, and proxy state in a one-time restore plan before stopping the runtime. The Launcher requests a controlled host drain and waits for the final operation to confirm that no service or proxy child remains. It then verifies that the old host process and session are gone before starting the replacement host, activates the required artifacts, and consumes the plan as the control plane returns. Verify every expected service and the proxy after startup.
+After confirmation, Pulse stops the runtime. Which services and whether the proxy should run is already stored as their desired state, so nothing extra has to be captured. The Launcher requests a controlled host drain and waits for the final operation to confirm that no service or proxy child remains. It then verifies that the old host process and session are gone before starting the replacement host and activates the required artifacts. When the control plane returns, it starts every service and the proxy that should run. Verify every expected service and the proxy after startup.
 
 !!! warning "Maintenance validation"
   Confirm that old Java processes exited, that only the previously running services returned once, and that intentionally stopped services remain stopped after the next restart. Do not start a second Launcher or recover manually while the controlled host drain is still in progress.
