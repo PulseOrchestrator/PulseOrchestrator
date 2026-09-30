@@ -151,7 +151,7 @@ service maintenance status lobby-1
 service maintenance disable lobby-1
 ```
 
-The message shown to blocked players and the bypass permission are configurable - see [Proxy settings](configuration.md#proxy) in the Configuration Reference.
+The message shown to blocked players and the bypass permission are configurable - see [Proxy settings](configuration.md#proxy-settings) in the Configuration Reference.
 
 !!! tip "Testing maintenance mode"
     Grant yourself the bypass permission before enabling maintenance so you can verify the network is still reachable while players are blocked.

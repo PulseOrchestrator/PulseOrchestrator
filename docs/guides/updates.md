@@ -61,12 +61,12 @@ The update can have one of three results:
 
 ## Warm update flow
 
-1. Orchestrator verifies that the target release has complete, internally consistent protocol metadata and an explicitly backward-compatible persistence model for the installed Runtime Host.
+1. Orchestrator verifies that the target release has complete, internally consistent protocol metadata and an explicitly backward-compatible persistence model and `rollbackSafe=true` for the installed Runtime Host.
 2. Orchestrator queues an update request and shuts down only its API, CLI, health monitor, and other control-plane components.
 3. Runtime Host keeps Velocity and Minecraft service JVMs running.
 4. Launcher checks request freshness and source version, verifies `release-manifest.json.sig` against its compiled Ed25519 key, rejects HTTP or foreign release paths, then downloads the target orchestrator JAR and verifies its SHA-256 checksum plus detached signature.
 5. Launcher stores the JAR under `runtime/versions/`, updates `runtime/current-release.json`, and starts it.
-6. The new orchestrator reconnects to the Runtime Host and regains live control.
+6. The new orchestrator reconnects to the Runtime Host and regains live control. The Launcher accepts the update after its 20-second startup window and a readiness acknowledgement from that exact process.
 
 If the new orchestrator exits with an error in the first 20 seconds, the Launcher can make one best-effort attempt to reactivate the previous orchestrator JAR. Services remain under the same Runtime Host during this attempt.
 
@@ -84,7 +84,7 @@ Before confirming:
 3. verify enough disk space exists for old and new versioned JARs plus service backups; and
 4. keep direct terminal access to the host.
 
-After confirmation, Pulse stops the runtime. Which services and whether the proxy should run is already stored as their desired state, so nothing extra has to be captured. The Launcher requests a controlled host drain and waits for the final operation to confirm that no service or proxy child remains. It then verifies that the old host process and session are gone before starting the replacement host and activates the required artifacts. When the control plane returns, it starts every service and the proxy that should run. Verify every expected service and the proxy after startup.
+After confirmation, Pulse stops the runtime. Which services and whether the proxy should run is already stored as their desired state, so nothing extra has to be captured. The Launcher requests a controlled host drain and waits for the final operation to confirm that no service or proxy child remains. It verifies that the old host process and session are gone before starting the replacement host and activates the required artifacts. When the control plane returns, it starts every service and the proxy that should run. A restore plan left behind by an older Pulse version is applied once; a plan bound to a different update request is left untouched. Verify every expected service and the proxy after startup.
 
 !!! warning "Maintenance validation"
   Confirm that old Java processes exited, that only the previously running services returned once, and that intentionally stopped services remain stopped after the next restart. Do not start a second Launcher or recover manually while the controlled host drain is still in progress.
@@ -133,3 +133,11 @@ Do not replace an artifact in `runtime/versions/` while Pulse is running. Do not
 The Launcher treats the local update request as a selector, not as authority for URLs, hashes, or update mode. It accepts only a fresh request for the active source version, then independently reloads its built-in official HTTPS manifest URL. The exact manifest bytes and every required artifact signature must verify with the compiled Ed25519 public key. Initial artifact URLs must use the official GitHub Release path; GitHub's HTTPS CDN redirects are then accepted while the final JAR is still checked against its detached signature and SHA-256 hash. A wrong hash, missing signature, invalid signature, HTTP URL, foreign release path, stale request, unsafe control permission, or inconsistent release metadata fails closed without artifact activation.
 
 Keep the Pulse home folder restricted to the dedicated runtime account. The Launcher verifies `runtime/control` before each managed start and refuses an unsafe owner, permission mode, ACL, or symbolic link.
+
+## Interrupted or rejected updates
+
+The Launcher retains the previous release and the signed target metadata while an update is in progress. It can recover a staged update without consulting a newer channel manifest. A rejected warm update preserves the host and restarts the previous control plane; the rejection or rollback is recorded in `runtime/control/launcher-update-result.json`. Automatic retries of the same failed target stop until you investigate; a manual retry remains available.
+
+A rejected maintenance update, an ambiguous legacy journal or a failed activation can require manual recovery. Keep the processing and restore files intact, retain compatible backups, and consult the release recovery instructions. Do not delete control files to force a restart. If the old orchestrator still holds `orchestrator.lock` after launcher loss, a replacement launcher refuses to start a competing control plane. For an intentional full shutdown, use `system shutdown` or the shutdown API.
+
+The update journal, the readiness check, crash recovery and the automatic orchestrator restart are Launcher features. The Launcher does not update itself: replace the Launcher JAR manually when a release notes a Launcher change. An older Launcher can still run and update a newer orchestrator, but without these protections.

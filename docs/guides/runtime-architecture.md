@@ -112,3 +112,5 @@ A warm update protects game-process continuity, not every possible failure. A Ru
 - During a host replacement, wait for the Launcher to finish the drain operation before starting any manual recovery action.
 
 See [Updating Pulse](updates.md) for update modes and the operator workflow.
+
+The Launcher preserves host-managed processes on update rejection or launcher failure. An orchestrator process lock prevents a replacement launcher from starting a competing control plane while the original survives. Update recovery runs before a new orchestrator starts, and an update is accepted only after the new orchestrator confirms readiness. Use the orchestrator shutdown command/API when the intention is to stop the complete runtime.
