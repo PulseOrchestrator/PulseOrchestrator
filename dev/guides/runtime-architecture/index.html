@@ -1108,6 +1108,7 @@
 <li>During a host replacement, wait for the Launcher to finish the drain operation before starting any manual recovery action.</li>
 </ul>
 <p>See <a href="../updates/">Updating Pulse</a> for update modes and the operator workflow.</p>
+<p>The Launcher preserves host-managed processes on update rejection or launcher failure. An orchestrator process lock prevents a replacement launcher from starting a competing control plane while the original survives. Update recovery runs before a new orchestrator starts, and an update is accepted only after the new orchestrator confirms readiness. Use the orchestrator shutdown command/API when the intention is to stop the complete runtime.</p>
 
 
 
