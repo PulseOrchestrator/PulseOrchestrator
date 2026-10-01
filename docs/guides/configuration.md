@@ -118,7 +118,7 @@ These tell the orchestrator where Java is and set the default memory for game se
 
 | Setting | Default | Description |
 |---|---|---|
-| `java.path` | `"java"` | Path to the Java executable. The default `"java"` works when Java is on the system `PATH`. If the orchestrator cannot locate Java, provide the absolute path: `"C:\\Program Files\\Java\\jdk-21\\bin\\java.exe"` (Windows) or `"/usr/bin/java"` (Linux). |
+| `java.path` | `"java"` | Path to the Java executable. The default `"java"` works when Java is on the system `PATH`. If the orchestrator cannot locate Java, provide the absolute path: `"C:\\Program Files\\Java\\jdk-25\\bin\\java.exe"` (Windows) or `"/usr/bin/java"` (Linux). |
 | `java.defaultMaxMemoryMB` | `1024` | Default maximum heap size for game servers, in MB. Can be overridden per task. |
 | `java.defaultMinMemoryMB` | `512` | Initial heap allocation for game servers, in MB. Setting min and max to the same value avoids GC pressure from heap resizing on servers with sufficient RAM. |
 
