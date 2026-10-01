@@ -6,7 +6,7 @@ Pulse uses release metadata to decide whether a new orchestrator can be activate
 
 Launcher-managed updates require:
 
-- Java 21;
+- Java 25 LTS;
 - startup through the Launcher, not directly through the orchestrator JAR;
 - a writable Pulse home folder;
 - access to the public GitHub release and raw manifest URLs; and

@@ -10,7 +10,7 @@ This guide walks you through installing and starting it for the first time.
 
 Before you start, make sure you have:
 
-- **Java 21** - the program that runs PulseOrchestrator and your game servers. You can check your version by opening a terminal and typing `java -version`. If you see `21` or higher you are good.
+- **Java 25 LTS** - the program that runs PulseOrchestrator and your game servers. You can check your version by opening a terminal and typing `java -version`. Use the Java 25 LTS release (feature version `25`).
 - **The Launcher, Runtime Host, and orchestrator jars** - the three production runtime files, downloaded from the same release.
 - **The Paper plugin jar** *(optional)* - only needed on backend Paper servers if you want the bridge API, PlaceholderAPI integration, or per-service metrics.
 
@@ -92,7 +92,7 @@ A long random **API secret** is generated for you automatically and saved to `co
 PulseOrchestrator needs to know where Java is installed so it can launch game servers.
 
 - Typing just `java` works if Java is in your system PATH (this is the default on most setups).
-- If that does not work, provide the full path: for example `C:\Program Files\Java\jdk-21\bin\java.exe` on Windows or `/usr/bin/java` on Linux.
+- If that does not work, provide the full path: for example `C:\Program Files\Java\jdk-25\bin\java.exe` on Windows or `/usr/bin/java` on Linux.
 
 You also set default memory limits here:
 
