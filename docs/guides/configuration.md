@@ -30,7 +30,7 @@ Below is a fully annotated example showing every available setting with its defa
   "startupRequirements": {
     "startupChecksEnabled": true,
     "failFast": true,
-    "minimumJavaFeatureVersion": 21,
+    "minimumJavaFeatureVersion": 25,
     "supportedJavaFeatureVersions": []
   },
 
@@ -135,7 +135,7 @@ These checks verify the Java executable configured in `java.path` before runtime
 |---|---|---|
 | `startupRequirements.startupChecksEnabled` | `true` | Run Java runtime checks before the orchestrator starts. |
 | `startupRequirements.failFast` | `true` | Stop startup when Java cannot be inspected or fails a configured requirement. When `false`, Pulse records the failure and continues. |
-| `startupRequirements.minimumJavaFeatureVersion` | `21` | Lowest accepted Java feature version. |
+| `startupRequirements.minimumJavaFeatureVersion` | `25` | Lowest accepted Java feature version. |
 | `startupRequirements.supportedJavaFeatureVersions` | `[]` | Optional allow-list of accepted Java feature versions. An empty list accepts any version at or above the minimum. |
 
 ---
