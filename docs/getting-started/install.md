@@ -63,7 +63,12 @@ Open a terminal, navigate into your Pulse home folder, and run the Launcher. The
     ```
 
 !!! note
-    Replace `<version>` with the actual Launcher version, for example `launcher-1.0.0-beta.4.jar`.
+    Replace `<version>` with the actual Launcher version, for example `launcher-1.0.0.jar`.
+
+!!! warning "Closing the terminal"
+    On Linux, Ctrl+C or closing the terminal stops Pulse in order: the Launcher stops the orchestrator and shuts down the Runtime Host, which stops every server cleanly. The servers themselves do not receive the signal. This needs `setsid`, which is part of util-linux and installed on practically every distribution.
+
+    On Windows, Ctrl+C or closing the console window reaches every Minecraft server directly. For a server that should keep running, run Pulse as a service: systemd on Linux, a service wrapper such as WinSW or NSSM on Windows.
 
 The Launcher creates an exclusive lock for this home folder, starts the Runtime Host, and then starts the orchestrator. A second Launcher for the same folder exits instead of creating duplicate services.
 
