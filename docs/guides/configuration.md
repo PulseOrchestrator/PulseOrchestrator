@@ -290,6 +290,8 @@ Tasks are the blueprints for your servers. Each entry in the `tasks` array defin
       "minMemoryMB": 512,
       "storageMode": "PERSISTENT",
       "restartPolicy": "ON_FAILURE",
+      "startPriority": 10,
+      "startupTimeoutSeconds": 300,
       "tags": ["lobby"],
       "templates": [],
       "jvmArgs": [],
@@ -313,6 +315,8 @@ Tasks are the blueprints for your servers. Each entry in the `tasks` array defin
 | `minMemoryMB` | Yes | Minimum RAM for servers of this type, in MB. |
 | `storageMode` | Yes | `PERSISTENT` - keep files between restarts. `RESET_ON_START` - wipe and re-provision on every start. See the [Feature Guide](feature-guide.md#storage-modes) for details. |
 | `restartPolicy` | Yes | `NEVER`, `ON_FAILURE`, or `ALWAYS`. See the [Feature Guide](feature-guide.md#restart-policies) for details. |
+| `startPriority` | No | Servers of tasks with a higher value start first when Pulse starts several servers at once. Default `0`. See [Health monitor](#health-monitor). |
+| `startupTimeoutSeconds` | No | How long a server may take to finish starting, in seconds. Default `300`. Pulse treats a server as started once it prints `Done (...)! For help, type "help"`. If that takes longer, Pulse sends `stop`, waits up to 30 seconds for the server to save, and only then ends the process; the restart policy counts this as a failed start. Raise the value for modded servers or large worlds whose first start takes long. Available since 1.0.0. |
 | `tags` | No | A list of text labels for your own organisation, for example `["lobby", "hub"]`. |
 | `templates` | No | Names of template folders to apply when creating services from this task. Leave empty to use only the global template. |
 | `jvmArgs` | No | Extra arguments passed to the Java process before the `-jar` flag, for example `["-XX:+UseG1GC"]`. Most servers do not need custom JVM args. |
