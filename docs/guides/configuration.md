@@ -92,9 +92,7 @@ Below is a fully annotated example showing every available setting with its defa
     "githubRepo": "PulseOrchestrator",
     "policyUrl": "https://raw.githubusercontent.com/PulseOrchestrator/PulseOrchestrator/refs/heads/main/update-policy.json",
     "releaseManifestUrl": null
-  },
-
-  "enforceVersionApproval": true
+  }
 }
 ```
 
@@ -269,9 +267,9 @@ These control whether the orchestrator checks for newer versions and can hand a 
 
 ### Version approval
 
-| Setting | Default | Description |
-|---|---|---|
-| `enforceVersionApproval` | `true` | Require task server software and versions to pass Pulse's approved-version checks during provisioning operations. |
+Pulse ships a list of server versions it was tested with. The list is informational: a task or service with a version outside the list starts normally and is routed by the proxy, and Pulse logs a warning. Fabric is not on the list and works the same way.
+
+Up to 1.0.0-beta.6, the setting `enforceVersionApproval` blocked unlisted versions. It was removed in 1.0.0; an existing value in `config.json` is ignored and dropped on the next save.
 
 ---
 
