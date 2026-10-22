@@ -1,38 +1,38 @@
 {
-  "releaseVersion": "1.0.0-beta.6",
-  "channel": "beta",
-  "publishedAt": "2026-09-30T21:43:32Z",
+  "releaseVersion": "1.0.0",
+  "channel": "stable",
+  "publishedAt": "2026-10-22T17:03:33Z",
   "components": {
     "orchestrator": {
-      "version": "1.0.0-beta.6",
+      "version": "1.0.0",
       "protocolVersion": 1,
       "minHostProtocolVersion": 1,
       "persistenceCompatibility": "backward-compatible",
       "rollbackSafe": true,
-      "artifactUrl": "https://github.com/PulseOrchestrator/PulseOrchestrator/releases/download/v1.0.0-beta.6/orchestrator-1.0.0-beta.6.jar",
-      "sha256": "ed1d9ebcb56c1b61af126e2b1349b7b2f5532d091b47aa6cdae5fd1234eda614",
-      "signatureUrl": "https://github.com/PulseOrchestrator/PulseOrchestrator/releases/download/v1.0.0-beta.6/orchestrator-1.0.0-beta.6.jar.sig"
+      "artifactUrl": "https://github.com/PulseOrchestrator/PulseOrchestrator/releases/download/v1.0.0/orchestrator-1.0.0.jar",
+      "sha256": "341809657da6738751050883ae3e8028f15665ed631382aabd9915abc6607aa5",
+      "signatureUrl": "https://github.com/PulseOrchestrator/PulseOrchestrator/releases/download/v1.0.0/orchestrator-1.0.0.jar.sig"
     },
     "runtimeHost": {
-      "version": "1.0.0-beta.6",
+      "version": "1.0.0",
       "protocolVersion": 1,
       "rollbackSafe": true,
-      "artifactUrl": "https://github.com/PulseOrchestrator/PulseOrchestrator/releases/download/v1.0.0-beta.6/runtime-host-1.0.0-beta.6.jar",
-      "sha256": "ee70c72275915ea016c3c018cc9ebce3bf01334d929d7eb6446ed5fb49d76988",
-      "signatureUrl": "https://github.com/PulseOrchestrator/PulseOrchestrator/releases/download/v1.0.0-beta.6/runtime-host-1.0.0-beta.6.jar.sig"
+      "artifactUrl": "https://github.com/PulseOrchestrator/PulseOrchestrator/releases/download/v1.0.0/runtime-host-1.0.0.jar",
+      "sha256": "e53eed1350e8c0ce598d16b9404c8d3eba46a0b0dc04abbb11ef2f2a2acde787",
+      "signatureUrl": "https://github.com/PulseOrchestrator/PulseOrchestrator/releases/download/v1.0.0/runtime-host-1.0.0.jar.sig"
     },
     "launcher": {
-      "version": "1.0.0-beta.6",
-      "artifactUrl": "https://github.com/PulseOrchestrator/PulseOrchestrator/releases/download/v1.0.0-beta.6/launcher-1.0.0-beta.6.jar",
-      "sha256": "8a78335752965c76de8c5dc20ed5a9ddaca9a9d6fb80a75b89a372d53b5bd959",
-      "signatureUrl": "https://github.com/PulseOrchestrator/PulseOrchestrator/releases/download/v1.0.0-beta.6/launcher-1.0.0-beta.6.jar.sig"
+      "version": "1.0.0",
+      "artifactUrl": "https://github.com/PulseOrchestrator/PulseOrchestrator/releases/download/v1.0.0/launcher-1.0.0.jar",
+      "sha256": "be47429fdc49b25db00e165011c9ed6cf1b0f1b47182a2b2929edce056de9269",
+      "signatureUrl": "https://github.com/PulseOrchestrator/PulseOrchestrator/releases/download/v1.0.0/launcher-1.0.0.jar.sig"
     }
   },
   "updatePlan": {
-    "defaultUpdateMode": "WARM_UPDATE",
-    "hostUpgradeRequired": false,
-    "maintenanceRequired": false,
+    "defaultUpdateMode": "MAINTENANCE_UPDATE",
+    "hostUpgradeRequired": true,
+    "maintenanceRequired": true,
     "blockingReason": null
   },
-  "notesUrl": "https://github.com/PulseOrchestrator/PulseOrchestrator/releases/tag/v1.0.0-beta.6"
+  "notesUrl": "https://github.com/PulseOrchestrator/PulseOrchestrator/releases/tag/v1.0.0"
 }
