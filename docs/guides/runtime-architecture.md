@@ -33,7 +33,7 @@ Start Pulse through the Launcher for production use. The Launcher:
 
 1. acquires an exclusive lock for the Pulse home folder;
 2. starts or reconnects to the Runtime Host;
-3. starts the orchestrator in the same terminal;
+3. starts the orchestrator in the same terminal (on Linux, the Runtime Host and its servers run in their own session, so terminal signals such as Ctrl+C reach only the Launcher and the orchestrator);
 4. keeps running while the orchestrator is active; and
 5. processes update requests after the orchestrator exits for an update.
 
