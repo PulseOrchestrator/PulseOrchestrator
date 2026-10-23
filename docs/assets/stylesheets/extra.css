@@ -2,6 +2,7 @@
   display: grid;
   gap: 1.5rem;
   grid-template-columns: minmax(0, 2fr) minmax(18rem, 1fr);
+  align-items: start;
   margin: 1.5rem 0 2rem;
 }
 
@@ -64,6 +65,7 @@
 }
 
 .doc-card strong {
+  color: var(--md-primary-fg-color);
   font-size: 1rem;
 }
 
@@ -76,4 +78,29 @@
   .hero {
     grid-template-columns: 1fr;
   }
+}
+
+/* Dark scheme: the light gradients above would turn the cards white. */
+[data-md-color-scheme="slate"] .hero-panel {
+  background: linear-gradient(180deg, rgba(0, 150, 136, 0.16), rgba(255, 193, 7, 0.06));
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-md-color-scheme="slate"] .doc-card {
+  background: linear-gradient(180deg, rgba(0, 150, 136, 0.12), rgba(255, 255, 255, 0.02));
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-md-color-scheme="slate"] .doc-card:hover {
+  border-color: rgba(0, 150, 136, 0.6);
+  box-shadow: none;
+}
+
+/* The theme underlines links in content; cards are links as a whole. */
+.md-typeset a.doc-card {
+  text-decoration: none;
+}
+
+.md-typeset a.doc-card span {
+  color: var(--md-default-fg-color--light);
 }

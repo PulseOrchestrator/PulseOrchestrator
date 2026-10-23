@@ -28,9 +28,9 @@ Get the latest release from the [Releases](https://github.com/PulseOrchestrator/
 Full documentation is available at **[pulseorchestrator.github.io/PulseOrchestrator](https://pulseorchestrator.github.io/PulseOrchestrator/)**
 
 Quick links:
-- [Installation Guide](https://pulseorchestrator.github.io/PulseOrchestrator/latest/getting-started/install/)
-- [Feature Guide](https://pulseorchestrator.github.io/PulseOrchestrator/latest/guides/feature-guide/)
-- [Plugin Development (Bridge API)](https://pulseorchestrator.github.io/PulseOrchestrator/latest/guides/bridge-api/)
+- [Installation Guide](https://pulseorchestrator.github.io/PulseOrchestrator/pulse-1/getting-started/install/)
+- [Feature Guide](https://pulseorchestrator.github.io/PulseOrchestrator/pulse-1/guides/feature-guide/)
+- [Plugin Development (Bridge API)](https://pulseorchestrator.github.io/PulseOrchestrator/pulse-1/guides/bridge-api/)
 
 ---
 
@@ -46,7 +46,7 @@ Quick links:
 
 Pulse is closed-source software. This repository hosts:
 - Public release artifacts (JARs)
-- Versioned documentation (published via GitHub Pages)
+- Documentation (built with Zensical, published via GitHub Pages)
 - Update and compatibility manifests (`update-policy.json`, `release-manifest.json`)
 
 ---
@@ -57,4 +57,5 @@ Pulse is closed-source software. This repository hosts:
 
 ```bash
 pip install -r requirements-docs.txt
-mkdocs serve  # Preview at localhost:8000
+zensical serve  # Preview at localhost:8000
+```

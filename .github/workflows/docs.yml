@@ -25,6 +25,8 @@ jobs:
           python-version: '3.14'
       - run: python -m pip install -r requirements-docs.txt
       - run: zensical build --clean
+      # Old versioned addresses (/latest/, /1.0.0/, ...) lead to /pulse-1/.
+      - run: python scripts/redirects.py site
       - uses: actions/upload-pages-artifact@v5
         if: github.event_name != 'pull_request'
         with:
