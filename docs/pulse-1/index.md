@@ -1,7 +1,7 @@
 # Pulse 1
 
 !!! info "Pulse 1 (1.x)"
-    These pages cover Pulse 1, the Java release line. It receives bug fixes and compatibility updates. Pulse 2 replaces it with a single binary; its documentation follows with the first Pulse 2 release.
+    These pages cover Pulse 1, the Java release line. It receives bug fixes and compatibility updates. Its successor is [Pulse 2](../pulse-2/index.md).
 
 <div class="hero">
   <div>
