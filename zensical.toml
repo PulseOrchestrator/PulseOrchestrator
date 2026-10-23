@@ -13,6 +13,29 @@ site_dir = "site"
 extra_css = ["assets/stylesheets/extra.css"]
 nav = [
   { "Home" = "index.md" },
+  { "Pulse 2" = [
+    "pulse-2/index.md",
+    { "Getting Started" = [
+      { "Install" = "pulse-2/getting-started/install.md" },
+      { "First Network" = "pulse-2/getting-started/first-network.md" },
+    ] },
+    { "Guides" = [
+      { "Groups and Server Software" = "pulse-2/guides/groups.md" },
+      { "Templates" = "pulse-2/guides/templates.md" },
+      { "Proxy and Routing" = "pulse-2/guides/proxy.md" },
+      { "Terminal UI" = "pulse-2/guides/tui.md" },
+      { "Commands and Automation" = "pulse-2/guides/commands.md" },
+      { "Updates" = "pulse-2/guides/updates.md" },
+      { "Migrating from Pulse 1" = "pulse-2/guides/import.md" },
+    ] },
+    { "Reference" = [
+      { "Configuration" = "pulse-2/reference/configuration.md" },
+    ] },
+    { "Plugin Development" = [
+      { "PulseApi" = "pulse-2/plugins/pulse-api.md" },
+      { "HTTP API" = "pulse-2/plugins/http-api.md" },
+    ] },
+  ] },
   { "Pulse 1" = [
     "pulse-1/index.md",
     { "Install Guide" = "pulse-1/getting-started/install.md" },
