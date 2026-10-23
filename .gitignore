@@ -1,7 +1,7 @@
-# Ignore generated MkDocs site
+# Generated site
 /site/
 
-# Python / mkdocs build artifacts
+# Python build artifacts
 *.pyc
 __pycache__/
 .site/

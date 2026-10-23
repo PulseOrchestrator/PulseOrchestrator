@@ -1,0 +1,79 @@
+# Documentation site, built with Zensical (https://zensical.org).
+# Local preview: pip install -r requirements-docs.txt && zensical serve
+
+[project]
+site_name = "Pulse Docs"
+site_description = "Installation, operation and plugin development for Pulse, the Minecraft network manager."
+site_url = "https://pulseorchestrator.github.io/PulseOrchestrator/"
+repo_url = "https://github.com/PulseOrchestrator/PulseOrchestrator"
+repo_name = "PulseOrchestrator/PulseOrchestrator"
+edit_uri = "edit/main/docs/"
+docs_dir = "docs"
+site_dir = "site"
+extra_css = ["assets/stylesheets/extra.css"]
+nav = [
+  { "Home" = "index.md" },
+  { "Pulse 1" = [
+    "pulse-1/index.md",
+    { "Install Guide" = "pulse-1/getting-started/install.md" },
+    { "Guides" = [
+      { "Feature Guide" = "pulse-1/guides/feature-guide.md" },
+      { "Runtime Architecture" = "pulse-1/guides/runtime-architecture.md" },
+      { "Updating Pulse" = "pulse-1/guides/updates.md" },
+      { "Configuration Reference" = "pulse-1/guides/configuration.md" },
+      { "PlaceholderAPI Integration" = "pulse-1/guides/placeholderapi.md" },
+    ] },
+    { "Plugin Development" = [
+      { "Bridge API" = "pulse-1/guides/bridge-api.md" },
+    ] },
+  ] },
+]
+
+[project.theme]
+language = "en"
+font.text = "IBM Plex Sans"
+font.code = "IBM Plex Mono"
+features = [
+  "content.code.copy",
+  "content.tabs.link",
+  "navigation.indexes",
+  "navigation.instant",
+  "navigation.path",
+  "navigation.sections",
+  "navigation.tabs",
+  "navigation.top",
+  "search.highlight",
+  "toc.follow",
+]
+
+# Teal and amber are the Pulse colours, also used by the TUI.
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "teal"
+accent = "amber"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "teal"
+accent = "amber"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to light mode"
+
+[project.markdown_extensions]
+admonition = {}
+attr_list = {}
+def_list = {}
+footnotes = {}
+md_in_html = {}
+tables = {}
+toc.permalink = true
+pymdownx.details = {}
+pymdownx.highlight.anchor_linenums = true
+pymdownx.inlinehilite = {}
+pymdownx.snippets = {}
+pymdownx.superfences = {}
+pymdownx.tabbed.alternate_style = true
