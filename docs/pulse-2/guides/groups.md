@@ -11,6 +11,8 @@ instances = 2
 templates = ["bedwars"]
 ```
 
+Create, change and delete groups with `pulse group create`, `edit` and `delete` ([commands](commands.md)), in the [TUI](tui.md) with `n`, `e` and `D`, or by writing the file yourself.
+
 Group names use lowercase letters, digits and `-`, start with a letter and have at most 32 characters. All fields are listed in the [configuration reference](../reference/configuration.md#group-files).
 
 ## Server software
@@ -62,7 +64,7 @@ java = "/usr/lib/jvm/java-25/bin/java"
 
 ## Instances
 
-`instances` is the number of services of the group. Lowering it stops the services above the new count; their directories stay in `services/`. Each service is started and stopped on its own; the TUI acts on all services of a group at once.
+`instances` is the number of services of the group. Lowering it stops the services above the new count; their directories stay in `services/`. Deleting a group stops its services and keeps their directories, unless you delete the data with it. Each service is started and stopped on its own; the TUI acts on all services of a group at once.
 
 ## Start-up and crashes
 

@@ -13,7 +13,7 @@ Every request needs `Authorization: Bearer <token>`.
 | Daemon token | `daemon.json` in the Pulse directory (field `token`), new on every daemon start | Everything |
 | Service token | `pulse.json` of the server's Pulse plugin, new on every server start | Read services, groups, players and routing; start, stop and restart services; move players; events; report for its own service |
 
-Service tokens cannot run console commands, read logs, switch maintenance or update groups, and stop working when their server stops.
+Service tokens cannot run console commands, read logs, switch maintenance or update or delete groups, and stop working when their server stops.
 
 ## Endpoints
 
@@ -23,6 +23,7 @@ Service tokens cannot run console commands, read logs, switch maintenance or upd
 | `POST /daemon/shutdown`, `POST /daemon/restart` | Stop or restart the daemon; servers keep running | |
 | `GET /groups` | Groups with pinned build | ✓ |
 | `POST /groups/{name}/update` | Pin the newest build | |
+| `DELETE /groups/{name}?delete_data=` | Delete a group; its services stop and are forgotten | |
 | `GET /services`, `GET /services/{id}` | Services | ✓ |
 | `POST /services/{id}/start` · `stop` · `restart` | Change whether a service runs | ✓ |
 | `GET /services/{id}/logs?offset=&lines=` | Console; pass the returned `offset` to follow | |
