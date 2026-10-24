@@ -21,6 +21,9 @@ Every action of the TUI is also a command. Commands never ask questions, can pri
 | `pulse daemon restart` | Restart the daemon in place; servers keep running |
 | `pulse group list` / `show <name>` | Groups with their pinned build |
 | `pulse group update <name>` | Use the newest build of the group's version from the next start |
+| `pulse group create <name> --software <software> [options]` | Create a group; its services start out stopped. Needs no daemon |
+| `pulse group edit <name> [options]` | Change a group; comments in the file stay. Needs no daemon |
+| `pulse group delete <name> [--delete-data]` | Stop and forget the group's services; `--delete-data` also deletes their directories |
 | `pulse service list` / `show <id>` | Services with status, port, build and metrics |
 | `pulse service start <id>` | Start and keep running |
 | `pulse service stop <id>` | Stop and keep stopped |
@@ -35,6 +38,13 @@ Every action of the TUI is also a command. Commands never ask questions, can pri
 | `pulse self-update [--check] [--pre]` | [Update Pulse](updates.md) |
 
 `start`, `stop` and `restart` accept `--wait` to return only when the service is running or stopped, with `--timeout <seconds>` (default 60). A start that ends in a crash fails instead of waiting.
+
+`group create` and `group edit` take the fields of the [group file](../reference/configuration.md#group-files) as options: `--software`, `--version`, `--memory`, `--mode`, `--instances`, `--templates` (comma-separated), `--java`, `--ready-pattern`, `--startup-timeout`. `""` clears `--templates`, `--java` and `--ready-pattern`. The command of a custom group follows `--`:
+
+```bash
+pulse group create event --software custom --ready-pattern '^Server started' -- ./start.sh --port 25570
+pulse group edit bedwars --instances 4 --memory 2G
+```
 
 `pulse <command> --help` describes every option.
 
@@ -90,4 +100,4 @@ Service `status` is one of `stopped`, `preparing`, `starting`, `running`, `stopp
 
 ## Groups as files
 
-Groups are created and changed by writing `groups/<name>.toml` (see [Groups](groups.md)); the daemon picks up changes within a second. `pulse group show <name>` reports errors in a file with exit code `2`.
+`group create` and `group edit` write `groups/<name>.toml` (see [Groups](groups.md)). You can also write the file yourself; the daemon picks up changes within a second. `pulse group show <name>` reports errors in a file with exit code `2`. `group create` fails with exit code `2` if the group exists, `group edit` and `group delete` with `3` if it does not.

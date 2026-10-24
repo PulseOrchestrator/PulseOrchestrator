@@ -31,6 +31,9 @@
 | `:` or Enter | Send a console command to the selected service (↑ ↓ for history, Esc to go back) |
 | PgUp PgDn, End | Scroll the console, follow new output again |
 | `u` | Update the group to the newest build |
+| `n` | Create a group |
+| `e` | Edit the selected group |
+| `D` or Delete | Delete the selected group: `y` keeps the service directories, `d` deletes them too (static groups) |
 | `m` | Switch maintenance mode |
 | `?` | Help |
 | `q` | Quit. Servers keep running |
