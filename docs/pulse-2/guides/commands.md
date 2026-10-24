@@ -18,6 +18,7 @@ Every action of the TUI is also a command. Commands never ask questions, can pri
 | `pulse daemon start` | Start the daemon in the background; output in `daemon.log` |
 | `pulse daemon status` | Show whether a daemon runs |
 | `pulse daemon stop` | Stop the daemon; servers keep running |
+| `pulse daemon stop --services [--timeout 120]` | Stop every server, then the daemon. The next `pulse daemon start` starts the same servers again |
 | `pulse daemon restart` | Restart the daemon in place; servers keep running |
 | `pulse group list` / `show <name>` | Groups with their pinned build |
 | `pulse group update <name>` | Use the newest build of the group's version from the next start |

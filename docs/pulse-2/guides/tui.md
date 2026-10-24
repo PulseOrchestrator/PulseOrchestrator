@@ -37,6 +37,7 @@
 | `m` | Switch maintenance mode |
 | `?` | Help |
 | `q` | Quit. Servers keep running |
+| `Q` | Shut down: stop every server and the daemon (asks first). Starting the daemon again with `d` starts the same servers |
 
 Without a running daemon the TUI shows the Pulse directory and starts the daemon on `d`.
 
