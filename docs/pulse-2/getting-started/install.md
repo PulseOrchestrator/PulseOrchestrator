@@ -40,7 +40,7 @@ pulse daemon start
 pulse daemon status
 ```
 
-Its output goes to `daemon.log` in the Pulse directory. `pulse daemon stop` ends it; your servers keep running.
+Its output goes to `daemon.log` in the Pulse directory. `pulse daemon stop` ends it; your servers keep running. `pulse daemon stop --services` stops the servers too, e.g. before you shut the machine down; the next `pulse daemon start` starts the same servers again.
 
 ### As a systemd service
 

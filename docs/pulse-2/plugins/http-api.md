@@ -21,6 +21,7 @@ Service tokens cannot run console commands, read logs, switch maintenance or upd
 |---|---|---|
 | `GET /daemon` | Version and directory | |
 | `POST /daemon/shutdown`, `POST /daemon/restart` | Stop or restart the daemon; servers keep running | |
+| `POST /daemon/shutdown?services=true` | Stop every server, then the daemon; the next daemon starts them again | |
 | `GET /groups` | Groups with pinned build | ✓ |
 | `POST /groups/{name}/update` | Pin the newest build | |
 | `DELETE /groups/{name}?delete_data=` | Delete a group; its services stop and are forgotten | |
