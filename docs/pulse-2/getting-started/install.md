@@ -1,6 +1,6 @@
 # Install
 
-Pulse is a single static binary for Linux x86_64. It needs no Java installation of its own: it downloads the Java version each server needs.
+Pulse is a single binary for Linux x86_64 and Windows x86_64. It needs no Java installation of its own: it downloads the Java version each server needs.
 
 ## Download into the Pulse directory
 
@@ -12,6 +12,16 @@ curl -Lo pulse https://github.com/PulseOrchestrator/PulseOrchestrator/releases/d
 chmod +x pulse
 ./pulse --version
 ```
+
+On Windows, in PowerShell:
+
+```powershell
+New-Item -ItemType Directory -Force C:\pulse; cd C:\pulse
+Invoke-WebRequest -OutFile pulse.exe https://github.com/PulseOrchestrator/PulseOrchestrator/releases/download/v2.0.0/pulse-2.0.0-x86_64-windows.exe
+.\pulse --version
+```
+
+The commands in this guide are the same on Windows with `.\pulse` instead of `./pulse`; the systemd section is Linux only.
 
 Every release also contains `SHA256SUMS` and its signature `SHA256SUMS.sig`. `pulse self-update` checks both automatically; see [Updates](../guides/updates.md).
 
