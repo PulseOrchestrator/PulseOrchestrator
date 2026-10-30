@@ -35,7 +35,7 @@ Group names use lowercase letters, digits and `-`, start with a letter and have 
 | `1.21.4` | The newest build of this version |
 | `1.21.4#232` | Exactly this build. For Fabric the part after `#` is the loader version |
 
-There is no approval list: any version the upstream project offers works.
+There is no approval list: any version the upstream project offers works. The Pulse plugin for Paper, Purpur and Folia needs version 26 or newer; on older versions such as 1.21 it does not load, so those servers have no metrics and no `PulseApi`.
 
 ### Pinned builds
 
