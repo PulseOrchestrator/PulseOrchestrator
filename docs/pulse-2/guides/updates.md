@@ -11,7 +11,7 @@ pulse self-update
 
 1. It downloads `SHA256SUMS` and checks its Ed25519 signature against the key built into Pulse.
 2. It downloads the binary and checks it against `SHA256SUMS`.
-3. It replaces the binary and keeps the previous one as `pulse.old` next to it.
+3. It replaces the binary and keeps the previous one as `pulse.old` (`pulse.exe.old` on Windows) next to it.
 4. It restarts the daemon in place. Servers keep running and the new daemon takes them over.
 
 Nothing changes if a signature or checksum does not match. Pre-releases are only installed with `--pre` or when a pre-release is already installed. A new major version is installed by hand.
