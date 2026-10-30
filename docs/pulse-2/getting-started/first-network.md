@@ -2,6 +2,8 @@
 
 This sets up a Velocity proxy and a Paper lobby. Players connect to the proxy on port 25565 and land in the lobby.
 
+`pulse init` (see [Install](install.md#set-up-a-first-network)) writes exactly these files and starts both servers. This page shows what it does, so you can change the files or write them yourself.
+
 ## Configure the proxy
 
 ```toml

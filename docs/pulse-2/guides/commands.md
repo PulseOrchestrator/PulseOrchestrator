@@ -1,12 +1,12 @@
 # Commands and automation
 
-Every action of the TUI is also a command. Commands never ask questions, can print JSON and report the outcome in their exit code, so scripts and AI agents can operate Pulse like a person.
+Every action of the TUI is also a command. Commands never ask questions, can print JSON and report the outcome in their exit code, so scripts and AI agents can operate Pulse like a person. The one exception is `pulse init` in a terminal: it asks for the settings you did not give as options, and never asks with `--json` or without a terminal.
 
 ## Global options
 
 | Option | Meaning |
 |---|---|
-| `--root <dir>` | Pulse directory. Defaults to `$PULSE_HOME`, then the current directory |
+| `--root <dir>` | Pulse directory. Defaults to `$PULSE_HOME`, then the directory of the `pulse` binary if a `pulse.toml` is beside it, then the current directory |
 | `--json` | Print JSON instead of text, on success and on errors |
 
 ## Commands
@@ -14,6 +14,7 @@ Every action of the TUI is also a command. Commands never ask questions, can pri
 | Command | Action |
 |---|---|
 | `pulse` | Open the [TUI](tui.md) |
+| `pulse init [--accept-eula] [--port 25565] [--lobby paper] [--memory 2G] [--start\|--no-start] [--timeout 600]` | [Set up a first network](../getting-started/install.md#set-up-a-first-network) in an empty directory: `pulse.toml`, groups `proxy` and `lobby`. `--start` also starts the daemon and both servers and waits up to `--timeout` seconds for each |
 | `pulse daemon run` | Run the daemon in the foreground (systemd) |
 | `pulse daemon start` | Start the daemon in the background; output in `daemon.log` |
 | `pulse daemon status` | Show whether a daemon runs |

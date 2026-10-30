@@ -2,42 +2,55 @@
 
 Pulse is a single static binary for Linux x86_64. It needs no Java installation of its own: it downloads the Java version each server needs.
 
-## Download
+## Download into the Pulse directory
 
-Download `pulse-<version>-x86_64-linux` from the [releases](https://github.com/PulseOrchestrator/PulseOrchestrator/releases), make it executable and put it on your `PATH`:
+Pulse keeps everything in one directory: configuration, server files, downloads. Put the binary there too:
 
 ```bash
-install -m 755 pulse-2.0.0-x86_64-linux /usr/local/bin/pulse
-pulse --version
+mkdir -p /srv/pulse && cd /srv/pulse
+curl -Lo pulse https://github.com/PulseOrchestrator/PulseOrchestrator/releases/download/v2.0.0/pulse-2.0.0-x86_64-linux
+chmod +x pulse
+./pulse --version
 ```
 
 Every release also contains `SHA256SUMS` and its signature `SHA256SUMS.sig`. `pulse self-update` checks both automatically; see [Updates](../guides/updates.md).
 
-## Choose a directory
-
-Pulse keeps everything in one directory: configuration, server files, downloads. Pass it with `--root`, set `PULSE_HOME`, or run commands from inside it.
+## Set up a first network
 
 ```bash
-mkdir -p /srv/pulse && cd /srv/pulse
-export PULSE_HOME=/srv/pulse
+./pulse init
 ```
 
-## Accept the Minecraft EULA
+`init` asks you to accept the [Minecraft EULA](https://aka.ms/MinecraftEULA), the port players connect to (25565), the lobby software (Paper) and its memory (2G). Then it writes `pulse.toml`, a Velocity group `proxy` and a group `lobby`, and offers to start everything right away. The first start downloads Velocity, the lobby server and Java, which can take a minute. After that, connect Minecraft to your machine.
 
-Minecraft servers only start after you accept the [Minecraft EULA](https://aka.ms/MinecraftEULA) in `pulse.toml`:
+Opening the TUI with `./pulse` in an empty directory shows the same setup.
 
-```toml
-# /srv/pulse/pulse.toml
-eula = true
+For scripts and agents, pass everything as options; without a terminal `init` asks nothing:
+
+```bash
+./pulse init --accept-eula --port 25565 --lobby paper --memory 2G --start --json
+```
+
+`init` only writes into a directory without `pulse.toml` and without group files. [Your first network](first-network.md) explains the files it writes.
+
+## Which directory Pulse uses
+
+A binary with a `pulse.toml` beside it manages its own directory, wherever you call it from: `/srv/pulse/pulse service list` works from any directory, and so does `./pulse` inside it. Otherwise Pulse uses the current directory.
+
+`--root <dir>` and the environment variable `PULSE_HOME` override both, e.g. for one binary on the `PATH` that manages several directories:
+
+```bash
+install -m 755 pulse-2.0.0-x86_64-linux /usr/local/bin/pulse
+pulse --root /srv/pulse service list
 ```
 
 ## Start the daemon
 
-For a first try, start it in the background:
+If you did not let `init` start the network:
 
 ```bash
-pulse daemon start
-pulse daemon status
+./pulse daemon start
+./pulse daemon status
 ```
 
 Its output goes to `daemon.log` in the Pulse directory. `pulse daemon stop` ends it; your servers keep running. `pulse daemon stop --services` stops the servers too, e.g. before you shut the machine down; the next `pulse daemon start` starts the same servers again.
@@ -55,7 +68,7 @@ Wants=network-online.target
 
 [Service]
 User=minecraft
-ExecStart=/usr/local/bin/pulse --root /srv/pulse daemon run
+ExecStart=/srv/pulse/pulse daemon run
 Restart=on-failure
 # Stop only the daemon. With the default (control-group) systemd would also
 # stop every Minecraft server when the daemon stops or restarts.
@@ -64,6 +77,8 @@ KillMode=process
 [Install]
 WantedBy=multi-user.target
 ```
+
+If the daemon runs already, stop it first with `./pulse daemon stop`, then:
 
 ```bash
 systemctl enable --now pulse
@@ -74,7 +89,7 @@ systemctl enable --now pulse
 ## Open the TUI
 
 ```bash
-pulse
+./pulse
 ```
 
 Without a running daemon the TUI offers to start one. Continue with [your first network](first-network.md).
