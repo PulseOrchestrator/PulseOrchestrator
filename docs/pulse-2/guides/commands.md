@@ -30,7 +30,7 @@ Every action of the TUI is also a command. Commands never ask questions, can pri
 | `pulse service start <id>` | Start and keep running |
 | `pulse service stop <id>` | Stop and keep stopped |
 | `pulse service restart <id>` | Stop and start again |
-| `pulse service logs <id> [--lines 50]` | End of the console |
+| `pulse service logs <id> [--lines 50] [--follow]` | End of the console; `--follow` (`-f`) keeps printing new lines until Ctrl+C. Needs no daemon |
 | `pulse service exec <id> <command…>` | Console command through RCON (Minecraft servers) |
 | `pulse proxy status` | Routed servers, lobby and fallback, maintenance |
 | `pulse proxy maintenance on\|off` | Switch maintenance mode |
@@ -87,6 +87,8 @@ pulse --json service start app-1 --wait
   }
 }
 ```
+
+`pulse --json service logs <id> --follow` is the exception: it prints one object per console line, `{"line":"…"}`, as the lines arrive.
 
 Errors print `error.kind` and `error.message` and set the exit code:
 
