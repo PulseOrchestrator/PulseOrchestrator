@@ -41,4 +41,6 @@
 
 Without a running daemon the TUI shows the Pulse directory and starts the daemon on `d`.
 
+In a directory without `pulse.toml` and groups, the TUI first shows the setup of `pulse init`: accept the EULA, choose the port, the lobby software and its memory, and `enter` writes the network and starts the daemon, the proxy and the lobby. `esc` skips it.
+
 Everything the TUI does is also a [command](commands.md).

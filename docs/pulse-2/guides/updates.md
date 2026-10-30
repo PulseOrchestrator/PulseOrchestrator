@@ -16,7 +16,7 @@ pulse self-update
 
 Nothing changes if a signature or checksum does not match. Pre-releases are only installed with `--pre` or when a pre-release is already installed. A new major version is installed by hand.
 
-The binary must be writable by the user running the command. With `/usr/local/bin/pulse` owned by root, run it as root or install Pulse elsewhere.
+The binary must be writable by the user running the command. A binary in the Pulse directory, as in [Install](../getting-started/install.md), is. With `/usr/local/bin/pulse` owned by root, run it as root or keep the binary in the Pulse directory.
 
 To go back, replace `pulse` with `pulse.old` and run `pulse daemon restart`.
 
