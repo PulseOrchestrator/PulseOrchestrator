@@ -55,7 +55,7 @@ Unknown fields are an error, so typos do not go unnoticed.
 | `templates/` | Your templates |
 | `services/<id>/` | Working directory of a service, with `console.log` |
 | `state.json` | Which services should run, pinned builds, maintenance mode |
-| `cache/`, `runtimes/` | Downloaded servers, mods and Java runtimes |
+| `cache/`, `runtimes/` | Downloaded servers, mods and Java runtimes. Once a day the daemon removes what no pinned build and no running server uses |
 | `plugins/` | Optional: `pulse-velocity.jar` or `pulse-paper.jar` to use instead of the built-in plugins |
 | `forwarding.secret` | Velocity forwarding secret |
 | `daemon.json`, `daemon.lock` | Address and token of the running daemon (readable only by its owner) |
