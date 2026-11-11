@@ -29,4 +29,4 @@ pulse group update lobby
 pulse service restart lobby-1
 ```
 
-Java runtimes follow the server: a new build that needs a newer Java gets it on its next start.
+Java runtimes follow the server: a new build that needs a newer Java than Java 25 gets it on its next start.
