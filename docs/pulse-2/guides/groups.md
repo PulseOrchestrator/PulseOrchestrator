@@ -35,7 +35,7 @@ Group names use lowercase letters, digits and `-`, start with a letter and have 
 | `1.21.4` | The newest build of this version |
 | `1.21.4#232` | Exactly this build. For Fabric the part after `#` is the loader version |
 
-There is no approval list: any version the upstream project offers works. The Pulse plugin for Paper, Purpur and Folia needs version 26 or newer; on older versions such as 1.21 it does not load, so those servers have no metrics and no `PulseApi`.
+There is no approval list: any version the upstream project offers works. The Pulse plugin for Paper, Purpur and Folia is built for version 26. It is only tested there; on older versions such as 1.21 it may not work, and those servers then have no metrics and no `PulseApi`.
 
 ### Pinned builds
 
@@ -49,7 +49,7 @@ Running services keep their build until they restart; `pulse service restart lob
 
 ## Java
 
-Pulse reads which Java version a server needs and downloads a matching Eclipse Temurin runtime into `runtimes/`. To use your own Java instead:
+Pulse downloads an Eclipse Temurin runtime into `runtimes/`. Servers that need Java 17 or newer (Minecraft 1.18 and later) all run on Java 25, the current long-term support release, and share one runtime. Older servers get the Java version they ask for. A Pulse release moves to the next LTS once servers have been tried on it. To use your own Java instead:
 
 ```toml
 java = "/usr/lib/jvm/java-25/bin/java"
