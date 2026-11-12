@@ -55,6 +55,8 @@ Pulse reads which Java version a server needs and downloads a matching Eclipse T
 java = "/usr/lib/jvm/java-25/bin/java"
 ```
 
+Pulse keeps its runtimes up to date: once a day, starting a server checks for a newer release with security fixes. A newer release is installed next to the current one and used from the next start on; servers that are running keep their runtime. Your own `java` is never changed.
+
 ## Static and dynamic
 
 | `mode` | Behaviour |
